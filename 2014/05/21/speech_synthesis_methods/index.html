@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>浅谈语音合成方法 | shuaijiang&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="引言从整个语音合成的发展历史来看，早期的机械式语音合成器反映了人们对语音产生机理了解得比较粗略，现代语音合成方法基本上都是采用一种语音模型来合成语音。近期的语音合成方法可以归纳为四种：1.物理机理语音合成；2.源-滤波器语音合成；3.基于波形拼接技术的语音合成；4.可训练的语音合成。5.基于神经网络的语音合成。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈语音合成方法">
+<meta property="og:url" content="http://zhaoshuaijiang.com/2014/05/21/speech_synthesis_methods/index.html">
+<meta property="og:site_name" content="shuaijiang&#39;s blog">
+<meta property="og:description" content="引言从整个语音合成的发展历史来看，早期的机械式语音合成器反映了人们对语音产生机理了解得比较粗略，现代语音合成方法基本上都是采用一种语音模型来合成语音。近期的语音合成方法可以归纳为四种：1.物理机理语音合成；2.源-滤波器语音合成；3.基于波形拼接技术的语音合成；4.可训练的语音合成。5.基于神经网络的语音合成。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/source_fliter_synthesis.png">
+<meta property="article:published_time" content="2014-05-21T12:26:40.000Z">
+<meta property="article:modified_time" content="2021-04-03T13:50:35.752Z">
+<meta property="article:author" content="shuaijiang">
+<meta property="article:tag" content="语音合成">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://zhaoshuaijiang.com/image/source_fliter_synthesis.png">
+  
+    <link rel="alternate" href="/atom.xml" title="shuaijiang's blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">shuaijiang&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zhaoshuaijiang.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-speech_synthesis_methods" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2014/05/21/speech_synthesis_methods/" class="article-date">
+  <time class="dt-published" datetime="2014-05-21T12:26:40.000Z" itemprop="datePublished">2014-05-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      浅谈语音合成方法
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>从整个语音合成的发展历史来看，早期的机械式语音合成器反映了人们对语音产生机理了解得比较粗略，现代语音合成方法基本上都是采用一种语音模型来合成语音。近期的语音合成方法可以归纳为四种：1.物理机理语音合成；2.源-滤波器语音合成；3.基于波形拼接技术的语音合成；4.可训练的语音合成。5.基于神经网络的语音合成。</p>
+<span id="more"></span>
+
+<h1 id="物理机理语音合成"><a href="#物理机理语音合成" class="headerlink" title="物理机理语音合成"></a>物理机理语音合成</h1><p>物理机理语音合成方法是通过对人产生语音的物理结构进行建模，从而产生语音，比如，对发音过程中嘴唇、牙齿、下巴等运动进行建模。</p>
+<p>近来，因为难以将它在现阶段推向实用，物理机理语音合成的研究受到制约。主要原因在于两个方面：一是对语音产生过程中发声器官的运动和变换进行度量非常困难；第二个原因是模型复杂、计算量非常大，相比于源-滤波器的语音合成模型，对声道气流特征和运动轨迹的数学建模非常复杂而且计算量非常大。</p>
+<h1 id="源-滤波器语音合成"><a href="#源-滤波器语音合成" class="headerlink" title="源-滤波器语音合成"></a>源-滤波器语音合成</h1><p>源-滤波器语音合成基于这样一种声学理论，这种理论认为声音由激励和相应的滤波器形成。其中激励主要分为两种：一种是类似噪声的激励，主要形成非浊音语音信号；另一种是周期性的激励，主要生产浊音信号。</p>
+<p>在该方式里，音库中预先存放各种语音合成单元的声道参数，这些参数根据控制规则的要求进行修正，以合成出各种语言环境下的语音。源-滤波器语音合成的结构框图，如下图所示。<br><img src="/image/source_fliter_synthesis.png" alt="源-滤波器语音合成结构框图"></p>
+<p>在基于源-滤波器的参数合成中，合成器的工作流程可以分为三步：</p>
+<ol>
+<li>首先根据待合成音节的声调特性构造出相应的声门波激励源；</li>
+<li>然后再根据协同发音、速度变换（时长参数）等音变信息在原始声道的基础上构造出新的声道参数模型；</li>
+<li>最后将声门波激励源送入新的声道模型中，其输出就是符合给定韵律特性的合成语音。</li>
+</ol>
+<p>LPC（线性预测分析）合成器和共振峰合成器是基于源-滤波器的参数合成器中最常用的两种方法。</p>
+<h2 id="LPC合成器"><a href="#LPC合成器" class="headerlink" title="LPC合成器"></a>LPC合成器</h2><p>线性预测合成（LPC）以线性预测误差滤波器为基础来模拟声道。</p>
+<h2 id="共振峰合成器"><a href="#共振峰合成器" class="headerlink" title="共振峰合成器"></a>共振峰合成器</h2><p>把人的声道模型看成一个谐振波，语音信号的共振峰特性由这个腔体的谐振频率来表征，这种合成方法叫做共振峰合成。</p>
+<h1 id="基于波形拼接技术的语音合成"><a href="#基于波形拼接技术的语音合成" class="headerlink" title="基于波形拼接技术的语音合成"></a>基于波形拼接技术的语音合成</h1><p>波形拼接合成方法的基本原理就是根据输入文本分析得到的信息，从预先录制和标注好的语音库中挑选合成的单元，进行少量的调整（也可以不调整），然后拼接得到最终的合成语音。其中用来进行单元挑选的信息可以是前端分析得到的韵律文本，也可以是生成的声学参数，或者二者兼有。由于最终合成语音中的单元都是直接从音库中复制过来的，其最大优势就是在于保持了原始发音人的音质。</p>
+<h1 id="可训练的语音合成"><a href="#可训练的语音合成" class="headerlink" title="可训练的语音合成"></a>可训练的语音合成</h1><p>可训练的语音合成（Trainable TTS）的基本思想就是基于一套自动化的流程，根据输入的语音数据进行训练，并形成一个相应的合成系统。</p>
+<p>在语音信号处理中，最普遍有效的建模方式就是隐马尔科夫模型（Hidden Markov Models, HMM），它在语音识别中已经有非常成熟的应用，目前的Trainable TTS也都是基于HMM进行参数建模。</p>
+<h1 id="基于神经网络的语音合成"><a href="#基于神经网络的语音合成" class="headerlink" title="基于神经网络的语音合成"></a>基于神经网络的语音合成</h1><p>2006年，Hinton等人提出深度学习的概念，深度学习在不同领域得到了很好的应用，并且也取得了不错的效果。2012年，Hinton等人就利用深度神经网络对语音识别进行声学建模。2013年，Zen等人实现了基于深度神经网络的参数式语音合成。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>随着计算机处理能力的不断提高，目前主要流行的是可训练的语音合成，并且为了提高合成语音的音质，一般会采用混合式语音合成方法，即基于HMM的单元挑选和波形拼接语音合成。将统计建模的思想引入到单元挑选和波形拼接中，结合了两种方法的优点，也取得了不错的效果。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li>吴义坚. 基于隐马尔科夫模型的语音合成技术研究[D]. 中国科学技术大学, 2006.</li>
+<li>Ze H, Senior A, Schuster M. Statistical parametric speech synthesis using deep neural networks[C]//Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE International Conference on. IEEE, 2013: 7962-7966.</li>
+</ol>
+<p>2014/5/21 21:12:59 Version 1</p>
+<p>2014/5/29 22:37:52 Version 2</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaoshuaijiang.com/2014/05/21/speech_synthesis_methods/" data-id="ckn1srhmy00dufe5d75w15l4l" data-title="浅谈语音合成方法" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/" rel="tag">语音合成</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/06/04/the_information/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          《信息简史》读书笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/05/20/dtw_based_speech_recognition/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">基于DTW的孤立词语音识别</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PaperReading/" rel="tag">PaperReading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Perl/" rel="tag">Perl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reading/" rel="tag">reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E6%B5%AA%E6%BD%AE/" rel="tag">信息浪潮</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" rel="tag">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" rel="tag">计算机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/" rel="tag">语音合成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" rel="tag">语音识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PaperReading/" style="font-size: 17.5px;">PaperReading</a> <a href="/tags/Perl/" style="font-size: 10px;">Perl</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/python/" style="font-size: 11.25px;">python</a> <a href="/tags/reading/" style="font-size: 10px;">reading</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%B5%AA%E6%BD%AE/" style="font-size: 10px;">信息浪潮</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 16.25px;">机器学习</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" style="font-size: 12.5px;">自然语言处理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 15px;">计算机</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/" style="font-size: 18.75px;">语音合成</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" style="font-size: 13.75px;">语音识别</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 12.5px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/03/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/09/pip-tsinghua/">pip清华源</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/29/paper-spec-augment/">paper_spec_augment</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/02/asr-espnet-install/">ESPNET 安装指引</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/28/paper_attention_is_all_you_need/">Paper Reading： Attention is all you need</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 shuaijiang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
