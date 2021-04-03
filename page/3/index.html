@@ -71,62 +71,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-leetcode-battleships-in-a-board" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/01/19/leetcode-battleships-in-a-board/" class="article-date">
-  <time class="dt-published" datetime="2017-01-19T03:28:17.000Z" itemprop="datePublished">2017-01-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/01/19/leetcode-battleships-in-a-board/">LeetCode Battleships in a Board</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>Given an 2D board, count how many different battleships are in it. The battleships are represented with ‘X’s, empty slots are represented with ‘.’s. You may assume the following rules:</p>
-<p>You receive a valid board, made of only battleships or empty slots.<br>Battleships can only be placed horizontally or vertically. In other words, they can only be made of the shape 1xN (1 row, N columns) or Nx1 (N rows, 1 column), where N can be of any size.<br>At least one horizontal or vertical cell separates between two battleships - there are no adjacent battleships.<br>Example:</p>
-<blockquote>
-<p>X..X<br>…X<br>…X</p>
-</blockquote>
-<p>In the above board there are 2 battleships.</p>
-<p>Invalid Example:</p>
-<blockquote>
-<p>…X<br>XXXX<br>…X</p>
-</blockquote>
-<p>This is an invalid board that you will not receive - as battleships will always have a cell separating between them.</p>
-<p>The original problem is <a target="_blank" rel="noopener" href="https://leetcode.com/problems/battleships-in-a-board/" title="Problem">here</a>.</p>
-        
-          <p class="article-more-link">
-            <a href="/2017/01/19/leetcode-battleships-in-a-board/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaoshuaijiang.com/2017/01/19/leetcode-battleships-in-a-board/" data-id="ckn1uqk2h001d8z5d0hni27pn" data-title="LeetCode Battleships in a Board" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
     <article id="post-leetcode-Magical-String" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2017/01/19/leetcode-Magical-String/" class="article-date">
@@ -614,6 +558,79 @@
 
 
   
+    <article id="post-csapp-7-linking" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2016/05/20/csapp-7-linking/" class="article-date">
+  <time class="dt-published" datetime="2016-05-20T00:33:12.000Z" itemprop="datePublished">2016-05-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2016/05/20/csapp-7-linking/">深入理解计算机系统--链接</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>链接是将各种代码和数据收集起来并组合成一个单一文件的过程，这个文件可被加载到存储器并执行。<br>现代系统中，链接是由链接器（linker）自动执行的。</p>
+<h2 id="符号解析"><a href="#符号解析" class="headerlink" title="符号解析"></a>符号解析</h2><p>首先定义强符号与弱符号。</p>
+<ul>
+<li>强符号：函数和已初始化的全局变量。</li>
+<li>弱符号：未初始化的全局变量。</li>
+</ul>
+<h3 id="规则1"><a href="#规则1" class="headerlink" title="规则1"></a>规则1</h3><p>不允许有多个强符号。</p>
+<h3 id="规则2"><a href="#规则2" class="headerlink" title="规则2"></a>规则2</h3><p>如果有一个强符号和多个弱符号，那么选择强符号。<br>如果在一个模块里x未被初始化，那么链接器将安静地选择定义在另一个模块中的强符号。</p>
+<h3 id="规则3"><a href="#规则3" class="headerlink" title="规则3"></a>规则3</h3><p>如果有多个弱符号，那么从这些弱符号中任意选择一个。</p>
+<h3 id="一个有趣的错误"><a href="#一个有趣的错误" class="headerlink" title="一个有趣的错误"></a>一个有趣的错误</h3><p>在foo5模块中，x被定义为int类型；在bar5模块，x被定义为double类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;foo5.c</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">void f(void);</span><br><span class="line"></span><br><span class="line">int x &#x3D; 15213;</span><br><span class="line">int y &#x3D; 15212;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    f();</span><br><span class="line">    printf(&quot;x &#x3D; 0x%x, y &#x3D; 0x%x\n&quot;, x, y);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;bar5.c</span><br><span class="line">double x;</span><br><span class="line"></span><br><span class="line">void f() &#123;</span><br><span class="line">    x &#x3D; -0.0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>使用gcc（版本为4.8.0）编译，会有警告信息。与参考文献中所说的没有警告信息有出入。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$gcc</span> -o foobar5 foo5.c  bar5.c </span><br><span class="line">$/usr/bin/ld: Warning: alignment 4 of symbol `x<span class="string">&#x27; in /tmp/ccrGpxXb.o is smaller than 8 in /tmp/ccYL3Zqs.o</span></span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$./foobar5</span><br><span class="line"><span class="variable">$x</span> = 0x0, y = 0x80000000</span><br></pre></td></tr></table></figure>
+<p>结果显示，y的值被修改，这是因为double类型是8个字节，int类型是4个字节，在bar5模块中对x赋值，双精度浮点数覆盖了存储器中x和y的位置。</p>
+<h2 id="重定位"><a href="#重定位" class="headerlink" title="重定位"></a>重定位</h2><p>链接器完成符号解析之后，就可以把代码中的每个符号引用和确定的一个符号定义联系起来。此时，链接器就知道它的输入目标模块中的代码节和数据节的确切大小，就可以开始重定位了。<br>重定位由两步组成：</p>
+<ol>
+<li>重定位节和符号定义。链接器将所有相同类型的节合并，得到新的聚合节。</li>
+<li>重定位节中的符号定义。链接器修改代码节和数据节中对每个符号的引用，使他们指向正确的地址。</li>
+</ol>
+<h2 id="动态链接共享库"><a href="#动态链接共享库" class="headerlink" title="动态链接共享库"></a>动态链接共享库</h2><p>静态库的缺点</p>
+<ol>
+<li>需要定期维护和更新，如果程序员想使用最新版本，必须了解该库的更新情况，显式地将程序与更新的库重新链接。</li>
+<li>库中被调用函数的代码会被复制到每个运行进程的代码段中，几乎每个程序都会包含标准I/O函数，这对存储资源是一种浪费。</li>
+</ol>
+<p>共享库是致力于解决静态库缺陷的一个现代创新产物。共享库是一个目标模块，在运行时可以加载到任意的存储器地址，并和一个在存储器的程序链接起来。这个过程称为动态链接，由动态链接器的程序来执行。</p>
+<p>共享库也称为共享目标（shared object）。在Unix、Linux系统中通常用后缀.so来表示。Window系统也大量利用了共享库，称为动态链接库，用后缀.dll来表示。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li>(美)布莱恩特(Bryant, R. E.), (美)奥哈拉伦(O’Hallaron),等. 深入理解计算机系统[M]. 机械工业出版社, 2012.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaoshuaijiang.com/2016/05/20/csapp-7-linking/" data-id="ckn1uqk1x00068z5d559ccwy7" data-title="深入理解计算机系统--链接" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" rel="tag">计算机</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
 
 
   <nav id="page-nav">
@@ -651,7 +668,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a></li></ul>
     </div>
   </div>
 
@@ -662,10 +679,6 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2021/04/03/hello-world/">Hello World</a>
-          </li>
         
           <li>
             <a href="/2020/11/09/pip-tsinghua/">pip清华源</a>
@@ -681,6 +694,10 @@
         
           <li>
             <a href="/2019/07/28/paper_attention_is_all_you_need/">Paper Reading： Attention is all you need</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/15/end-to-end-asr/">端到端语音识别基础入门</a>
           </li>
         
       </ul>
