@@ -95,40 +95,17 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="基础课程"><a href="#基础课程" class="headerlink" title="基础课程"></a>基础课程</h1><p>课程网址：<a target="_blank" rel="noopener" href="http://www.speech.zone/courses/" title="http://www.speech.zone/courses/">http://www.speech.zone/courses/</a><br>这是爱丁堡大学的一名很有名气的语音方向的教授Simon King将他的授课内容分享出来的网站，里面的内容都是关于语音，丰富而且很清晰明了，即便有语音基础的同学学习一边也会受益匪浅。<br>如果没有语音基础，建议从语音处理基础开始课程，了解语音信号、音素等，然后再进一步到语音识别，包括特征工作，例如MFCC特征、filterBank特征，以及具体的算法。</p>
-<h2 id="语音基础"><a href="#语音基础" class="headerlink" title="语音基础"></a>语音基础</h2><p><a target="_blank" rel="noopener" href="http://www.speech.zone/courses/foundations-for-speech-processing/" title="http://www.speech.zone/courses/foundations-for-speech-processing/">http://www.speech.zone/courses/foundations-for-speech-processing/</a></p>
-<h2 id="语音识别"><a href="#语音识别" class="headerlink" title="语音识别"></a>语音识别</h2><p><a target="_blank" rel="noopener" href="http://www.speech.zone/courses/speech-processing-2016-17/recognition/" title="http://www.speech.zone/courses/speech-processing-2016-17/recognition/">http://www.speech.zone/courses/speech-processing-2016-17/recognition/</a></p>
-<h1 id="传统与端到端的对比"><a href="#传统与端到端的对比" class="headerlink" title="传统与端到端的对比"></a>传统与端到端的对比</h1><ul>
+        <h1 id="传统与端到端语音识别框架"><a href="#传统与端到端语音识别框架" class="headerlink" title="传统与端到端语音识别框架"></a>传统与端到端语音识别框架</h1><ul>
 <li><p>传统的语音识别框架[<a href="/file/Signals_and_Communication_Technology_Aut.pdf">Automatic Speech Recognition</a>]<br><img src="/paper_image/typical_asr_architecture.png" alt="传统的语音识别框架"></p>
 </li>
 <li><p>端到端语音识别框架[<a href="/file/andrew-ng-machine-learning-yearning.pdf">Machine Learning Yearning</a>]<br><img src="/paper_image/end_to_end_asr_architecture.png" alt="端到端语音识别框架"></p>
 </li>
 </ul>
-<h1 id="端到端语音识别主流技术"><a href="#端到端语音识别主流技术" class="headerlink" title="端到端语音识别主流技术"></a>端到端语音识别主流技术</h1><p>目前端到端语音识别主要有基于CTC的方法、基于Attention的方法，以及结合二者的多任务学习方法。</p>
-<h2 id="CTC"><a href="#CTC" class="headerlink" title="CTC"></a>CTC</h2><ul>
-<li>Connectionist Temporal Classification Labelling Unsegmented Sequence Data with Recurrent Neural Networks[<a href="/file/CTC_Labelling_Unsegmented_Sequence_Data_with_Recurrent_Neural_Networks.pdf" title="CTC">pdf</a>]</li>
-<li>deep speech [<a href="/file/deep_speech.pdf" title="deep_speech">pdf</a>]</li>
-<li>deep speech2[<a href="/file/deep_speech2.pdf" title="deep_speech2">pdf</a>]</li>
-<li>Supervised Sequence Labelling with Recurrent Neural Networks[<a href="/file/Supervised_Sequence_Labelling_with_RNN.pdf" title="CTC">pdf</a>] 介绍CTC部分主要是在第7章，需要重点看下。</li>
-</ul>
-<h2 id="RNN-T"><a href="#RNN-T" class="headerlink" title="RNN-T"></a>RNN-T</h2><p>RNN-T全称是Recurrent Neural Network Transducer，是在CTC的基础上改进的。<br>CTC的缺点是它没有考虑输出之间的依赖，RNN-T则在CTC模型的Encoder基础上，又加入了一个将之前时刻的输出作为输入的RNN(Prediction Network)，<br>将Prediction Network输出与Encoder的输出共同作为一个joint network的输入，得到输出logits通过softmax layer得到最终输出的概率。</p>
-<ul>
-<li>Sequence Transduction with Recurrent Neural Networks[<a href="/file/Sequence_Transduction_with_Recurrent_Neural_Networks.pdf" title="RNN-T">pdf</a>]<br><img src="/paper_image/rnn-t.png" alt="RNN-T Architecture"></li>
-</ul>
-<h2 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h2><ul>
-<li>Attention-Based Models for Speech Recognition[<a href="/file/Attention_Based_Models_for_Speech_Recognition.pdf" title="Attention_ASR">pdf</a>]</li>
-<li>Listen, Attend and Spell[<a href="/file/Listen_Attend_and_Spell.pdf" title="LAS">pdf</a>] 这一篇算是Attention开启之作。</li>
-</ul>
-<h2 id="Joint-CTC-Attention"><a href="#Joint-CTC-Attention" class="headerlink" title="Joint CTC/Attention"></a>Joint CTC/Attention</h2><ul>
-<li>ESPnet 实现了Hybrid CTC/attention based end-to-end ASR [<a target="_blank" rel="noopener" href="https://github.com/espnet/espnet" title="ESPnet">github</a>]</li>
-<li>JOINT CTC-ATTENTION BASED END-TO-END SPEECH RECOGNITION USING MULTI-TASK LEARNING[<a href="/file/JOINT_CTC-ATTENTION_BASED_END-TO-END_SPEECH_RECOGNITION_USING_MULTI-TASK_LEARNING.pdf" title="Joint">pdf</a>]</li>
-<li>Hybrid CTC-Attention Architecture for End-to-End Speech Recognition[<a href="/file/Hybrid_CTC_Attention_Architecture_for_End-to-End_Speech_Recognition.pdf" title="Hybrid">pdf</a>]</li>
-</ul>
-<h2 id="End-to-end-ASR-Tutorial"><a href="#End-to-end-ASR-Tutorial" class="headerlink" title="End-to-end ASR Tutorial"></a>End-to-end ASR Tutorial</h2><ul>
-<li>Interspeech 2018_ Tutorial E2E Speech Recognition[<a href="/file/Tutorial_E2E_Speech_Recognition.pdf">pdf</a>]</li>
-<li>这是Google的关于端到端语音识别的tutorial，可以从宏观上观察端到端语音识别的发展，以及不同方法的优劣。</li>
-</ul>
-
+        
+          <p class="article-more-link">
+            <a href="/2019/02/15/end-to-end-asr/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
