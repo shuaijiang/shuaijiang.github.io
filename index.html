@@ -123,6 +123,60 @@
 
 
   
+    <article id="post-paper-interspeech2021" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/10/12/paper-interspeech2021/" class="article-date">
+  <time class="dt-published" datetime="2021-10-12T14:59:19.000Z" itemprop="datePublished">10月 12 2021</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/10/12/paper-interspeech2021/">paper-interspeech2021</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="SESSION-Tue-A-V-4-Self-Supervision-and-Semi-Supervision-for-Neural-ASR-Training"><a href="#SESSION-Tue-A-V-4-Self-Supervision-and-Semi-Supervision-for-Neural-ASR-Training" class="headerlink" title="SESSION Tue-A-V-4 Self-Supervision and Semi-Supervision for Neural ASR Training"></a>SESSION Tue-A-V-4 Self-Supervision and Semi-Supervision for Neural ASR Training</h1><table>
+<thead>
+<tr>
+<th align="center">subclass</th>
+<th align="center">paper</th>
+<th align="center">link</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Self-Supervision</td>
+<td align="center">Improving Streaming Transformer Based ASR Under a Framework of Self-Supervised Learning</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2109.07327.pdf">PDF</a></td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaoshuaijiang.com/2021/10/12/paper-interspeech2021/" data-id="ckuo7w0o10000w95d866a6gti" data-title="paper-interspeech2021" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" rel="tag">语音识别</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-distant-asr" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/08/15/distant-asr/" class="article-date">
@@ -570,61 +624,6 @@
 
 
   
-    <article id="post-paper-tacotron" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/09/04/paper-tacotron/" class="article-date">
-  <time class="dt-published" datetime="2017-09-04T14:08:09.000Z" itemprop="datePublished">9月 4 2017</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/09/04/paper-tacotron/">Tacotron--一种完全端到端的语音合成模型</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="论文信息"><a href="#论文信息" class="headerlink" title="论文信息"></a>论文信息</h1><ul>
-<li>发表机构：Google </li>
-<li>发表时间：2017-04</li>
-<li>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1703.10135.pdf" title="https://arxiv.org/pdf/1703.10135.pdf">https://arxiv.org/pdf/1703.10135.pdf</a></li>
-</ul>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>现代的语音合成（Text-to-Speech，TTS）是很复杂的系统流程。对于参数语音合成，包括从语言抽取特征的文本处理、时长模型、声学模型预测声学特征、基于复杂信号处理的声码器。这些模块都是基于专家知识、需要精心设计。另外这些模块都是独立训练的，每个模块的错误会累积成更多的错误。TTS系统的复杂性导致当建立新系统时需要大量的工程量。</p>
-<p>TTS是一种转换问题：将高度压缩的文本“解压”成音频。<br>本文提出了Tacotron，一种引入注意力（attention）机制的基于序列到序列（sequence-to-sequence，seq2seq）的端到端生成式TTS模型。我们的模型将文本字符作为输入、原始语谱图作为输出，并应用一些技术提高seq2seq模型的能力。<br>Tacotron可以完全地随机初始化、从头开始训练、它不需要音子级别的对齐，所以可以很轻松地利用大量带文本标注的声学数据。</p>
-<h1 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h1><p>WaveNet<br>DeepVoice<br>Char2Wav</p>
-<h1 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h1><h2 id="model-architecture"><a href="#model-architecture" class="headerlink" title="model architecture"></a>model architecture</h2><p>Tacotron的主要结构是含有attention机制的seq2seq模型。下图展示了模型结构，包括一个编码器（encoder）、一个基于attention的解码器（decoder）、一个后处理网络。在高一级层次上，模型以字符作为输入，预测帧级别语谱，然后可以进一步转成波形。如下图Figure 1所示。<br><img src="/paper_image/tacotron_architecture.png" alt="Tacotron architecture"></p>
-<h2 id="CBHG"><a href="#CBHG" class="headerlink" title="CBHG"></a>CBHG</h2><p>CBHG包括一个1-D的卷积滤波，接着是高通网络以及一个双向GRU。如下Figure 2所示。<br><img src="/paper_image/tacotron_cbhg.png" alt="CBHG architecture"></p>
-<h2 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h2><p>Encoder的目标是提取鲁棒的文本特征序列。encoder的输入是字符序列，每个字符用one-hot向量或者嵌入式连续向量表示。对于每个嵌入式输入，我们应用了非线性变换，称为“pre-net”。在实际应用中，采用dropout瓶颈网络作为pre-net，有助于网络收敛和泛化能力。CBHG模块利用attention模块将per-net的输出转换成最终的encoder表示。我们发现基于CBHG的encoder不仅可以降低过拟合，相对于多层的RNN encoder可以减少发音错误。</p>
-<h2 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h2><p>我们使用简单的全连接输出层来预测decoder的目标。一个重要的技巧是在每个解码步骤预测多个不重叠的输出帧。一次预测r帧，使得整体的decoder数量降低为原来的r分之一，从而减小了模型大小、训练时间和推理时间。更重要的是，这项技巧可以加速收敛速度，并且可以更快地从attention中学到更稳定的对齐。</p>
-<h2 id="后处理与波形合成"><a href="#后处理与波形合成" class="headerlink" title="后处理与波形合成"></a>后处理与波形合成</h2><p>后处理网络的任务是将seq2seq的输出转换成可以合成波形的输出。<br>采用Griffin-Lim算法根据预测的语谱合成波形。</p>
-<h1 id="模型细节"><a href="#模型细节" class="headerlink" title="模型细节"></a>模型细节</h1><h1 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h1><h2 id="MOS测试"><a href="#MOS测试" class="headerlink" title="MOS测试"></a>MOS测试</h2><p>我们进行了MOS测试，要求被试者根据满分为5分的李克特量表对自然度打分。测试以众包的形式给母语人士测听。<br>测试结果如Table2所示。<br><img src="/paper_image/tacotron_mos_test.png" alt="MOS Test"></p>
-<p>#总结<br>文章提出了Tacotron，一种端到端的生成式TTS模型，其将字符序列作为输入，语谱作为输出。使用一个简单的波形合成模块，在英文上可以达到3.82的MOS（mean option score,满分为5分）得分,自然度超出了产品级参数合成系统。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaoshuaijiang.com/2017/09/04/paper-tacotron/" data-id="ckn1uqk6v00d88z5d7sh90gj5" data-title="Tacotron--一种完全端到端的语音合成模型" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/" rel="tag">语音合成</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -653,7 +652,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PaperReading/" style="font-size: 17.14px;">PaperReading</a> <a href="/tags/Perl/" style="font-size: 10px;">Perl</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/reading/" style="font-size: 10px;">reading</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%B5%AA%E6%BD%AE/" style="font-size: 10px;">信息浪潮</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 15.71px;">机器学习</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" style="font-size: 12.86px;">自然语言处理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 14.29px;">计算机</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/" style="font-size: 18.57px;">语音合成</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" style="font-size: 14.29px;">语音识别</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 12.86px;">随笔</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PaperReading/" style="font-size: 17.14px;">PaperReading</a> <a href="/tags/Perl/" style="font-size: 10px;">Perl</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/reading/" style="font-size: 10px;">reading</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%B5%AA%E6%BD%AE/" style="font-size: 10px;">信息浪潮</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 15.71px;">机器学习</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" style="font-size: 12.86px;">自然语言处理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 14.29px;">计算机</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/" style="font-size: 18.57px;">语音合成</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" style="font-size: 15.71px;">语音识别</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 12.86px;">随笔</a>
     </div>
   </div>
 
@@ -662,7 +661,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a></li></ul>
     </div>
   </div>
 
@@ -673,6 +672,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/10/12/paper-interspeech2021/">paper-interspeech2021</a>
+          </li>
         
           <li>
             <a href="/2021/08/15/distant-asr/">鲁棒语音识别入门</a>
@@ -688,10 +691,6 @@
         
           <li>
             <a href="/2020/02/02/asr-espnet-install/">ESPNET 安装指引</a>
-          </li>
-        
-          <li>
-            <a href="/2019/07/28/paper_attention_is_all_you_need/">Paper Reading： Attention is all you need</a>
           </li>
         
       </ul>
