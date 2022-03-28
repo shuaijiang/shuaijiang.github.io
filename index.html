@@ -123,6 +123,65 @@
 
 
   
+    <article id="post-deeplearningbook" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/02/10/deeplearningbook/" class="article-date">
+  <time class="dt-published" datetime="2022-02-10T14:18:59.000Z" itemprop="datePublished">2月 10 2022</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/02/10/deeplearningbook/">Deep Learning Book</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="无监督学习算法"><a href="#无监督学习算法" class="headerlink" title="无监督学习算法"></a>无监督学习算法</h2><h2 id="监督学习算法"><a href="#监督学习算法" class="headerlink" title="监督学习算法"></a>监督学习算法</h2><h2 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h2><p>随机梯度下降的核心是期望。所以可以用小规模的样本去估计梯度，这样就可以用minibatch的方式去计算梯度、更新模型。</p>
+<h2 id="构建机器学习算法"><a href="#构建机器学习算法" class="headerlink" title="构建机器学习算法"></a>构建机器学习算法</h2><p>深度学习算法的配方：</p>
+<ul>
+<li>特定的数据集：</li>
+<li>代价函数：代价函数至少含有一项使学习过程进行统计估计的成分。代价函数也可能还有附加项，如正则化。</li>
+<li>优化过程：非线性模型要求选择一个迭代数据优化过程，如梯度下降。</li>
+<li>模型</li>
+</ul>
+<h2 id="促使深度学习发展"><a href="#促使深度学习发展" class="headerlink" title="促使深度学习发展"></a>促使深度学习发展</h2><ul>
+<li>维度灾难 <a target="_blank" rel="noopener" href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">参考</a></li>
+<li>局部不变性和平滑正则化</li>
+<li>流形学习</li>
+</ul>
+<h1 id="深度前馈网络"><a href="#深度前馈网络" class="headerlink" title="深度前馈网络"></a>深度前馈网络</h1><p>前馈网络克服了线形网络的局限，是一种高效的非线性函数近似。<br>现代前馈网络的思想仍然使用反向传播算法和梯度下降方法。主要的性能提升来自于</p>
+<ol>
+<li>训练数据量的提升：减少了统计泛化对神经网络的挑战；</li>
+<li>更大的网络结构：更强的算力和更好的深度学习框架基础使得神经网络能够变得更大；</li>
+<li>少量算法的优化：包括交叉熵取代均方误差作为损失函数，使用RELU等分段线性函数作为激活函数。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaoshuaijiang.com/2022/02/10/deeplearningbook/" data-id="ckzja6vvu0000ks5d64gg3gz1" data-title="Deep Learning Book" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deeplearning/" rel="tag">deeplearning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-paper-interspeech2021" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/10/12/paper-interspeech2021/" class="article-date">
@@ -561,69 +620,6 @@
 
 
   
-    <article id="post-paper-deep-voice-3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/10/26/paper-deep-voice-3/" class="article-date">
-  <time class="dt-published" datetime="2017-10-26T14:34:14.000Z" itemprop="datePublished">10月 26 2017</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/10/26/paper-deep-voice-3/">Deep Voice 3</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="论文信息"><a href="#论文信息" class="headerlink" title="论文信息"></a>论文信息</h1><ul>
-<li>发表机构：Baidu </li>
-<li>发表时间：2017-10</li>
-<li>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1710.07654.pdf" title="https://arxiv.org/pdf/1710.07654.pdf">https://arxiv.org/pdf/1710.07654.pdf</a></li>
-</ul>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文提出了一个全卷积架构的语音合成框架<br>特别地，本文的贡献包括：</p>
-<ol>
-<li>提出了全卷积的字符到频谱的架构，能够在序列上完成并行计算，训练速度比采用循环单元的类似架构快一个数量级</li>
-<li>证明了该架构适用于LibriSpeech数据集，并能快速训练，该数据集包含了2484个发音人的将近820小时的语音数据。</li>
-<li>证明了我们能够生成单调的注意力行为，避免了在语音合成中经常出现的错误情形。</li>
-<li>对于单个说话人，我们比较了不同波形合成方法的质量，包括WORLD、Griffin-Lim和WaveNet</li>
-<li>描述了Deep Voice 3 推理内核的具体实现，其能够在单一GPU机器上每天响应1000万次的查询请求。</li>
-</ol>
-<h1 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h1><p><img src="/paper_image/deepvoice3_fig1.png" alt="Model Architecture"><br>Deep Voice3 包括三个部分：</p>
-<ul>
-<li>Encoder：一个全卷积的编码器，将文本特征转换到中间的学习表示；</li>
-<li>Decoder: 一个全卷积的因果解码器，采用自回归的方式将从多级卷积注意机制学习到的表示解码到低维音频表示（美尔带频谱）；</li>
-<li>Converter: 一个全卷积的后处理网络，能够从decoder的状态预测最终的输出特征（依赖具体的波形合成方法）。</li>
-</ul>
-<p><img src="/paper_image/deepvoice3_fig2.png" alt="Convolution Block"></p>
-<p><img src="/paper_image/deepvoice3_fig3.png" alt="Attention Block"></p>
-<h1 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h1><p><img src="/paper_image/deepvoice3_tab2.png" alt="MOS"></p>
-<p><img src="/paper_image/deepvoice3_tab3.png" alt="MOS"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaoshuaijiang.com/2017/10/26/paper-deep-voice-3/" data-id="ckn1uqk6u00d48z5dg05v8du3" data-title="Deep Voice 3" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PaperReading/" rel="tag">PaperReading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/" rel="tag">语音合成</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -642,7 +638,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PaperReading/" rel="tag">PaperReading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Perl/" rel="tag">Perl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reading/" rel="tag">reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E6%B5%AA%E6%BD%AE/" rel="tag">信息浪潮</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" rel="tag">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" rel="tag">计算机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/" rel="tag">语音合成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" rel="tag">语音识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PaperReading/" rel="tag">PaperReading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Perl/" rel="tag">Perl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/" rel="tag">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reading/" rel="tag">reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E6%B5%AA%E6%BD%AE/" rel="tag">信息浪潮</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" rel="tag">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" rel="tag">计算机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/" rel="tag">语音合成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" rel="tag">语音识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
     </div>
   </div>
 
@@ -652,7 +648,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PaperReading/" style="font-size: 17.14px;">PaperReading</a> <a href="/tags/Perl/" style="font-size: 10px;">Perl</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/reading/" style="font-size: 10px;">reading</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%B5%AA%E6%BD%AE/" style="font-size: 10px;">信息浪潮</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 15.71px;">机器学习</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" style="font-size: 12.86px;">自然语言处理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 14.29px;">计算机</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/" style="font-size: 18.57px;">语音合成</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" style="font-size: 15.71px;">语音识别</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 12.86px;">随笔</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PaperReading/" style="font-size: 17.14px;">PaperReading</a> <a href="/tags/Perl/" style="font-size: 10px;">Perl</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/reading/" style="font-size: 10px;">reading</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%B5%AA%E6%BD%AE/" style="font-size: 10px;">信息浪潮</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 15.71px;">机器学习</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" style="font-size: 12.86px;">自然语言处理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 14.29px;">计算机</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/" style="font-size: 18.57px;">语音合成</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" style="font-size: 15.71px;">语音识别</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 12.86px;">随笔</a>
     </div>
   </div>
 
@@ -661,7 +657,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a></li></ul>
     </div>
   </div>
 
@@ -672,6 +668,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/02/10/deeplearningbook/">Deep Learning Book</a>
+          </li>
         
           <li>
             <a href="/2021/10/12/paper-interspeech2021/">paper-interspeech2021</a>
@@ -689,10 +689,6 @@
             <a href="/2020/03/29/paper-spec-augment/">语音识别中的谱增强</a>
           </li>
         
-          <li>
-            <a href="/2020/02/02/asr-espnet-install/">ESPNET 安装指引</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -706,7 +702,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2021 shuaijiang<br>
+      &copy; 2022 shuaijiang<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

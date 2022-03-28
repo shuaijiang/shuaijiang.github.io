@@ -73,6 +73,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-leetcode_twosum" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2015/01/20/leetcode_twosum/" class="article-date">
+  <time class="dt-published" datetime="2015-01-20T12:24:46.000Z" itemprop="datePublished">1月 20 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2015/01/20/leetcode_twosum/">LeetCode Two Sum</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>Given an array of integers, find two numbers such that they add up to a specific target number.</p>
+<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.</p>
+<p>You may assume that each input would have exactly one solution.</p>
+<p>Input: numbers={2, 7, 11, 15}, target=9<br>Output: index1=1, index2=2</p>
+<p>The original problem is <a target="_blank" rel="noopener" href="https://oj.leetcode.com/problems/two-sum/" title="here">here</a>:  </p>
+        
+          <p class="article-more-link">
+            <a href="/2015/01/20/leetcode_twosum/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhaoshuaijiang.com/2015/01/20/leetcode_twosum/" data-id="ckn1uqk6g00bo8z5d83zwgaku" data-title="LeetCode Two Sum" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-ml_perceptron" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2015/01/13/ml_perceptron/" class="article-date">
@@ -524,84 +573,6 @@
 
 
   
-    <article id="post-perl_filter_file" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2014/10/16/perl_filter_file/" class="article-date">
-  <time class="dt-published" datetime="2014-10-16T01:57:26.000Z" itemprop="datePublished">10月 16 2014</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2014/10/16/perl_filter_file/">Perl过滤、复制文件</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h1><p>从指定的目录中，根据文件列表，将文件复制到指定的目录中。</p>
-<p>注意：文件列表没有指定文件后缀，输入参数中要指定文件后缀。</p>
-<h1 id="核心部分：复制文件"><a href="#核心部分：复制文件" class="headerlink" title="核心部分：复制文件"></a>核心部分：复制文件</h1><h2 id="样例（demo）"><a href="#样例（demo）" class="headerlink" title="样例（demo）"></a>样例（demo）</h2><pre><code>use File::Copy;
-copy(&quot;sourcefile&quot;,&quot;destinationfile&quot;) or die &quot;Copy failed: $!&quot;;
-</code></pre>
-<h2 id="介绍（description）"><a href="#介绍（description）" class="headerlink" title="介绍（description）"></a>介绍（description）</h2><p>copy函数需要两个参数:复制源文件和复制目标文件。每个参数都可以是字符串，也可以是文件句柄引用或者文件句柄。</p>
-<p>原文：（<a target="_blank" rel="noopener" href="http://perldoc.perl.org/File/Copy.html">http://perldoc.perl.org/File/Copy.html</a>）</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>源代码文件下载：<a target="_blank" rel="noopener" href="https://github.com/shuaijiang/PerlScript/blob/master/filter.pl">https://github.com/shuaijiang/PerlScript/blob/master/filter.pl</a></p>
-<pre><code>#!/bin/perl
-#This Perl script is copy files from given source directory to 
-#given target directory according to given scp
-
-#Author: shuaijiang
-#Email: zhaoshuaijiang8@gmail.com
-use strict;
-use File::Copy;
-
-if($#ARGV != 3)
-&#123;
-    print &quot;Usage: perl file.pl scp source_path target_path suffix\n&quot;;
-    exit;
-&#125;
-my $scp = $ARGV[0];
-my $source_path = $ARGV[1];
-my $target_path = $ARGV[2];
-my $suffix = $ARGV[3];
-
-open(SCP,&quot;&lt;$scp&quot;) or die &quot;Can&#39;t open $!\n&quot;;
-while (&lt;SCP&gt;) &#123;
-    chomp;
-    my $file = $_;
-    my $source_file = $source_path . &#39;/&#39; . $file . $suffix;
-    my $target_file = $target_path . &#39;/&#39; . $file . $suffix;
-    print &quot;source_file=$source_file target_file=$target_file\n&quot;;
-    copy(&quot;$source_file&quot;,&quot;$target_file&quot;) or die &quot;Copy file failed!\n&quot;;
-&#125;
-close(SCP);
-</code></pre>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaoshuaijiang.com/2014/10/16/perl_filter_file/" data-id="ckn1uqk7200dq8z5dc6vr5y9u" data-title="Perl过滤、复制文件" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Perl/" rel="tag">Perl</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -620,7 +591,7 @@ close(SCP);
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PaperReading/" rel="tag">PaperReading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Perl/" rel="tag">Perl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reading/" rel="tag">reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E6%B5%AA%E6%BD%AE/" rel="tag">信息浪潮</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" rel="tag">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" rel="tag">计算机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/" rel="tag">语音合成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" rel="tag">语音识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PaperReading/" rel="tag">PaperReading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Perl/" rel="tag">Perl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/" rel="tag">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reading/" rel="tag">reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E6%B5%AA%E6%BD%AE/" rel="tag">信息浪潮</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" rel="tag">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" rel="tag">计算机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/" rel="tag">语音合成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" rel="tag">语音识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
     </div>
   </div>
 
@@ -630,7 +601,7 @@ close(SCP);
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PaperReading/" style="font-size: 17.14px;">PaperReading</a> <a href="/tags/Perl/" style="font-size: 10px;">Perl</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/reading/" style="font-size: 10px;">reading</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%B5%AA%E6%BD%AE/" style="font-size: 10px;">信息浪潮</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 15.71px;">机器学习</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" style="font-size: 12.86px;">自然语言处理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 14.29px;">计算机</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/" style="font-size: 18.57px;">语音合成</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" style="font-size: 15.71px;">语音识别</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 12.86px;">随笔</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PaperReading/" style="font-size: 17.14px;">PaperReading</a> <a href="/tags/Perl/" style="font-size: 10px;">Perl</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/reading/" style="font-size: 10px;">reading</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%B5%AA%E6%BD%AE/" style="font-size: 10px;">信息浪潮</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 15.71px;">机器学习</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" style="font-size: 12.86px;">自然语言处理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 14.29px;">计算机</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/" style="font-size: 18.57px;">语音合成</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" style="font-size: 15.71px;">语音识别</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 12.86px;">随笔</a>
     </div>
   </div>
 
@@ -639,7 +610,7 @@ close(SCP);
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a></li></ul>
     </div>
   </div>
 
@@ -650,6 +621,10 @@ close(SCP);
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/02/10/deeplearningbook/">Deep Learning Book</a>
+          </li>
         
           <li>
             <a href="/2021/10/12/paper-interspeech2021/">paper-interspeech2021</a>
@@ -667,10 +642,6 @@ close(SCP);
             <a href="/2020/03/29/paper-spec-augment/">语音识别中的谱增强</a>
           </li>
         
-          <li>
-            <a href="/2020/02/02/asr-espnet-install/">ESPNET 安装指引</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -684,7 +655,7 @@ close(SCP);
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2021 shuaijiang<br>
+      &copy; 2022 shuaijiang<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
