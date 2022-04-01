@@ -6,15 +6,15 @@
   
   <title>语音识别概述 | shuaijiang&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="引言语音识别定义语音识别，亦称自动语音识别（Automatic Speech Recognition，ASR)或语音文本转换（Speech to Text, STT），是一种将语音转为文本的技术。当前的语音识别一般均特指大词汇量连续语音识别。 语音识别应用语音识别有着广泛的应用，按照使用场景的不同，可以分为以下几类：  实时上屏：直播、会议等字幕上屏展示。 语音助手：手机、音箱、穿戴设备上的语音助">
+  <meta name="description" content="引言语音识别定义语音识别，亦称自动语音识别（Automatic Speech Recognition，ASR)或语音文本转换（Speech to Text, STT），是一种将语音转为文本的技术。当前的语音识别一般均特指大词汇量连续语音识别。 语音识别应用语音识别有着广泛的应用，按照使用场景的不同，可以分为以下几类：  语音输入：语音输入法、语音搜索等。 语音助手：手机、音箱、穿戴设备上的语音助手">
 <meta property="og:type" content="article">
 <meta property="og:title" content="语音识别概述">
 <meta property="og:url" content="http://zhaoshuaijiang.com/2022/03/29/asr-simple-tutorial/index.html">
 <meta property="og:site_name" content="shuaijiang&#39;s blog">
-<meta property="og:description" content="引言语音识别定义语音识别，亦称自动语音识别（Automatic Speech Recognition，ASR)或语音文本转换（Speech to Text, STT），是一种将语音转为文本的技术。当前的语音识别一般均特指大词汇量连续语音识别。 语音识别应用语音识别有着广泛的应用，按照使用场景的不同，可以分为以下几类：  实时上屏：直播、会议等字幕上屏展示。 语音助手：手机、音箱、穿戴设备上的语音助">
+<meta property="og:description" content="引言语音识别定义语音识别，亦称自动语音识别（Automatic Speech Recognition，ASR)或语音文本转换（Speech to Text, STT），是一种将语音转为文本的技术。当前的语音识别一般均特指大词汇量连续语音识别。 语音识别应用语音识别有着广泛的应用，按照使用场景的不同，可以分为以下几类：  语音输入：语音输入法、语音搜索等。 语音助手：手机、音箱、穿戴设备上的语音助手">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-29T15:05:13.000Z">
-<meta property="article:modified_time" content="2022-03-30T14:29:43.275Z">
+<meta property="article:modified_time" content="2022-04-01T15:00:23.700Z">
 <meta property="article:author" content="shuaijiang">
 <meta property="article:tag" content="语音识别">
 <meta name="twitter:card" content="summary">
@@ -101,14 +101,36 @@
         <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><h2 id="语音识别定义"><a href="#语音识别定义" class="headerlink" title="语音识别定义"></a>语音识别定义</h2><p>语音识别，亦称自动语音识别（Automatic Speech Recognition，ASR)或语音文本转换（Speech to Text, STT），<br>是一种将语音转为文本的技术。当前的语音识别一般均特指大词汇量连续语音识别。</p>
 <h2 id="语音识别应用"><a href="#语音识别应用" class="headerlink" title="语音识别应用"></a>语音识别应用</h2><p>语音识别有着广泛的应用，按照使用场景的不同，可以分为以下几类：</p>
 <ul>
-<li>实时上屏：直播、会议等字幕上屏展示。</li>
+<li>语音输入：语音输入法、语音搜索等。</li>
 <li>语音助手：手机、音箱、穿戴设备上的语音助手，例如Siri、Cortana、Alexa等。</li>
-<li>智能座舱：车载语音交互，例如NOMI。</li>
-<li>智能家居：家居语音交互，例如小爱同学等。</li>
-<li>电话客服：主要有智能外呼、IVR、客服质检等。</li>
+<li>智能座舱：车载控制、娱乐等车载语音交互，例如NOMI。</li>
+<li>智能家居：家居控制、娱乐等家居语音交互，例如小爱同学等。</li>
+<li>电话客服：智能外呼、IVR、客服质检等。</li>
+<li>商务办公：线上线下会议直播的字幕上屏展示。</li>
 <li>语音审核：这类应用面向在线直播、电台等，检测是否存在违规违法内容。<span id="more"></span></li>
 </ul>
-
+<h2 id="学术会议与比赛"><a href="#学术会议与比赛" class="headerlink" title="学术会议与比赛"></a>学术会议与比赛</h2><p>学术会议：</p>
+<ul>
+<li>ICASSP</li>
+<li>INTERSPEECH</li>
+<li>ASRU：IEEE Automatic Speech Recognition and Understanding Workshop</li>
+<li>ISCSLP</li>
+</ul>
+<p>比赛：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://chimechallenge.github.io/">CHiME Challenge</a></li>
+</ul>
+<h2 id="开源数据集"><a href="#开源数据集" class="headerlink" title="开源数据集"></a>开源数据集</h2><p>中文：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.openslr.org/33/">AISHELL-1</a>: An open-source 178 Hours Chinese Mandarin speech corpus </li>
+<li><a target="_blank" rel="noopener" href="https://wenet.org.cn/WenetSpeech/">WenetSpeech</a>: A 10000+ Hours Multi-domain Mandarin Corpus for Speech Recognition</li>
+</ul>
+<p>英文：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.openslr.org/12/">LibriSpeech</a>: A Large-scale (1000 hours) corpus of read English speech</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/SpeechColab/GigaSpeech">GigaSpeech</a>: An Evolving, Multi-domain ASR Corpus with 10,000 Hours of Transcribed Audio</li>
+</ul>
+<h2 id="开源框架"><a href="#开源框架" class="headerlink" title="开源框架"></a>开源框架</h2><h2 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h2>
       
     </div>
     <footer class="article-footer">
