@@ -14,8 +14,9 @@
 <meta property="og:description" content="引言语音识别定义语音识别，亦称自动语音识别（Automatic Speech Recognition，ASR)或语音文本转换（Speech to Text, STT），是一种将语音转为文本的技术。当前的语音识别一般均特指大词汇量连续语音识别。 语音识别应用语音识别有着广泛的应用，按照使用场景的不同，可以分为以下几类：  语音输入：语音输入法、语音搜索等。 语音助手：手机、音箱、穿戴设备上的语音助手">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/wer.svg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/transducer.png">
 <meta property="article:published_time" content="2022-03-29T15:05:13.000Z">
-<meta property="article:modified_time" content="2022-04-25T14:35:29.538Z">
+<meta property="article:modified_time" content="2022-05-07T14:09:39.745Z">
 <meta property="article:author" content="shuaijiang">
 <meta property="article:tag" content="语音识别">
 <meta name="twitter:card" content="summary">
@@ -163,9 +164,21 @@
 <li><a target="_blank" rel="noopener" href="https://github.com/kaldi-asr/kaldi">Kaldi</a>: 经典语音识别的开源框架，非端到端的模型框架。</li>
 </ul>
 <h1 id="语音信号与特征"><a href="#语音信号与特征" class="headerlink" title="语音信号与特征"></a>语音信号与特征</h1><h2 id="语音的产生过程"><a href="#语音的产生过程" class="headerlink" title="语音的产生过程"></a>语音的产生过程</h2><p>声带利用振动，将肺部送来的气流转换成声波，从而产生声音。</p>
-<h2 id="数字信号"><a href="#数字信号" class="headerlink" title="数字信号"></a>数字信号</h2><h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><h2 id="GMM-HMM"><a href="#GMM-HMM" class="headerlink" title="GMM-HMM"></a>GMM-HMM</h2><h2 id="DNN-HMM"><a href="#DNN-HMM" class="headerlink" title="DNN-HMM"></a>DNN-HMM</h2><p>GMM有很多优点，可以很好地概率分布建模、通过EM算法容易地拟合数据。但是，GMM不能有效地对非线性数据空间的数据进行建模。</p>
+<h2 id="数字信号"><a href="#数字信号" class="headerlink" title="数字信号"></a>数字信号</h2><h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><p>语音识别的声学特征一般为梅尔倒谱系数（Mel-scale Frequency Cepstral Coefficients，MFCC）或者 Filter Bank（FBank）。<br>MFCC的计算流程如下：</p>
+<ol>
+<li>预加重</li>
+<li>分帧 </li>
+<li>加窗 </li>
+<li>快速傅里叶变换（FFT） </li>
+<li>Mel滤波器组</li>
+<li>对数运算 </li>
+<li>离散余弦变换（DCT）<br>FBank的计算流程和MFCC很相似，只是没有做第七步的离散余弦变换。</li>
+</ol>
+<p>因为没有DCT，FBank特征各维度间具有较高的相关性，可以被DNN等深度神经网络很好地利用，因此FBank较MFCC具有更好地精度。<br>然而，对于GMM等模型忽略了不同特征维度的相关性，因此MFCC更具优势。    </p>
+<h3 id="其他特征"><a href="#其他特征" class="headerlink" title="其他特征"></a>其他特征</h3><h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><h2 id="GMM-HMM"><a href="#GMM-HMM" class="headerlink" title="GMM-HMM"></a>GMM-HMM</h2><h2 id="DNN-HMM"><a href="#DNN-HMM" class="headerlink" title="DNN-HMM"></a>DNN-HMM</h2><p>GMM有很多优点，可以很好地概率分布建模、通过EM算法容易地拟合数据。但是，GMM不能有效地对非线性数据空间的数据进行建模。</p>
 <h2 id="RNN-CTC"><a href="#RNN-CTC" class="headerlink" title="RNN CTC"></a>RNN CTC</h2><p>Connectionist Temporal Classification(CTC)是一种针对基于深度神经网络的序列任务中输入输出序列不等长问题的准则。<br>CTC通过前向后向算法自动学习序列的边界信息，无需之前的方法中所需的强制对齐信息，降低了训练代价、减少了累积错误。<br>对于序列长度，CTC要求输入序列长度大于等于输出序列，在语音识别任务中，输入语音的长度往往都是远大于标注文本的长度的。<br>由于输入序列长于输出序列，在输出单元集合中增加blank(no label)，通过在输出序列中插入blank(-)，就可以实现输入和输出的长度对齐。所有可能的对齐的概率之和就是一种对齐标注的概率。<br>例如，通过插入blank(-)，输出序列<code>aab</code>可以对齐为<code>a−ab−</code>、<code>−aa−−abb</code>等若干序列。</p>
-<h2 id="TDNN"><a href="#TDNN" class="headerlink" title="TDNN"></a>TDNN</h2><h2 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h2><h2 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h2>
+<h2 id="RNN-Transducer"><a href="#RNN-Transducer" class="headerlink" title="RNN Transducer"></a>RNN Transducer</h2><p><img src="/image/transducer.png" alt="RNNT"></p>
+<h2 id="TDNN"><a href="#TDNN" class="headerlink" title="TDNN"></a>TDNN</h2><h2 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h2><h2 id="RNN-Transducer-1"><a href="#RNN-Transducer-1" class="headerlink" title="RNN Transducer"></a>RNN Transducer</h2><h2 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h2>
       
     </div>
     <footer class="article-footer">
