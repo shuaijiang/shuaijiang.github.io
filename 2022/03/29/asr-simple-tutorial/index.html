@@ -16,7 +16,7 @@
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/wer.svg">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/transducer.png">
 <meta property="article:published_time" content="2022-03-29T15:05:13.000Z">
-<meta property="article:modified_time" content="2022-05-12T13:41:19.534Z">
+<meta property="article:modified_time" content="2022-08-18T14:41:48.686Z">
 <meta property="article:author" content="shuaijiang">
 <meta property="article:tag" content="语音识别">
 <meta name="twitter:card" content="summary">
@@ -124,7 +124,7 @@
 </ul>
 <span id="more"></span>
 
-<h2 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h2><p>语音识别精度的评测是基于带标注的测试集，其数据规模从几千到上万句不等。<br>中文一般采用字错误率(character error rate, CER)，英文一般采用词错误率(word error rate, WER)。CER和WER本质其实是一样的，只是计算的粒度不同。二者的核心都是对比参考答案和识别结果两个序列。</p>
+<h2 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h2><p>语音识别精度的评测是基于带标注的测试集，其数据规模从几千到上万句不等。<br>中文一般采用字错误率(character error rate, CER)，英文一般采用词错误率(word error rate, WER)。CER和WER本质其实是一样的，只是计算的粒度不同。二者的核心都是对比参考答案和识别结果两个序列。<br>下面介绍WER的计算方法，将计算粒度从词换成字就是CER。</p>
 <h3 id="计算方法"><a href="#计算方法" class="headerlink" title="计算方法"></a>计算方法</h3><p>如果两个序列长度相同，依次对比相应顺序的词是否相同，统计出错误个数，即可计算出错误率。但是实际情况两个序列长度不一定相同，有可能识别结果会多字或者少字，此时就无法直接按照顺序去对比。<br>WER的计算和生物信息学中的序列比对十分类似，可以参考序列比对的计算，引入动态规划算法。</p>
 <p><img src="/image/wer.svg" alt="wer"></p>
 <ul>
@@ -162,6 +162,7 @@
 <li><a target="_blank" rel="noopener" href="https://github.com/espnet/espnet">ESPNet</a>: 端到端的语音处理工具，提供了语音识别、语音合成、语音翻译、机器翻译、语义理解、语音增强、语音分离等能力。</li>
 <li><a target="_blank" rel="noopener" href="https://github.com/wenet-e2e/wenet">WeNet</a>: 借鉴了ESPNet中语音识别的实现，并提供了工业界落地的实现。</li>
 <li><a target="_blank" rel="noopener" href="https://github.com/kaldi-asr/kaldi">Kaldi</a>: 经典语音识别的开源框架，非端到端的模型框架。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/k2-fsa/k2">k2+icefall+lhotse</a>: 新一代语音识别框架，涵盖了主流的模型结构，具备先进的模块化设计：模型底层实现（k2）、数据模块（lhotse）、ASR样例（icefall）、部署（sherpa）。</li>
 </ul>
 <h1 id="语音信号与特征"><a href="#语音信号与特征" class="headerlink" title="语音信号与特征"></a>语音信号与特征</h1><h2 id="语音的产生过程"><a href="#语音的产生过程" class="headerlink" title="语音的产生过程"></a>语音的产生过程</h2><p>声带利用振动，将肺部送来的气流转换成声波，从而产生声音。</p>
 <h2 id="数字信号"><a href="#数字信号" class="headerlink" title="数字信号"></a>数字信号</h2><h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><p>语音识别的声学特征一般为梅尔倒谱系数（Mel-scale Frequency Cepstral Coefficients，MFCC）或者 Filter Bank（FBank）。<br>MFCC的计算流程如下：</p>
@@ -182,12 +183,13 @@
 <p>主流ASR模型可以分为基于HMM的模型和端到端模型两大类。<br>端到端模型可以分为三类：</p>
 <ul>
 <li>基于CTC的模型</li>
-<li>RNN Transducer</li>
+<li>基于Transducer的模型</li>
 <li>基于Attention的模型</li>
 </ul>
 <h2 id="基于HMM的模型"><a href="#基于HMM的模型" class="headerlink" title="基于HMM的模型"></a>基于HMM的模型</h2><h2 id="DNN-HMM"><a href="#DNN-HMM" class="headerlink" title="DNN-HMM"></a>DNN-HMM</h2><p>GMM有很多优点，可以很好地概率分布建模、通过EM算法容易地拟合数据。但是，GMM不能有效地对非线性数据空间的数据进行建模。</p>
 <h2 id="CTC"><a href="#CTC" class="headerlink" title="CTC"></a>CTC</h2><p>Connectionist Temporal Classification(CTC)是一种针对基于深度神经网络的序列任务中输入输出序列不等长问题的准则。<br>CTC通过前向后向算法自动学习序列的边界信息，无需之前的方法中所需的强制对齐信息，降低了训练代价、减少了累积错误。<br>对于序列长度，CTC要求输入序列长度大于等于输出序列，在语音识别任务中，输入语音的长度往往都是远大于标注文本的长度的。<br>由于输入序列长于输出序列，在输出单元集合中增加blank(no label)，通过在输出序列中插入blank(-)，就可以实现输入和输出的长度对齐。所有可能的对齐的概率之和就是一种对齐标注的概率。<br>例如，通过插入blank(-)，输出序列<code>aab</code>可以对齐为<code>a−ab−</code>、<code>−aa−−abb</code>等若干序列。</p>
-<h2 id="RNN-Transducer"><a href="#RNN-Transducer" class="headerlink" title="RNN Transducer"></a>RNN Transducer</h2><p>前向后向算法可以高效地完成对齐路径的计算<br><img src="/image/transducer.png" alt="RNNT"></p>
+<h2 id="Transducer"><a href="#Transducer" class="headerlink" title="Transducer"></a>Transducer</h2><p>相比于CTC的目标函数，Transducer没有条件独立性假设，具有更强的建模能力。<br>相比于CTC的模型结构，增加了文本编码网络（Label Encoder，亦称Prediction Net）和融合网络（Joint Net），对于实时语音识别，更加合适自然。<br>与CTC类似，前向后向算法可以高效地完成对齐路径的计算。</p>
+<p>基于Transducer的模型，从RNN Transducer（RNNT），逐渐演进到Transformer Transducer（TT）、Conformer Transducer（CT）。<br><img src="/image/transducer.png" alt="RNNT"></p>
 <h2 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h2>
       
     </div>
