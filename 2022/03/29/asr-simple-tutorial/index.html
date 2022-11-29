@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://zhaoshuaijiang.com/paper_image/asr_tutorial_transducer.png">
 <meta property="og:image" content="http://zhaoshuaijiang.com/paper_image/asr_tutorial_aed.png">
 <meta property="article:published_time" content="2022-03-29T15:05:13.000Z">
-<meta property="article:modified_time" content="2022-11-28T13:47:39.070Z">
+<meta property="article:modified_time" content="2022-11-29T13:53:52.010Z">
 <meta property="article:author" content="shuaijiang">
 <meta property="article:tag" content="语音识别">
 <meta name="twitter:card" content="summary">
@@ -198,7 +198,8 @@
 <h3 id="CTC"><a href="#CTC" class="headerlink" title="CTC"></a>CTC</h3><p>Connectionist Temporal Classification(CTC)是一种针对基于深度神经网络的序列任务中输入输出序列不等长问题的准则。<br>CTC通过前向后向算法自动学习序列的边界信息，无需之前的方法中所需的强制对齐信息，降低了训练代价、减少了累积错误。<br>对于序列长度，CTC要求输入序列长度大于等于输出序列，在语音识别任务中，输入语音的长度往往都是远大于标注文本的长度的。<br>由于输入序列长于输出序列，在输出单元集合中增加blank(no label)，通过在输出序列中插入blank(-)，就可以实现输入和输出的长度对齐。所有可能的对齐的概率之和就是一种对齐标注的概率。<br>例如，通过插入blank(-)，输出序列<code>aab</code>可以对齐为<code>a−ab−</code>、<code>−aa−−abb</code>等若干序列。</p>
 <h3 id="Transducer"><a href="#Transducer" class="headerlink" title="Transducer"></a>Transducer</h3><p>相比于CTC的目标函数，Transducer没有条件独立性假设，具有更强的建模能力。<br>相比于CTC的模型结构，增加了文本编码网络（Label Encoder，亦称Prediction Net）和融合网络（Joint Net），对于实时语音识别，更加合适自然。<br>与CTC类似，前向后向算法可以高效地完成对齐路径的计算。</p>
 <p>基于Transducer的模型，从RNN Transducer（RNNT），逐渐演进到Transformer Transducer（TT）、Conformer Transducer（CT）。<br><img src="/paper_image/asr_tutorial_transducer.png" alt="RNNT"></p>
-<h3 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h3><p>建模过程中，引入了Attention机制，更好的对长序列建模。<br><img src="/paper_image/asr_tutorial_aed.png" alt="AED"></p>
+<h3 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h3><p>在《Attention is all you need》这篇工作问世后，语音识别也开启了端到端模型的新阶段。<br>这类模型结构也就是Attention base Encoder-Decoder models(AED)，包含了Encoder、Decoder两大模块：<br>Encoder对声学特征建模，输出声学表示；<br>Attention机制对Encoder输出做重要程度的加权；<br>Decoder利用Attention权重和其本身的历史时刻输出“自回归”地输出最终的结果；<br><img src="/paper_image/asr_tutorial_aed.png" alt="AED"><br>基于AED的模型在建模过程中，引入了Attention机制，更好地对长序列建模，相比于引入了门限机制的LSTM更加“有的放矢”。</p>
+<p>AED这类框架中，最初Encoder和Decoder都是多层的LSTM结构，后续提出了非常经典的transformer结构，也就是大家都了解的BERT模型的核心结构。<br>基于Transformer的结构，后面衍生出很多变种：Conformer、Emformer、Squeezeformer等等。</p>
 <h1 id="解码"><a href="#解码" class="headerlink" title="解码"></a>解码</h1><p>常见的解码方式包括：</p>
 <ul>
 <li>WFST</li>
