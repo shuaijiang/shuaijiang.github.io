@@ -1,815 +1,781 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <title>shuaijiang&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="shuaijiang">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
 <meta property="og:title" content="shuaijiang&#39;s blog">
 <meta property="og:url" content="http://zhaoshuaijiang.com/index.html">
 <meta property="og:site_name" content="shuaijiang&#39;s blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="shuaijiang">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="shuaijiang's blog" type="application/atom+xml">
+<meta name="twitter:card" content="summary_large_image">
   
   
-    <link rel="shortcut icon" href="/favicon.png">
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+  <title>shuaijiang&#39;s blog</title>
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhaoshuaijiang.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
 
   
 <meta name="generator" content="Hexo 5.4.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">shuaijiang&#39;s blog</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>shuaijiang&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          <a class="main-nav-link" href="/">Home</a>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
         
-          <a class="main-nav-link" href="/about/">关于</a>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
         
-      </nav>
-      <nav id="sub-nav">
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zhaoshuaijiang.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-end-to-end-asr" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/02/15/end-to-end-asr/" class="article-date">
-  <time class="dt-published" datetime="2019-02-15T15:17:08.000Z" itemprop="datePublished">2月 15 2019</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/02/15/end-to-end-asr/">端到端语音识别基础入门</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="传统与端到端语音识别框架"><a href="#传统与端到端语音识别框架" class="headerlink" title="传统与端到端语音识别框架"></a>传统与端到端语音识别框架</h1><ul>
-<li><p>传统的语音识别框架[<a href="/file/Signals_and_Communication_Technology_Aut.pdf">Automatic Speech Recognition</a>]<br><img src="/paper_image/typical_asr_architecture.png" alt="传统的语音识别框架"></p>
-</li>
-<li><p>端到端语音识别框架[<a href="/file/andrew-ng-machine-learning-yearning.pdf">Machine Learning Yearning</a>]<br><img src="/paper_image/end_to_end_asr_architecture.png" alt="端到端语音识别框架"></p>
-</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2019/02/15/end-to-end-asr/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaoshuaijiang.com/2019/02/15/end-to-end-asr/" data-id="ckn1uqk20000c8z5d296vbl3n" data-title="端到端语音识别基础入门" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" rel="tag">语音识别</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-llm-papers" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/06/09/llm-papers/" class="article-date">
-  <time class="dt-published" datetime="2023-06-09T14:01:01.000Z" itemprop="datePublished">6月 9 2023</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/06/09/llm-papers/">大模型整理（large language models survey）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="基座大模型"><a href="#基座大模型" class="headerlink" title="基座大模型"></a>基座大模型</h1><h2 id="GPT系列"><a href="#GPT系列" class="headerlink" title="GPT系列"></a>GPT系列</h2><p>2022年底，ChatGPT开启了大模型时代的序章。</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2303.08774.pdf">GPT-4 Technical Report</a>:具备更强的推理能力，且能够融合图像信息。</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2203.02155.pdf">InstructGPT</a></li>
-<li><a target="_blank" rel="noopener" href="https://openai.com/blog/chatgpt">ChatGPT</a>: ChatGPT是InstructGPT的姊妹模型，只是在数据收集和基座模型上有轻微差异。</li>
-</ul>
-<h2 id="LLaMA"><a href="#LLaMA" class="headerlink" title="LLaMA"></a>LLaMA</h2><p>LLaMA只使用开源数据预训练，在较小的模型参数下取得了相近的效果。<br>LLaMA 拥有7B, 13B, 33B and 65B 4种模型参数，模型开源但不可商用。</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2302.13971.pdf">LLaMA paper</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/llama">LLaMA github</a></li>
-<li><a target="_blank" rel="noopener" href="https://huggingface.co/decapoda-research/llama-13b-hf">LLaMA model-13B</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaoshuaijiang.com/2023/06/09/llm-papers/" data-id="clioo0fr00000ya5d9emhbj29" data-title="大模型整理（large language models survey）" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/llm/" rel="tag">llm</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-assemble-your-computer" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/01/07/assemble-your-computer/" class="article-date">
-  <time class="dt-published" datetime="2023-01-07T05:25:47.000Z" itemprop="datePublished">1月 7 2023</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/01/07/assemble-your-computer/">从0到1组装自己的台式机</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="明确自己的需求"><a href="#明确自己的需求" class="headerlink" title="明确自己的需求"></a>明确自己的需求</h1><p>不同的需求对配置的侧重是不同的。</p>
-<ul>
-<li>普通办公：侧重平衡。</li>
-<li>娱乐：侧重显卡。</li>
-<li>重度办公：侧重内存。</li>
-<li>专业开发：侧重堆配置。</li>
-</ul>
-<h1 id="购买必要配件"><a href="#购买必要配件" class="headerlink" title="购买必要配件"></a>购买必要配件</h1><h2 id="普通办公"><a href="#普通办公" class="headerlink" title="普通办公"></a>普通办公</h2><p>以下这套方案是2021年为了日常办公而采取的方案。<br>主要使用场景是在公司日常办公以及连接开发机进行代码开发，所以并不需要很高的配置，只需要较大的内存即可。</p>
-<ul>
-<li>CPU(¥779.00)：AMD 锐龙3 3100 (<a target="_blank" rel="noopener" href="https://item.jd.com/100007190439.html">https://item.jd.com/100007190439.html</a>)</li>
-<li>主板(¥839.00)：华硕 TUF GAMING B550M-PLUS(<a target="_blank" rel="noopener" href="https://item.jd.com/100013699280.html">https://item.jd.com/100013699280.html</a>)</li>
-<li>内存(¥589.00 * 2)：金士顿 DDR4 3600 (<a target="_blank" rel="noopener" href="https://item.jd.com/100011529714.html">https://item.jd.com/100011529714.html</a>)</li>
-<li>GPU(¥799.00)：盈通 (yeston)RX550 4G (<a target="_blank" rel="noopener" href="https://item.jd.com/100009748215.html">https://item.jd.com/100009748215.html</a>)</li>
-<li>硬盘(¥999.00    * 2)：金士顿1TB 固态硬盘(<a target="_blank" rel="noopener" href="https://item.jd.com/100018606186.html">https://item.jd.com/100018606186.html</a>)</li>
-<li>机箱+电源(¥289.00    )：启航者F1 (<a target="_blank" rel="noopener" href="https://item.jd.com/100014733474.html">https://item.jd.com/100014733474.html</a>)</li>
-<li>散热(¥79.00)：九州风神 玄冰400S (<a target="_blank" rel="noopener" href="https://item.jd.com/100009682545.html">https://item.jd.com/100009682545.html</a>)</li>
-<li>显示器：公司配备</li>
-<li>其他：键盘鼠标自己配置<br>以上各项共计：¥5961。<br>小结：CPU采用AMD主要考虑性价比。硬盘是m.2固态硬盘，速度更快、体积更小巧。</li>
-</ul>
-<p><strong>注意</strong>：Intel和AMD对应不同的主板，购买的时候一定要注意。</p>
-<h2 id="普通办公兼顾娱乐"><a href="#普通办公兼顾娱乐" class="headerlink" title="普通办公兼顾娱乐"></a>普通办公兼顾娱乐</h2><p>以下这套方案是2021年为了在家办公采用的方案。<br>偶尔会看视频、做视频、调试AI模型。所以采用了较小的机箱，升级了GPU。</p>
-<ul>
-<li>CPU(¥999)：Intel i5-10400F 6核12线程(<a target="_blank" rel="noopener" href="https://item.jd.com/100006897507.html">https://item.jd.com/100006897507.html</a>)</li>
-<li>主板(¥1099)：玩家国度(ROG)ROG STRIX B460-I GAMING主板 (<a target="_blank" rel="noopener" href="https://item.jd.com/100013209244.html">https://item.jd.com/100013209244.html</a>)</li>
-<li>内存(¥959)：金士顿 (Kingston) FURY 32GB(16G×2)(<a target="_blank" rel="noopener" href="https://item.jd.com/100007628368.html">https://item.jd.com/100007628368.html</a>)</li>
-<li>GPU普通(¥849)：盈通(yeston)RX550-4G D5 极速版(<a target="_blank" rel="noopener" href="https://item.jd.com/100010414091.html">https://item.jd.com/100010414091.html</a>)</li>
-<li>GPU升级(¥2894)：华硕 ASUS TUF GeForce RTX 3060-O12G-V2-GAMING(<a target="_blank" rel="noopener" href="https://item.jd.com/100011555183.html">https://item.jd.com/100011555183.html</a>)</li>
-<li>硬盘(¥599 )：金士顿(Kingston) 1TB SSD固态硬盘 M.2接口(<a target="_blank" rel="noopener" href="https://item.jd.com/100020082478.html">https://item.jd.com/100020082478.html</a>)</li>
-<li>机箱(¥399)：酷冷至尊(CoolerMaster)NR200(魔方200)白色版 (<a target="_blank" rel="noopener" href="https://item.jd.com/100008692713.html">https://item.jd.com/100008692713.html</a>)</li>
-<li>电源(¥739)：全汉(FSP)额定600W 经典版MS600G (<a target="_blank" rel="noopener" href="https://item.jd.com/100002705378.html">https://item.jd.com/100002705378.html</a>)</li>
-<li>散热(¥329)：酷冷至尊(Cooler Master)冰神B240 CPU水冷散热器(<a target="_blank" rel="noopener" href="https://item.jd.com/4567820.html">https://item.jd.com/4567820.html</a>)</li>
-<li>显示器：公司配备</li>
-<li>其他：键盘鼠标自己配置<br>以上各项共计：¥5972（普通GPU）/¥8017（升级GPU）。<br>小结：机箱采用了更小尺寸的，主板只能采用更小的MINI-ITX，所以组装起来空间略微小、也略麻烦些。<br>CPU采用了Intel，能够AMD对比下性能情况。<br>散热采用水冷也是为了和风冷做下对比，实际中度使用情况下，噪音相比风冷更大些，如果只是中度使用风冷即可。</li>
-</ul>
-<p><strong>注意</strong>：升级GPU要考虑电源的功率，600W正好可以支持RTX3060，无需升级电源了。</p>
-<h2 id="普通办公送给长辈"><a href="#普通办公送给长辈" class="headerlink" title="普通办公送给长辈"></a>普通办公送给长辈</h2><p>以下这套方案是2023年初为了给家里长辈日常办公采用的方案。<br>考虑到长辈的认知度和对速度的需求，采用了Intel i5和32GB 3600内存。</p>
-<ul>
-<li>CPU(¥1189)：英特尔(Intel) i5-12400F 12代 酷睿 CPU处理器 6核12线程(<a target="_blank" rel="noopener" href="https://item.jd.com/100031035610.html">https://item.jd.com/100031035610.html</a>)</li>
-<li>主板(¥1199)：华硕(ASUS)TUF GAMING B660M-PLUS WIFI D4重炮手(<a target="_blank" rel="noopener" href="https://item.jd.com/100031223640.html">https://item.jd.com/100031223640.html</a>)</li>
-<li>内存(¥369 *2)：金士顿 (Kingston) FURY 16GB DDR4 3600 (<a target="_blank" rel="noopener" href="https://item.jd.com/100007628368.html">https://item.jd.com/100007628368.html</a>)</li>
-<li>GPU(¥849)：盈通(yeston)RX550-4G D5 极速版(<a target="_blank" rel="noopener" href="https://item.jd.com/100010414091.html">https://item.jd.com/100010414091.html</a>)</li>
-<li>硬盘(¥599 )：金士顿(Kingston) 1TB SSD固态硬盘 M.2接口(<a target="_blank" rel="noopener" href="https://item.jd.com/100020082478.html">https://item.jd.com/100020082478.html</a>)</li>
-<li>机箱(¥129)：先马(SAMA)平头哥M2 Mini小机箱 (<a target="_blank" rel="noopener" href="https://item.jd.com/100025663574.html">https://item.jd.com/100025663574.html</a>)</li>
-<li>电源(¥296)：酷冷至尊(CoolerMaster)额定500W G500(<a target="_blank" rel="noopener" href="https://item.jd.com/100016458226.html">https://item.jd.com/100016458226.html</a>)</li>
-<li>散热(¥109)：九州风神(DEEPCOOL)玄冰400V5(<a target="_blank" rel="noopener" href="https://item.jd.com/100024033753.html">https://item.jd.com/100024033753.html</a>)</li>
-<li>显示器：丰俭由人</li>
-<li>其他：键盘鼠标自己配置<br>以上各项共计：¥5108。<br>小结：选择Intel主要是大家对Intel有着更好的认知度。<br>为了满足不卡顿、更快的体验，直接用固态硬盘，避免机械硬盘的速度慢的问题。<br>采用更大的内存，避免多后台任务卡顿问题。</li>
-</ul>
-<h1 id="动手组装"><a href="#动手组装" class="headerlink" title="动手组装"></a>动手组装</h1><p>这方面参考了哔哩哔哩上的安装视频，大家可以自行搜索下。<br><strong>注意</strong>：安装CPU的时候一定要小心再小心，CPU针脚很多且脆弱。</p>
-<h1 id="安装Windows系统"><a href="#安装Windows系统" class="headerlink" title="安装Windows系统"></a>安装Windows系统</h1><ul>
-<li>安装系统：基于WIN PE工具箱安装即可(<a target="_blank" rel="noopener" href="https://www.wepe.com.cn/download.html">https://www.wepe.com.cn/download.html</a>)</li>
-<li>激活系统：免费激活(<a target="_blank" rel="noopener" href="https://github.com/massgravel/Microsoft-Activation-Scripts">https://github.com/massgravel/Microsoft-Activation-Scripts</a>)</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaoshuaijiang.com/2023/01/07/assemble-your-computer/" data-id="cliyqerxw0000am5dh9g45a7g" data-title="从0到1组装自己的台式机" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" rel="tag">计算机</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-asr-simple-tutorial" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/03/29/asr-simple-tutorial/" class="article-date">
-  <time class="dt-published" datetime="2022-03-29T15:05:13.000Z" itemprop="datePublished">3月 29 2022</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/03/29/asr-simple-tutorial/">语音识别概述</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><h2 id="语音识别定义"><a href="#语音识别定义" class="headerlink" title="语音识别定义"></a>语音识别定义</h2><p>语音识别，亦称自动语音识别（Automatic Speech Recognition，ASR)或语音文本转换（Speech to Text, STT），<br>是一种将语音转为文本的技术。当前的语音识别一般均特指大词汇量连续语音识别。</p>
-<h2 id="语音识别应用"><a href="#语音识别应用" class="headerlink" title="语音识别应用"></a>语音识别应用</h2><p>语音识别有着广泛的应用，按照使用场景的不同，可以分为以下几类：</p>
-<ul>
-<li>语音输入：语音输入法、语音搜索等。</li>
-<li>语音助手：手机、音箱、穿戴设备上的语音助手，例如Siri、Cortana、Alexa等。</li>
-<li>智能座舱：车载控制、娱乐等车载语音交互，例如NOMI。</li>
-<li>智能家居：家居控制、娱乐等家居语音交互，例如小爱同学等。</li>
-<li>电话客服：智能外呼、IVR、客服质检等。</li>
-<li>商务办公：线上线下会议直播的字幕上屏展示。</li>
-<li>语音审核：这类应用面向在线直播、电台等，检测是否存在违规违法内容。</li>
-</ul>
-<h2 id="语音识别类别"><a href="#语音识别类别" class="headerlink" title="语音识别类别"></a>语音识别类别</h2><p>根据应用场景对实时性的要求高低，可以分为：</p>
-<ul>
-<li>实时语音识别：要求系统低延迟，在两百毫秒以内；一般以语音流的方式实时地识别。典型的例子包括语音助手等语音交互、字幕实时上屏。</li>
-<li>非实时语音识别：不要求实时返回结果；一般是一句话识别或文件语音识别。会议纪要转写等录音的语音识别属于这类。</li>
-</ul>
-<p>根据系统实现架构，可以分为</p>
-<ul>
-<li>经典语音识别：系统由声学模型、语言模型、发音词典、解码器几个部分组成。系统模块较多，搭建较为复杂；各个模块‘分工明确’ 模型结构相对简单，不依赖大量训练数据，在小数据集上有一定优势。</li>
-<li>端到端语音识别：系统由一个模型实现从语音到文本的直接转换。深度学习引入语音识别之后，端到端的方式逐步成为研究热点。单个模型没有级联累积错误，而且系统搭建相对简单；但由于模型规模较大，需要更多的数据和训练成本。</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2022/03/29/asr-simple-tutorial/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaoshuaijiang.com/2022/03/29/asr-simple-tutorial/" data-id="cl1dnzsna00005i5ddx6md7kx" data-title="语音识别概述" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" rel="tag">语音识别</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-deeplearningbook" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/02/10/deeplearningbook/" class="article-date">
-  <time class="dt-published" datetime="2022-02-10T14:18:59.000Z" itemprop="datePublished">2月 10 2022</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/02/10/deeplearningbook/">Deep Learning Book</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="无监督学习算法"><a href="#无监督学习算法" class="headerlink" title="无监督学习算法"></a>无监督学习算法</h2><h2 id="监督学习算法"><a href="#监督学习算法" class="headerlink" title="监督学习算法"></a>监督学习算法</h2><h2 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h2><p>随机梯度下降的核心是期望。所以可以用小规模的样本去估计梯度，这样就可以用minibatch的方式去计算梯度、更新模型。</p>
-<h2 id="构建机器学习算法"><a href="#构建机器学习算法" class="headerlink" title="构建机器学习算法"></a>构建机器学习算法</h2><p>深度学习算法的配方：</p>
-<ul>
-<li>特定的数据集：</li>
-<li>代价函数：代价函数至少含有一项使学习过程进行统计估计的成分。代价函数也可能还有附加项，如正则化。</li>
-<li>优化过程：非线性模型要求选择一个迭代数据优化过程，如梯度下降。</li>
-<li>模型</li>
-</ul>
-<h2 id="促使深度学习发展"><a href="#促使深度学习发展" class="headerlink" title="促使深度学习发展"></a>促使深度学习发展</h2><ul>
-<li>维度灾难 <a target="_blank" rel="noopener" href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">参考</a></li>
-<li>局部不变性和平滑正则化</li>
-<li>流形学习</li>
-</ul>
-<h1 id="深度前馈网络"><a href="#深度前馈网络" class="headerlink" title="深度前馈网络"></a>深度前馈网络</h1><p>前馈网络克服了线形网络的局限，是一种高效的非线性函数近似。<br>现代前馈网络的思想仍然使用反向传播算法和梯度下降方法。主要的性能提升来自于</p>
-<ol>
-<li>训练数据量的提升：减少了统计泛化对神经网络的挑战；</li>
-<li>更大的网络结构：更强的算力和更好的深度学习框架基础使得神经网络能够变得更大；</li>
-<li>少量算法的优化：包括交叉熵取代均方误差作为损失函数，使用RELU等分段线性函数作为激活函数。</li>
-</ol>
-        
-          <p class="article-more-link">
-            <a href="/2022/02/10/deeplearningbook/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaoshuaijiang.com/2022/02/10/deeplearningbook/" data-id="ckzja6vvu0000ks5d64gg3gz1" data-title="Deep Learning Book" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deeplearning/" rel="tag">deeplearning</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-paper-interspeech2021" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/10/12/paper-interspeech2021/" class="article-date">
-  <time class="dt-published" datetime="2021-10-12T14:59:19.000Z" itemprop="datePublished">10月 12 2021</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/10/12/paper-interspeech2021/">paper-interspeech2021</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="SESSION-Tue-A-V-4-Self-Supervision-and-Semi-Supervision-for-Neural-ASR-Training"><a href="#SESSION-Tue-A-V-4-Self-Supervision-and-Semi-Supervision-for-Neural-ASR-Training" class="headerlink" title="SESSION Tue-A-V-4 Self-Supervision and Semi-Supervision for Neural ASR Training"></a>SESSION Tue-A-V-4 Self-Supervision and Semi-Supervision for Neural ASR Training</h1><table>
-<thead>
-<tr>
-<th align="center">subclass</th>
-<th align="center">paper</th>
-<th align="center">link</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">Self-Supervision</td>
-<td align="center">Improving Streaming Transformer Based ASR Under a Framework of Self-Supervised Learning</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2109.07327.pdf">PDF</a></td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaoshuaijiang.com/2021/10/12/paper-interspeech2021/" data-id="ckuo7w0o10000w95d866a6gti" data-title="paper-interspeech2021" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" rel="tag">语音识别</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-distant-asr" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/08/15/distant-asr/" class="article-date">
-  <time class="dt-published" datetime="2021-08-15T08:02:19.000Z" itemprop="datePublished">8月 15 2021</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/15/distant-asr/">鲁棒语音识别入门</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="CMU鲁棒语音识别简介"><a href="#CMU鲁棒语音识别简介" class="headerlink" title="CMU鲁棒语音识别简介"></a>CMU鲁棒语音识别简介</h1><p>鲁棒语音识别综述[<a href="/file/cmu_robust_asr.pdf">Robust Speech Recognition</a>]</p>
-<ul>
-<li>介绍了鲁棒语音识别的重要性与巨大挑战</li>
-<li>介绍了多媒体技术</li>
-<li>介绍了CMU研究领域以及相关的开源工具</li>
-</ul>
-<p><img src="/paper_image/cmu_robust_multimedia.png" alt="多媒体技术关系图"></p>
-<h1 id="远场语音识别综述"><a href="#远场语音识别综述" class="headerlink" title="远场语音识别综述"></a>远场语音识别综述</h1><ul>
-<li>远场语音识别综述[<a href="/file/is2016_tutorial_DSR_v6.pdf">Distant Speech Recognition</a>]</li>
-</ul>
-<p><img src="/paper_image/challenges_of_dsr.png" alt="远场语音识别的挑战"></p>
-<p><img src="/paper_image/system_of_dsr.png" alt="远场语音识别框架"></p>
-        
-          <p class="article-more-link">
-            <a href="/2021/08/15/distant-asr/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaoshuaijiang.com/2021/08/15/distant-asr/" data-id="cksczxog40000bi5d674e2esm" data-title="鲁棒语音识别入门" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" rel="tag">语音识别</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-pip-tsinghua" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/11/09/pip-tsinghua/" class="article-date">
-  <time class="dt-published" datetime="2020-11-09T11:17:51.000Z" itemprop="datePublished">11月 9 2020</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/11/09/pip-tsinghua/">pip清华源</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="永久更新为清华源"><a href="#永久更新为清华源" class="headerlink" title="永久更新为清华源"></a>永久更新为清华源</h1><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><p>编辑 vim ~/.pip/pip.conf ，修改为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line"> index-url &#x3D; https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple</span><br></pre></td></tr></table></figure>
-
-<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p><code>pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></p>
-<h1 id="临时更新为清华源"><a href="#临时更新为清华源" class="headerlink" title="临时更新为清华源"></a>临时更新为清华源</h1><p><code>pip install -i https://pypi.tuna.tsinghua.edu.cn/simple some-package</code></p>
-<h1 id="PIP更新方式"><a href="#PIP更新方式" class="headerlink" title="PIP更新方式"></a>PIP更新方式</h1><p>更新清华源往往需要使用最新的pip<br><code>pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U</code></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaoshuaijiang.com/2020/11/09/pip-tsinghua/" data-id="ckn1uqk7600ds8z5davszcqs9" data-title="pip清华源" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" rel="tag">计算机</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-paper-spec-augment" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/03/29/paper-spec-augment/" class="article-date">
-  <time class="dt-published" datetime="2020-03-29T02:43:53.000Z" itemprop="datePublished">3月 29 2020</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/03/29/paper-spec-augment/">语音识别中的谱增强</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="论文信息"><a href="#论文信息" class="headerlink" title="论文信息"></a>论文信息</h1><ul>
-<li>SpecAugment, GoogleBrain, paper: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1904.08779v1.pdf" title="SpecAugment">https://arxiv.org/pdf/1904.08779v1.pdf</a></li>
-<li>SpecAugment++, PKU, paper: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2103.16858.pdf" title="SpecAugment++">https://arxiv.org/pdf/2103.16858.pdf</a></li>
-</ul>
-<h1 id="There-is-no-data-like-more-data"><a href="#There-is-no-data-like-more-data" class="headerlink" title="There is no data like more data"></a>There is no data like more data</h1>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaoshuaijiang.com/2020/03/29/paper-spec-augment/" data-id="ckn1uqk6u00d68z5d1q9h2izf" data-title="语音识别中的谱增强" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PaperReading/" rel="tag">PaperReading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" rel="tag">语音识别</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-asr-espnet-install" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/02/02/asr-espnet-install/" class="article-date">
-  <time class="dt-published" datetime="2020-02-02T12:40:07.000Z" itemprop="datePublished">2月 2 2020</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/02/02/asr-espnet-install/">ESPNET 安装指引</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="准备Python环境"><a href="#准备Python环境" class="headerlink" title="准备Python环境"></a>准备Python环境</h1><ol>
-<li>建议安装anaconda3: <a target="_blank" rel="noopener" href="https://www.anaconda.com/distribution/">anaconda3</a></li>
-<li>创建ESPNET的环境: conda create -n  espnet python=3.6</li>
-</ol>
-<h1 id="Install-ESPNET相关依赖"><a href="#Install-ESPNET相关依赖" class="headerlink" title="Install ESPNET相关依赖"></a>Install ESPNET相关依赖</h1><ol>
-<li>下载espnet源代码 <a target="_blank" rel="noopener" href="https://github.com/espnet/espnet" title="espnet">espnet github</a></li>
-<li>pip install torch==1.0.1 # Installation from anaconda is recommended for PyTorch </li>
-<li>pip install chainer==6.0.0</li>
-<li>pip install cupy==6.0.0 # Do not install cupy as default</li>
-<li>pip install setuptools&gt;=38.5.1</li>
-<li>pip install scipy&gt;=1.3.0</li>
-<li>pip install librosa&gt;=0.7.0</li>
-<li>pip install soundfile&gt;=0.10.2 </li>
-<li>pip install inflect&gt;=1.0.0</li>
-<li>pip install unidecode&gt;=1.0.22</li>
-<li>pip install editdistance==0.5.2 </li>
-<li>pip install h5py==2.9.0</li>
-<li>pip install tensorboardX==1.8 </li>
-<li>pip install pillow&gt;=6.1.0</li>
-<li>pip install nara_wpe&gt;=0.0.5</li>
-<li>pip install museval&gt;=0.2.1</li>
-<li>pip install pystoi&gt;=0.2.2</li>
-<li>pip install kaldiio&gt;=2.13.8</li>
-<li>pip install matplotlib&gt;=3.1.0</li>
-<li>pip install funcsigs&gt;=1.0.2 # A backport of inspect.signature for python2 </li>
-<li>pip install configargparse&gt;=0.14.0</li>
-<li>pip install PyYAML&gt;=5.1.2</li>
-<li>pip install sentencepiece&gt;=0.1.82</li>
-<li>pip install pysptk&gt;=0.1.17</li>
-<li>pip install nltk&gt;=3.4.5</li>
-<li>pip install nnmnkwii</li>
-<li>pip install jaconv</li>
-<li>pip install g2p_en</li>
-<li>pip install torch_complex@git+<a target="_blank" rel="noopener" href="https://github.com/kamo-naoyuki/pytorch_complex.git">https://github.com/kamo-naoyuki/pytorch_complex.git</a> </li>
-<li>pip install pytorch_wpe@git+<a target="_blank" rel="noopener" href="https://github.com/nttcslab-sp/dnn_wpe.git">https://github.com/nttcslab-sp/dnn_wpe.git</a></li>
-<li>pip install warpctc-pytorch10-cuda90==0.1.3  (GitHub源码不易安装，pip安装较为简单)</li>
-</ol>
-<h2 id="Install-其他依赖"><a href="#Install-其他依赖" class="headerlink" title="Install 其他依赖"></a>Install 其他依赖</h2><ol>
-<li>kaldi相关的依赖: sudo yum install atlas </li>
-<li>sudo yum install bc</li>
-<li>sudo yum install tree</li>
-<li>sudo yum install libsndfile</li>
-<li>sudo yum install flac (librispeech 语音转格式，需要安装flac)</li>
-</ol>
-<h2 id="install-cuda"><a href="#install-cuda" class="headerlink" title="install cuda"></a>install cuda</h2><ol>
-<li>目前已支持cuda10，安装 sh /path/to/cuda10/cuda_10.0.130_410.48_linux.run</li>
-<li>export LD_LIBRARY_PATH=/path/to/cuda/lib64:$LD_LIBRARY_PATH</li>
-</ol>
-<h1 id="Install-ESPNET"><a href="#Install-ESPNET" class="headerlink" title="Install ESPNET"></a>Install ESPNET</h1><ol>
-<li>conda activate espnet (或者recipe里面的 path.sh)</li>
-<li>pip install -e /path/to/espnet/ </li>
-</ol>
-<h1 id="Run-ESPNET"><a href="#Run-ESPNET" class="headerlink" title="Run ESPNET"></a>Run ESPNET</h1><ol>
-<li>conda activate espnet</li>
-<li>cd /path/to/espnet/egs/recipe</li>
-<li>sh run.sh </li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhaoshuaijiang.com/2020/02/02/asr-espnet-install/" data-id="ckn1uqk1r00028z5d926zbwj9" data-title="ESPNET 安装指引" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" rel="tag">语音识别</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PaperReading/" rel="tag">PaperReading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Perl/" rel="tag">Perl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/" rel="tag">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/llm/" rel="tag">llm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reading/" rel="tag">reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E6%B5%AA%E6%BD%AE/" rel="tag">信息浪潮</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" rel="tag">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" rel="tag">计算机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/" rel="tag">语音合成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" rel="tag">语音识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PaperReading/" style="font-size: 17.14px;">PaperReading</a> <a href="/tags/Perl/" style="font-size: 10px;">Perl</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/llm/" style="font-size: 10px;">llm</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/reading/" style="font-size: 10px;">reading</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%B5%AA%E6%BD%AE/" style="font-size: 10px;">信息浪潮</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 14.29px;">机器学习</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" style="font-size: 12.86px;">自然语言处理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 14.29px;">计算机</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/" style="font-size: 18.57px;">语音合成</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" style="font-size: 15.71px;">语音识别</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 12.86px;">随笔</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">六月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2023/06/09/llm-papers/">大模型整理（large language models survey）</a>
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
           </li>
+          
         
-          <li>
-            <a href="/2023/01/07/assemble-your-computer/">从0到1组装自己的台式机</a>
-          </li>
         
-          <li>
-            <a href="/2022/03/29/asr-simple-tutorial/">语音识别概述</a>
-          </li>
-        
-          <li>
-            <a href="/2022/02/10/deeplearningbook/">Deep Learning Book</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/12/paper-interspeech2021/">paper-interspeech2021</a>
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
     </div>
   </div>
+</nav>
 
   
-</aside>
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="This is shuaijiang&#39;s blog"></span>
+          
+        </div>
+
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+
       
-      &copy; 2024 shuaijiang<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
   </div>
-</footer>
+</div>
 
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/about/" class="mobile-nav-link">关于</a>
-  
-</nav>
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/06/09/llm-papers/" target="_self">
+          大模型整理（large language models survey）
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/06/09/llm-papers/" target="_self">
+        <div>
+          基座大模型GPT系列2022年底，ChatGPT开启了大模型时代的序章。  GPT-4 Technical Report:具备更强的推理能力，且能够融合图像信息。 InstructGPT ChatGPT: ChatGPT是InstructGPT的姊妹模型，只是在数据收集和基座模型上有轻微差异。  LLaMALLaMA只使用开源数据预训练，在较小的模型参数下取得了相近的效果。LLaMA 拥有7B,
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-06-09 22:01" pubdate>
+              6月 9 2023
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/llm/">#llm</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/01/07/assemble-your-computer/" target="_self">
+          从0到1组装自己的台式机
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/01/07/assemble-your-computer/" target="_self">
+        <div>
+          明确自己的需求不同的需求对配置的侧重是不同的。  普通办公：侧重平衡。 娱乐：侧重显卡。 重度办公：侧重内存。 专业开发：侧重堆配置。  购买必要配件普通办公以下这套方案是2021年为了日常办公而采取的方案。主要使用场景是在公司日常办公以及连接开发机进行代码开发，所以并不需要很高的配置，只需要较大的内存即可。  CPU(¥779.00)：AMD 锐龙3 3100 (https://item.jd.
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-01-07 13:25" pubdate>
+              1月 7 2023
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">#计算机</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/03/29/asr-simple-tutorial/" target="_self">
+          语音识别概述
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/03/29/asr-simple-tutorial/" target="_self">
+        <div>
+          引言语音识别定义语音识别，亦称自动语音识别（Automatic Speech Recognition，ASR)或语音文本转换（Speech to Text, STT），是一种将语音转为文本的技术。当前的语音识别一般均特指大词汇量连续语音识别。 语音识别应用语音识别有着广泛的应用，按照使用场景的不同，可以分为以下几类：  语音输入：语音输入法、语音搜索等。 语音助手：手机、音箱、穿戴设备上的语音助手
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-29 23:05" pubdate>
+              3月 29 2022
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/">#语音识别</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/02/10/deeplearningbook/" target="_self">
+          Deep Learning Book
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/10/deeplearningbook/" target="_self">
+        <div>
+          无监督学习算法监督学习算法随机梯度下降随机梯度下降的核心是期望。所以可以用小规模的样本去估计梯度，这样就可以用minibatch的方式去计算梯度、更新模型。 构建机器学习算法深度学习算法的配方：  特定的数据集： 代价函数：代价函数至少含有一项使学习过程进行统计估计的成分。代价函数也可能还有附加项，如正则化。 优化过程：非线性模型要求选择一个迭代数据优化过程，如梯度下降。 模型  促使深度学习发展
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-10 22:18" pubdate>
+              2月 10 2022
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/deeplearning/">#deeplearning</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2021/10/12/paper-interspeech2021/" target="_self">
+          paper-interspeech2021
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/12/paper-interspeech2021/" target="_self">
+        <div>
+          SESSION Tue-A-V-4 Self-Supervision and Semi-Supervision for Neural ASR Training   subclass paper link    Self-Supervision Improving Streaming Transformer Based ASR Under a Framework of Self-Supervised
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-12 22:59" pubdate>
+              10月 12 2021
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/">#语音识别</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2021/08/15/distant-asr/" target="_self">
+          鲁棒语音识别入门
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/08/15/distant-asr/" target="_self">
+        <div>
+          CMU鲁棒语音识别简介鲁棒语音识别综述[Robust Speech Recognition]  介绍了鲁棒语音识别的重要性与巨大挑战 介绍了多媒体技术 介绍了CMU研究领域以及相关的开源工具   远场语音识别综述 远场语音识别综述[Distant Speech Recognition]
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-15 16:02" pubdate>
+              8月 15 2021
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/">#语音识别</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2020/11/09/pip-tsinghua/" target="_self">
+          pip清华源
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/11/09/pip-tsinghua/" target="_self">
+        <div>
+          永久更新为清华源方法一编辑 vim ~/.pip/pip.conf ，修改为： 12[global] index-url = https://pypi.tuna.tsinghua.edu.cn/simple  方法二pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple 临时更新为清华源pip install
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-09 19:17" pubdate>
+              11月 9 2020
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">#计算机</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2020/03/29/paper-spec-augment/" target="_self">
+          语音识别中的谱增强
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/03/29/paper-spec-augment/" target="_self">
+        <div>
+          论文信息 SpecAugment, GoogleBrain, paper: https://arxiv.org/pdf/1904.08779v1.pdf SpecAugment++, PKU, paper: https://arxiv.org/pdf/2103.16858.pdf  There is no data like more data
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-03-29 10:43" pubdate>
+              3月 29 2020
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/">#语音识别</a>
+            
+              <a href="/tags/PaperReading/">#PaperReading</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2020/02/02/asr-espnet-install/" target="_self">
+          ESPNET 安装指引
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/02/02/asr-espnet-install/" target="_self">
+        <div>
+          准备Python环境 建议安装anaconda3: anaconda3 创建ESPNET的环境: conda create -n  espnet python=3.6  Install ESPNET相关依赖 下载espnet源代码 espnet github pip install torch==1.0.1 # Installation from anaconda is recommended f
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-02-02 20:40" pubdate>
+              2月 2 2020
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/">#语音识别</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2019/07/28/paper_attention_is_all_you_need/" target="_self">
+          Paper Reading： Attention is all you need
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2019/07/28/paper_attention_is_all_you_need/" target="_self">
+        <div>
+          论文信息 作者：Vaswani A , Shazeer N , Parmar N , et al.  单位：Google 会议：NIPS 2017 发表日期： 2017-06 论文链接：attention is all you need  简介主流的序列转换模型一般都是基于循环神经网络或者卷积神经网络来做的，包含编码器（encoder）、解码器（decoder），通过注意力机制连接编码器和解码器取
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-07-28 16:11" pubdate>
+              7月 28 2019
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/PaperReading/">#PaperReading</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/#board">26</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="/js/jquery-3.4.1.min.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量
+        <span id="busuanzi_value_site_pv"></span>
+        次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数
+        <span id="busuanzi_value_site_uv"></span>
+        人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
 
-<script src="/js/script.js"></script>
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-  </div>
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
