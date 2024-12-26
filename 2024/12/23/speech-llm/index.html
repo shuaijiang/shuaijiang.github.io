@@ -28,6 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_timeline_1.png">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_timeline.png">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_traditional_dialog.jpg">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_system_cmp.png">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_component.png">
 <meta property="og:image" content="https://img.shields.io/badge/arXiv-2305.11000-b31b1b.svg?logo=arXiv">
@@ -50,7 +51,7 @@
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_keomni_textual.jpg">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_keomni_speech.jpg">
 <meta property="article:published_time" content="2024-12-23T06:03:05.000Z">
-<meta property="article:modified_time" content="2024-12-26T07:35:56.227Z">
+<meta property="article:modified_time" content="2024-12-26T09:35:21.219Z">
 <meta property="article:author" content="shuaijiang">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://zhaoshuaijiang.com/image/speechllm_timeline_1.png">
@@ -306,7 +307,8 @@
 <p>上面是对语音大模型的一种定义，可以简单地定义为：和人一样能听会说的智能系统。</p>
 <h2 id="历史回顾"><a href="#历史回顾" class="headerlink" title="历史回顾"></a>历史回顾</h2><p>在大模型时代之前（Pre-LLM Stage），语音技术各个细分方向相对独立，包括语音识别、语音合成、语音增强、语音分离、声音事件监测、说话人识别等等。<br>随着深度学习的发展(Early-LLM Stage)，语音技术开始进入预训练阶段，基于模型和大数据量的语音特征和表示。例如wav2vec、Hubert，大幅提升了模型效果。<br>进入大模型时代(SpeechLLM Stage)，语音技术各个细分方向开始融合，更细分的任务融合成一个任务，例如声音复刻和语音合成融合为Zero-Shot TTS。语音技术开始走向“大一统”：语音大模型。<br><img src="/image/speechllm_timeline_1.png" srcset="/img/loading.gif" lazyload alt="语音技术演进，图片参考A SURVEY ON SPEECH LARGE LANGUAGE MODELS"></p>
 <h2 id="发展趋势"><a href="#发展趋势" class="headerlink" title="发展趋势"></a>发展趋势</h2><p>2022年之前，语音技术结合LLMs的工作开始萌芽。<br>2023年，紧跟LLMs的步伐，语音大模型相关工作开始涌现。<br>2024年，语音大模型相关研究更加深入，围绕高质量语音、全双工交互等热点难点。<br><img src="/image/speechllm_timeline.png" srcset="/img/loading.gif" lazyload alt="语音大模型时间线，图片参考WavChat"></p>
-<h2 id="技术路径"><a href="#技术路径" class="headerlink" title="技术路径"></a>技术路径</h2><p>在大模型时代之前，实现一个人机语音对话系统是非常繁杂的，涉及多个模块：语音识别、意图识别、对话管理、对话生成、语音合成等模块。<br>在大模型时代，使用LLMs取代意图识别、对话管理、对话生成等多个模块，让人机对话系统变得简单且更加强大。根据模型是否能够直接理解和生成语音，分为级联、端到端两种技术路径：</p>
+<h2 id="技术路径"><a href="#技术路径" class="headerlink" title="技术路径"></a>技术路径</h2><p>在大模型时代之前，实现一个人机语音对话系统是非常繁杂的，涉及多个模块：语音识别、意图识别、对话管理、对话生成、语音合成等模块。<br><img src="/image/speechllm_traditional_dialog.jpg" srcset="/img/loading.gif" lazyload alt="传统人机语音交互"></p>
+<p>在大模型时代，使用LLMs取代意图识别、对话管理、对话生成等多个模块，让人机对话系统变得简单且更加强大。根据模型是否能够直接理解和生成语音，分为级联、端到端两种技术路径：</p>
 <ul>
 <li><strong>级联(Cascaded)</strong>: 语音识别（ASR）、LLM、语音合成（TTS）三部分级联构成。构建成本较低、各模块成熟且相对独立；但是能力潜力小、信息丢失（例如丢失情感信息）、延迟较大。典型例子有<a target="_blank" rel="noopener" href="https://github.com/AIGC-Audio/AudioGPT">AudioGPT</a>。</li>
 <li><strong>端到端(End-to-end)</strong>: 一个模型实现语音的输入和输出。系统简单、能力（潜力）强、延迟低；构建成本较大、依赖大量的训练数据。典型例子有<a target="_blank" rel="noopener" href="https://github.com/kyutai-labs/moshi/">Moshi</a>。</li>
