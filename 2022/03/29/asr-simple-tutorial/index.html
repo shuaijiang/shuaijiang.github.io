@@ -1,0 +1,802 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="shuaijiang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="引言语音识别定义语音识别，亦称自动语音识别（Automatic Speech Recognition，ASR)或语音文本转换（Speech to Text, STT），是一种将语音转为文本的技术。当前的语音识别一般均特指大词汇量连续语音识别。 语音识别应用语音识别有着广泛的应用，按照使用场景的不同，可以分为以下几类：  语音输入：语音输入法、语音搜索等。 语音助手：手机、音箱、穿戴设备上的语音助手">
+<meta property="og:type" content="article">
+<meta property="og:title" content="语音识别概述">
+<meta property="og:url" content="http://zhaoshuaijiang.com/2022/03/29/asr-simple-tutorial/index.html">
+<meta property="og:site_name" content="shuaijiang&#39;s blog">
+<meta property="og:description" content="引言语音识别定义语音识别，亦称自动语音识别（Automatic Speech Recognition，ASR)或语音文本转换（Speech to Text, STT），是一种将语音转为文本的技术。当前的语音识别一般均特指大词汇量连续语音识别。 语音识别应用语音识别有着广泛的应用，按照使用场景的不同，可以分为以下几类：  语音输入：语音输入法、语音搜索等。 语音助手：手机、音箱、穿戴设备上的语音助手">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/wer.svg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/paper_image/asr_tutorial_transducer.png">
+<meta property="og:image" content="http://zhaoshuaijiang.com/paper_image/asr_tutorial_aed.png">
+<meta property="article:published_time" content="2022-03-29T15:05:13.000Z">
+<meta property="article:modified_time" content="2024-12-20T07:45:34.000Z">
+<meta property="article:author" content="shuaijiang">
+<meta property="article:tag" content="语音识别">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://zhaoshuaijiang.com/image/wer.svg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>语音识别概述 - shuaijiang&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhaoshuaijiang.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>shuaijiang&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="语音识别概述"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-29 23:05" pubdate>
+          2022年3月29日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+<aside class="sidebar d-none d-xl-block" style="margin-right:-1rem;z-index:-1"><ins class="adsbygoogle" style="display:flex;justify-content:center;min-width:160px;max-width:300px;width:100%;height:600px;position:sticky;top:2rem" data-ad-client="ca-pub-3762972897277715" data-ad-slot="3762972897277715"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></aside>
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">语音识别概述</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><h2 id="语音识别定义"><a href="#语音识别定义" class="headerlink" title="语音识别定义"></a>语音识别定义</h2><p>语音识别，亦称自动语音识别（Automatic Speech Recognition，ASR)或语音文本转换（Speech to Text, STT），<br>是一种将语音转为文本的技术。当前的语音识别一般均特指大词汇量连续语音识别。</p>
+<h2 id="语音识别应用"><a href="#语音识别应用" class="headerlink" title="语音识别应用"></a>语音识别应用</h2><p>语音识别有着广泛的应用，按照使用场景的不同，可以分为以下几类：</p>
+<ul>
+<li>语音输入：语音输入法、语音搜索等。</li>
+<li>语音助手：手机、音箱、穿戴设备上的语音助手，例如Siri、Cortana、Alexa等。</li>
+<li>智能座舱：车载控制、娱乐等车载语音交互，例如NOMI。</li>
+<li>智能家居：家居控制、娱乐等家居语音交互，例如小爱同学等。</li>
+<li>电话客服：智能外呼、IVR、客服质检等。</li>
+<li>商务办公：线上线下会议直播的字幕上屏展示。</li>
+<li>语音审核：这类应用面向在线直播、电台等，检测是否存在违规违法内容。</li>
+</ul>
+<h2 id="语音识别类别"><a href="#语音识别类别" class="headerlink" title="语音识别类别"></a>语音识别类别</h2><p>根据应用场景对实时性的要求高低，可以分为：</p>
+<ul>
+<li>实时语音识别：要求系统低延迟，在两百毫秒以内；一般以语音流的方式实时地识别。典型的例子包括语音助手等语音交互、字幕实时上屏。</li>
+<li>非实时语音识别：不要求实时返回结果；一般是一句话识别或文件语音识别。会议纪要转写等录音的语音识别属于这类。</li>
+</ul>
+<p>根据系统实现架构，可以分为</p>
+<ul>
+<li>经典语音识别：系统由声学模型、语言模型、发音词典、解码器几个部分组成。系统模块较多，搭建较为复杂；各个模块‘分工明确’ 模型结构相对简单，不依赖大量训练数据，在小数据集上有一定优势。</li>
+<li>端到端语音识别：系统由一个模型实现从语音到文本的直接转换。深度学习引入语音识别之后，端到端的方式逐步成为研究热点。单个模型没有级联累积错误，而且系统搭建相对简单；但由于模型规模较大，需要更多的数据和训练成本。</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h2><p>语音识别精度的评测是基于带标注的测试集，其数据规模从几千到上万句不等。<br>中文一般采用字错误率(character error rate, CER)，英文一般采用词错误率(word error rate, WER)。CER和WER本质其实是一样的，只是计算的粒度不同。二者的核心都是对比参考答案和识别结果两个序列。<br>下面介绍WER的计算方法，将计算粒度从词换成字就是CER。</p>
+<h3 id="计算方法"><a href="#计算方法" class="headerlink" title="计算方法"></a>计算方法</h3><p>如果两个序列长度相同，依次对比相应顺序的词是否相同，统计出错误个数，即可计算出错误率。但是实际情况两个序列长度不一定相同，有可能识别结果会多字或者少字，此时就无法直接按照顺序去对比。<br>WER的计算和生物信息学中的序列比对十分类似，可以参考序列比对的计算，引入动态规划算法。</p>
+<p><img src="/image/wer.svg" srcset="/img/loading.gif" lazyload alt="wer"></p>
+<ul>
+<li>S is the number of substitutions,</li>
+<li>D is the number of deletions</li>
+<li>I is the number of insertions</li>
+<li>N is the number of words in the reference, N=S+D+C</li>
+</ul>
+<h3 id="相关工具："><a href="#相关工具：" class="headerlink" title="相关工具："></a>相关工具：</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/usnistgov/SCTK">SCTK</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/shuaijiang/Whisper-Finetune/blob/master/metrics/wer.py">WER</a>: Python scripts to compute WER.</li>
+</ul>
+<h2 id="学术研究"><a href="#学术研究" class="headerlink" title="学术研究"></a>学术研究</h2><p>学术会议：</p>
+<ul>
+<li>ICASSP</li>
+<li>INTERSPEECH</li>
+<li>ASRU：IEEE Automatic Speech Recognition and Understanding Workshop</li>
+<li>ISCSLP</li>
+</ul>
+<p>比赛：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://chimechallenge.github.io/">CHiME Challenge</a></li>
+</ul>
+<h2 id="开源数据集"><a href="#开源数据集" class="headerlink" title="开源数据集"></a>开源数据集</h2><p>中文：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.openslr.org/33/">AISHELL-1</a>: An open-source 178 Hours Chinese Mandarin speech corpus </li>
+<li><a target="_blank" rel="noopener" href="https://wenet.org.cn/WenetSpeech/">WenetSpeech</a>: A 10000+ Hours Multi-domain Mandarin Corpus for Speech Recognition</li>
+</ul>
+<p>英文：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.openslr.org/12/">LibriSpeech</a>: A Large-scale (1000 hours) corpus of read English speech</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/SpeechColab/GigaSpeech">GigaSpeech</a>: An Evolving, Multi-domain ASR Corpus with 10,000 Hours of Transcribed Audio</li>
+</ul>
+<p>多语种：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/amphion/Emilia-Dataset">Emilia</a>: 以中英文为主的开源语音数据集，主要包括以下几种语言：<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Duration (hours)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>En</td>
+<td>46,828</td>
+</tr>
+<tr>
+<td>Zh</td>
+<td>49,922</td>
+</tr>
+<tr>
+<td>De</td>
+<td>1,590</td>
+</tr>
+<tr>
+<td>Fr</td>
+<td>1,381</td>
+</tr>
+<tr>
+<td>Ja</td>
+<td>1,715</td>
+</tr>
+<tr>
+<td>Ko</td>
+<td>217</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="开源框架"><a href="#开源框架" class="headerlink" title="开源框架"></a>开源框架</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/shuaijiang/Whisper-Finetune/">Whisper</a>: OpenAI 开源的Whisper语音识别模型，支持多语种语音识别、语音翻译。更多内容参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/662906303">知乎</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/athena-team/athena">Athena</a>：端到端的语音处理工具，提供了语音识别、语音合成、语音活动检测、声纹识别等能力。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/espnet/espnet">ESPNet</a>: 端到端的语音处理工具，提供了语音识别、语音合成、语音翻译、机器翻译、语义理解、语音增强、语音分离等能力。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/wenet-e2e/wenet">WeNet</a>: 借鉴了ESPNet中语音识别的实现，并提供了工业界落地的实现。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/kaldi-asr/kaldi">Kaldi</a>: 经典语音识别的开源框架，非端到端的模型框架。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/k2-fsa/k2">k2+icefall+lhotse</a>: 新一代语音识别框架，涵盖了主流的模型结构，具备先进的模块化设计：模型底层实现（k2）、数据模块（lhotse）、ASR样例（icefall）、部署（sherpa）。</li>
+</ul>
+<h1 id="语音信号与特征"><a href="#语音信号与特征" class="headerlink" title="语音信号与特征"></a>语音信号与特征</h1><h2 id="语音的产生过程"><a href="#语音的产生过程" class="headerlink" title="语音的产生过程"></a>语音的产生过程</h2><p>声带利用振动，将肺部送来的气流转换成声波，从而产生声音。</p>
+<h2 id="数字信号"><a href="#数字信号" class="headerlink" title="数字信号"></a>数字信号</h2><h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><p>语音识别的声学特征一般为梅尔倒谱系数（Mel-scale Frequency Cepstral Coefficients，MFCC）或者 Filter Bank（FBank）。<br>MFCC的计算流程如下：</p>
+<ol>
+<li>预加重</li>
+<li>分帧 </li>
+<li>加窗 </li>
+<li>快速傅里叶变换（FFT） </li>
+<li>Mel滤波器组</li>
+<li>对数运算 </li>
+<li>离散余弦变换（DCT）<br>FBank的计算流程和MFCC很相似，只是没有做第七步的离散余弦变换。</li>
+</ol>
+<p>因为没有DCT，FBank特征各维度间具有较高的相关性，可以被DNN等深度神经网络很好地利用，因此FBank较MFCC具有更好地精度。<br>然而，对于GMM等模型忽略了不同特征维度的相关性，因此MFCC更具优势。    </p>
+<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><p>阅读文献：</p>
+<ul>
+<li>An Overview of End-to-End Automatic Speech Recognition[<a href="/file/An_Overview_of_End-to-End_Automatic_Speech_Recognition.pdf">pdf</a>]</li>
+</ul>
+<p>主流ASR模型可以分为基于HMM的混合模型和端到端模型两大类。</p>
+<h2 id="混合模型"><a href="#混合模型" class="headerlink" title="混合模型"></a>混合模型</h2><p>混合模型可以分为：</p>
+<ul>
+<li>基于HMM-DNN的模型</li>
+<li>基于HMM-LSTM的模型</li>
+</ul>
+<h3 id="HMM-DNN"><a href="#HMM-DNN" class="headerlink" title="HMM-DNN"></a>HMM-DNN</h3><p>GMM有很多优点，可以很好地概率分布建模、通过EM算法容易地拟合数据。但是，GMM不能有效地对非线性数据空间的数据进行建模。<br>DNN具有更强的表达能力，</p>
+<h3 id="HMM-LSTM"><a href="#HMM-LSTM" class="headerlink" title="HMM-LSTM"></a>HMM-LSTM</h3><p>DNN没有时序建模能力，LSTM增加了对语音时序建模的能力。</p>
+<h2 id="端到端模型"><a href="#端到端模型" class="headerlink" title="端到端模型"></a>端到端模型</h2><p>下面介绍下端到端模型，大体可以分为三类：</p>
+<ul>
+<li>基于CTC的模型</li>
+<li>基于Transducer的模型</li>
+<li>基于Attention的模型</li>
+</ul>
+<h3 id="CTC"><a href="#CTC" class="headerlink" title="CTC"></a>CTC</h3><p>Connectionist Temporal Classification(CTC)是一种针对基于深度神经网络的序列任务中输入输出序列不等长问题的准则。<br>CTC通过前向后向算法自动学习序列的边界信息，无需之前的方法中所需的强制对齐信息，降低了训练代价、减少了累积错误。<br>对于序列长度，CTC要求输入序列长度大于等于输出序列，在语音识别任务中，输入语音的长度往往都是远大于标注文本的长度的。<br>由于输入序列长于输出序列，在输出单元集合中增加blank(no label)，通过在输出序列中插入blank(-)，就可以实现输入和输出的长度对齐。所有可能的对齐的概率之和就是一种对齐标注的概率。<br>例如，通过插入blank(-)，输出序列<code>aab</code>可以对齐为<code>a−ab−</code>、<code>−aa−−abb</code>等若干序列。</p>
+<h3 id="Transducer"><a href="#Transducer" class="headerlink" title="Transducer"></a>Transducer</h3><p>相比于CTC的目标函数，Transducer没有条件独立性假设，具有更强的建模能力。<br>相比于CTC的模型结构，增加了文本编码网络（Label Encoder，亦称Prediction Net）和融合网络（Joint Net），对于实时语音识别，更加合适自然。<br>与CTC类似，前向后向算法可以高效地完成对齐路径的计算。</p>
+<p>基于Transducer的模型，从RNN Transducer（RNNT），逐渐演进到Transformer Transducer（TT）、Conformer Transducer（CT）。<br><img src="/paper_image/asr_tutorial_transducer.png" srcset="/img/loading.gif" lazyload alt="RNNT"></p>
+<h3 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h3><p>在《Attention is all you need》这篇工作问世后，语音识别也开启了端到端模型的新阶段。<br>这类模型结构也就是Attention base Encoder-Decoder models(AED)，包含了Encoder、Decoder两大模块：<br>Encoder对声学特征建模，输出声学表示；<br>Attention机制对Encoder输出做重要程度的加权；<br>Decoder利用Attention权重和其本身的历史时刻输出“自回归”地输出最终的结果；<br><img src="/paper_image/asr_tutorial_aed.png" srcset="/img/loading.gif" lazyload alt="AED"><br>基于AED的模型在建模过程中，引入了Attention机制，更好地对长序列建模，相比于引入了门限机制的LSTM更加“有的放矢”。</p>
+<p>AED这类框架中，最初Encoder和Decoder都是多层的LSTM结构，后续提出了非常经典的transformer结构，也就是大家都了解的BERT模型的核心结构。<br>基于Transformer的结构，后面衍生出很多变种：Conformer、Emformer、Squeezeformer等等。</p>
+<p>Attention机制也在不断演变: Generalized Attention, Self-Attention, Multi-Head Attention, Additive Attention, Global Attention,Monotonic Chunkwise Attention（MoChA）</p>
+<h1 id="解码"><a href="#解码" class="headerlink" title="解码"></a>解码</h1><p>常见的解码方式包括：</p>
+<ul>
+<li>WFST</li>
+<li>beam search</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" class="print-no-link">#语音识别</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>语音识别概述</div>
+      <div>http://zhaoshuaijiang.com/2022/03/29/asr-simple-tutorial/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>shuaijiang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年3月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+<div style="width:100%;display:flex;justify-content:center;margin-bottom:1.5rem"><ins class="adsbygoogle" style="display:flex;justify-content:center;max-width:845px;width:100%;height:90px" data-ad-client="ca-pub-3762972897277715" data-ad-slot="3762972897277715"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></div>
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/01/07/assemble-your-computer/" title="从0到1组装自己的台式机">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">从0到1组装自己的台式机</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/10/deeplearningbook/" title="Deep Learning Book">
+                        <span class="hidden-mobile">Deep Learning Book</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量
+        <span id="busuanzi_value_site_pv"></span>
+        次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数
+        <span id="busuanzi_value_site_uv"></span>
+        人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3762972897277715" crossorigin="anonymous"></script>
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
