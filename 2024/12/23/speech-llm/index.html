@@ -19,12 +19,12 @@
   <meta name="author" content="shuaijiang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="背景介绍语音大模型是什么？2024年5月，OpenAI的GPT-4o发布，自然流畅的人机对话、强大的语音理解与多样化的语音回复、极低的延迟（0.3秒，与人类相当）让人印象深刻。这使得研究者们重拾了对语音交互的热情，而且由于大语言模型的加持，语音交互的能力边界大幅提升。理想的语音大模型像人一样，应该具备：高质量语音理解（听）与回复（说）、多轮对话、低延迟、实时对话。语音大模型（speech larg">
+    <meta name="description" content="写在最前面：访问我的知乎同款文章 背景介绍语音大模型是什么？2024年5月，OpenAI的GPT-4o发布，自然流畅的人机对话、强大的语音理解与多样化的语音回复、极低的延迟（0.3秒，与人类相当）让人印象深刻。这使得研究者们重拾了对语音交互的热情，而且由于大语言模型的加持，语音交互的能力边界大幅提升。理想的语音大模型像人一样，应该具备：高质量语音理解（听）与回复（说）、多轮对话、低延迟、实时对话。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="语音大模型概述">
 <meta property="og:url" content="http://zhaoshuaijiang.com/2024/12/23/speech-llm/index.html">
 <meta property="og:site_name" content="shuaijiang&#39;s blog">
-<meta property="og:description" content="背景介绍语音大模型是什么？2024年5月，OpenAI的GPT-4o发布，自然流畅的人机对话、强大的语音理解与多样化的语音回复、极低的延迟（0.3秒，与人类相当）让人印象深刻。这使得研究者们重拾了对语音交互的热情，而且由于大语言模型的加持，语音交互的能力边界大幅提升。理想的语音大模型像人一样，应该具备：高质量语音理解（听）与回复（说）、多轮对话、低延迟、实时对话。语音大模型（speech larg">
+<meta property="og:description" content="写在最前面：访问我的知乎同款文章 背景介绍语音大模型是什么？2024年5月，OpenAI的GPT-4o发布，自然流畅的人机对话、强大的语音理解与多样化的语音回复、极低的延迟（0.3秒，与人类相当）让人印象深刻。这使得研究者们重拾了对语音交互的热情，而且由于大语言模型的加持，语音交互的能力边界大幅提升。理想的语音大模型像人一样，应该具备：高质量语音理解（听）与回复（说）、多轮对话、低延迟、实时对话。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_timeline_1.png">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_timeline.png">
@@ -34,6 +34,8 @@
 <meta property="og:image" content="https://img.shields.io/badge/arXiv-2305.11000-b31b1b.svg?logo=arXiv">
 <meta property="og:image" content="https://img.shields.io/badge/Github-Code-keygen.svg?logo=github">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_speechgpt.png">
+<meta property="og:image" content="https://img.shields.io/badge/arXiv-2408.05211-b31b1b.svg?logo=arXiv">
+<meta property="og:image" content="https://img.shields.io/badge/Github-Code-keygen.svg?logo=github">
 <meta property="og:image" content="https://img.shields.io/badge/arXiv-2409.06666-b31b1b.svg?logo=arXiv">
 <meta property="og:image" content="https://img.shields.io/badge/Github-Code-keygen.svg?logo=github">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_llamaomni.png">
@@ -50,9 +52,17 @@
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_keomni.png">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_keomni_textual.jpg">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_keomni_speech.jpg">
+<meta property="og:image" content="https://img.shields.io/badge/Notion-MiniCPMo26-white.svg?logo=notion">
+<meta property="og:image" content="https://img.shields.io/badge/Github-Code-keygen.svg?logo=github">
+<meta property="og:image" content="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging_Face-Model-blue.svg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_minicpm_o_26.png">
+<meta property="og:image" content="https://img.shields.io/badge/Documentation-LLaMAFactory-24292e?logo=github">
+<meta property="og:image" content="https://github.com/RLHF-V/RLAIF-V">
 <meta property="article:published_time" content="2024-12-23T06:03:05.000Z">
-<meta property="article:modified_time" content="2024-12-26T09:35:21.219Z">
+<meta property="article:modified_time" content="2025-03-14T10:30:34.090Z">
 <meta property="article:author" content="shuaijiang">
+<meta property="article:tag" content="llm">
+<meta property="article:tag" content="speech">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://zhaoshuaijiang.com/image/speechllm_timeline_1.png">
   
@@ -249,7 +259,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.6k 字
+          3k 字
         
       </span>
     
@@ -260,7 +270,7 @@
         
         
         
-          22 分钟
+          26 分钟
         
       </span>
     
@@ -302,7 +312,8 @@
             
               <div class="markdown-body">
                 
-                <h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><h2 id="语音大模型是什么？"><a href="#语音大模型是什么？" class="headerlink" title="语音大模型是什么？"></a>语音大模型是什么？</h2><p>2024年5月，OpenAI的GPT-4o发布，自然流畅的人机对话、强大的语音理解与多样化的语音回复、极低的延迟（0.3秒，与人类相当）让人印象深刻。<br>这使得研究者们重拾了对语音交互的热情，而且由于大语言模型的加持，语音交互的能力边界大幅提升。理想的语音大模型像人一样，应该具备：高质量语音理解（听）与回复（说）、多轮对话、低延迟、实时对话。<br>语音大模型（speech large language model, SpeechLLMs）亦有称之为语音对话模型（spoken dialogue models），本文统称之为语音大模型。</p>
+                <p>写在最前面：访问<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/14831605089">我的知乎同款文章</a></p>
+<h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><h2 id="语音大模型是什么？"><a href="#语音大模型是什么？" class="headerlink" title="语音大模型是什么？"></a>语音大模型是什么？</h2><p>2024年5月，OpenAI的GPT-4o发布，自然流畅的人机对话、强大的语音理解与多样化的语音回复、极低的延迟（0.3秒，与人类相当）让人印象深刻。<br>这使得研究者们重拾了对语音交互的热情，而且由于大语言模型的加持，语音交互的能力边界大幅提升。理想的语音大模型像人一样，应该具备：高质量语音理解（听）与回复（说）、多轮对话、低延迟、实时对话。<br>语音大模型（speech large language model, SpeechLLMs）亦有称之为语音对话模型（spoken dialogue models），本文统称之为语音大模型。</p>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">The fundamental definition <span class="hljs-keyword">of</span> <span class="hljs-keyword">a</span> spoken dialogue model refers <span class="hljs-built_in">to</span> <span class="hljs-keyword">a</span> dialogue <span class="hljs-keyword">system</span> capable <span class="hljs-keyword">of</span> generating intelligent verbal responses based <span class="hljs-keyword">on</span> <span class="hljs-title">the</span> <span class="hljs-title">input</span> <span class="hljs-title">speech</span>. <br></code></pre></td></tr></table></figure>
 <p>上面是对语音大模型的一种定义，可以简单地定义为：和人一样能听会说的智能系统。</p>
 <h2 id="历史回顾"><a href="#历史回顾" class="headerlink" title="历史回顾"></a>历史回顾</h2><p>在大模型时代之前（Pre-LLM Stage），语音技术各个细分方向相对独立，包括语音识别、语音合成、语音增强、语音分离、声音事件监测、说话人识别等等。<br>随着深度学习的发展(Early-LLM Stage)，语音技术开始进入预训练阶段，基于模型和大数据量的语音特征和表示。例如wav2vec、Hubert，大幅提升了模型效果。<br>进入大模型时代(SpeechLLM Stage)，语音技术各个细分方向开始融合，更细分的任务融合成一个任务，例如声音复刻和语音合成融合为Zero-Shot TTS。语音技术开始走向“大一统”：语音大模型。<br><img src="/image/speechllm_timeline_1.png" srcset="/img/loading.gif" lazyload alt="语音技术演进，图片参考A SURVEY ON SPEECH LARGE LANGUAGE MODELS"></p>
@@ -387,6 +398,7 @@
 <li>SpeechGPT 是将文本和语音模态融合到LLMs的一次尝试，让LLMs具备了语音理解和生成能力。</li>
 <li>由于Chain-of-Modality的机制，SpeechGPT无法实现实时交互，只能是半双工交互。</li>
 </ul>
+<h2 id="VITA"><a href="#VITA" class="headerlink" title="VITA   "></a>VITA <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2408.05211"><img src="https://img.shields.io/badge/arXiv-2408.05211-b31b1b.svg?logo=arXiv" srcset="/img/loading.gif" lazyload alt="arXiv"></a>  <a target="_blank" rel="noopener" href="https://github.com/VITA-MLLM/VITA"><img src="https://img.shields.io/badge/Github-Code-keygen.svg?logo=github" srcset="/img/loading.gif" lazyload alt="code"></a></h2><p>VITA是2024年8月由腾讯优图推出的多模态交互模型。</p>
 <h2 id="LLaMA-Omni"><a href="#LLaMA-Omni" class="headerlink" title="LLaMA-Omni  "></a>LLaMA-Omni <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2409.06666"><img src="https://img.shields.io/badge/arXiv-2409.06666-b31b1b.svg?logo=arXiv" srcset="/img/loading.gif" lazyload alt="arXiv"></a> <a target="_blank" rel="noopener" href="https://github.com/ictnlp/LLaMA-Omni"><img src="https://img.shields.io/badge/Github-Code-keygen.svg?logo=github" srcset="/img/loading.gif" lazyload alt="code"></a></h2><p>LLaMA-Omni 是中科院计算所于2024年9月份发布出来的语音大模型。<br>LLaMA-Omni用少量的数据和算力成本，构建了LLaMA的语音模态能力。</p>
 <h3 id="模块组成-2"><a href="#模块组成-2" class="headerlink" title="模块组成"></a>模块组成</h3><table>
 <thead>
@@ -492,6 +504,33 @@
 <h3 id="分析-4"><a href="#分析-4" class="headerlink" title="分析"></a>分析</h3><ul>
 <li>该工作提出了大规模高质量语音对话构造方法，并基于数据集在不同的数据尺度上验证了语音大模型的效果。</li>
 </ul>
+<h2 id="MiniCPM-o-2-6（2025-01）"><a href="#MiniCPM-o-2-6（2025-01）" class="headerlink" title="MiniCPM-o 2.6（2025.01）  "></a>MiniCPM-o 2.6（2025.01）<a target="_blank" rel="noopener" href="https://openbmb.notion.site/MiniCPM-o-2-6-A-GPT-4o-Level-MLLM-for-Vision-Speech-and-Multimodal-Live-Streaming-on-Your-Phone-185ede1b7a558042b5d5e45e6b237da9"><img src="https://img.shields.io/badge/Notion-MiniCPMo26-white.svg?logo=notion" srcset="/img/loading.gif" lazyload alt="Notion"></a> <a target="_blank" rel="noopener" href="https://github.com/OpenBMB/MiniCPM-o"><img src="https://img.shields.io/badge/Github-Code-keygen.svg?logo=github" srcset="/img/loading.gif" lazyload alt="code"></a> <a target="_blank" rel="noopener" href="https://huggingface.co/openbmb/MiniCPM-o-2_6"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging_Face-Model-blue.svg" srcset="/img/loading.gif" lazyload alt="model"></a></h2><p>MiniCPM-o 2.6 是OpenBMB（清华大学自然语言处理实验室和面壁智能共同发起的开源社区）于2025年1月份开源的多模态大模型，对标GPT-4o，支持图像、语音的理解以及语音的生成。</p>
+<h3 id="贡献点"><a href="#贡献点" class="headerlink" title="贡献点"></a>贡献点</h3><ul>
+<li>实现了多模态实时交互。</li>
+<li>实现了语音生成的可控，包括情绪、口音、语速等。</li>
+</ul>
+<h3 id="模块组成-6"><a href="#模块组成-6" class="headerlink" title="模块组成"></a>模块组成</h3><table>
+<thead>
+<tr>
+<th>Speech Tokenizer(Encoder)</th>
+<th>LLM</th>
+<th>Speech Detokenizer(Decoder)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Whisper-medium-300M encoder</td>
+<td>Qwen2.5-7B-Instruct</td>
+<td>ChatTTS-200M</td>
+</tr>
+</tbody></table>
+<h3 id="模型框架-5"><a href="#模型框架-5" class="headerlink" title="模型框架"></a>模型框架</h3><p><img src="/image/speechllm_minicpm_o_26.png" srcset="/img/loading.gif" lazyload alt="MiniCPM-o-2.6 模型框架"></p>
+<p>MiniCPM-o-2.6 模型输入语音（麦克风输入、音频文件输入）、视觉（图像、视频），模型输出语音。<br>为了实现多模态的实时交互，采用了时分复用（Omni-modality Time Division Multiplexing, OTDM）技术，能够及时响应各模态的输入。</p>
+<h3 id="模型训练-4"><a href="#模型训练-4" class="headerlink" title="模型训练 "></a>模型训练 <a target="_blank" rel="noopener" href="https://github.com/OpenBMB/MiniCPM-o/blob/main/docs/llamafactory_train_and_infer.md"><img src="https://img.shields.io/badge/Documentation-LLaMAFactory-24292e?logo=github" srcset="/img/loading.gif" lazyload alt="GitHub"></a></h3><p>MiniCPM-o-2.6采用了三阶段模型训练：</p>
+<ul>
+<li>Pretraining: 首先进行Vision Pretraining，使用图像-文本对对齐视觉和语言模态；然后进行Audio Pretraining，使用语音-文本对对齐语音和语言模态；最后是Omni Pretrainin，基于时分复用机制，融合各个模态。</li>
+<li>Omni SFT：这个阶段基于高质量的多模态数据对模型微调，包括视觉问答、语音理解、语音生成、视频理解等数据类型， 从而实现这些模态上理解和生成能力以及指令遵循能力。</li>
+<li>RLAIF：参考了<img src="https://github.com/RLHF-V/RLAIF-V" srcset="/img/loading.gif" lazyload alt="RLAIF-V">的工作，来提升模型的可信性，减少幻觉。</li>
+</ul>
 <h1 id="进阶话题"><a href="#进阶话题" class="headerlink" title="进阶话题"></a>进阶话题</h1><ul>
 <li>音频&amp;音乐</li>
 <li>全双工交互</li>
@@ -510,6 +549,15 @@
             <div>
               <div class="post-metas my-3">
   
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/llm/" class="print-no-link">#llm</a>
+      
+        <a href="/tags/speech/" class="print-no-link">#speech</a>
+      
+    </div>
   
 </div>
 
