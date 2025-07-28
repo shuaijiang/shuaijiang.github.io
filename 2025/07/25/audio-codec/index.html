@@ -57,11 +57,12 @@
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/audiocodec_higgs_audio_tokenizer_semantic.png">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/audiocodec_higgs_audio_tokenizer_acoustic.png">
 <meta property="article:published_time" content="2025-07-25T03:58:30.000Z">
-<meta property="article:modified_time" content="2025-07-28T07:37:05.359Z">
+<meta property="article:modified_time" content="2025-07-28T07:46:05.167Z">
 <meta property="article:author" content="shuaijiang">
 <meta property="article:tag" content="大模型">
 <meta property="article:tag" content="多模态">
 <meta property="article:tag" content="Tokenizer">
+<meta property="article:tag" content="audio codec">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://zhaoshuaijiang.com/image/audiocodec_discrete.png">
   
@@ -258,7 +259,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.5k 字
+          3.7k 字
         
       </span>
     
@@ -269,7 +270,7 @@
         
         
         
-          30 分钟
+          31 分钟
         
       </span>
     
@@ -593,7 +594,8 @@
 <h4 id="小结-5"><a href="#小结-5" class="headerlink" title="小结"></a>小结</h4><p>higgs-audio-v2-tokenizer 是一款专为语音大模型设计的高效 Audio Tokenizer，其创新的语义-声学分离融合机制和极低帧率设计，显著降低了建模成本，同时保持了出色的语音还原质量。它不仅为 Higgs Audio 提供Tokenizer支持，也为语音大模型的Tokenizer提供了有价值的借鉴。</p>
 <hr>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="Audio-Tokenizer成为大模型的关键技术"><a href="#Audio-Tokenizer成为大模型的关键技术" class="headerlink" title="Audio Tokenizer成为大模型的关键技术"></a>Audio Tokenizer成为大模型的关键技术</h3><p>随着大模型能力的不断延展，多模态甚至全模态的大模型正在深刻变革语音技术的传统范式。语音任务正在从以模块化、定制化为主的架构，逐步转向由统一大模型驱动的端到端解决方案。</p>
-<p>语音识别、合成、增强等任务也正逐步统一到大模型体系中，例如 OpenAI 的 Whisper 在通用场景下已显著优于传统小模型。大模型不再局限于感知层的“识别”，而是逐步向“理解”和“生成”扩展。</p>
+<p>单点的语音能力也在向大模型方向演进，以语音识别为例，OpenAI 的 Whisper 模型在通用场景下的表现已显著优于传统的定制小模型，凭借大数据预训练和强鲁棒性，在多语言、多口音、嘈杂环境下依然具备出色性能。这类“预训练+指令微调”的语音大模型方案，正逐渐成为语音识别的新主流， 具体可以参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/662906303">OpenAI Whisper 新一代语音技术(更新至v3-turbo)</a></p>
+<p>大模型已不再局限于感知层的“识别”，而是逐步向“理解”和“生成”扩展。语音模态和大模型深度融合，也已经有很多相关工作了，虽然在端到端语音交互能力方面和传统级联方案略有逊色，但是在语音理解和生成能力方面已经远超过传统的单一能力模型，具体可以参考语音大模型概述：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/14831605089">语音大模型概述</a></p>
 <p>尽管当前端到端语音交互模型在一些低资源场景下仍存在响应速度或精度的差距，但其多任务泛化能力和统一建模框架的优势，已在多个应用方向展现出巨大的潜力。</p>
 <p>展望未来，<strong>音频模态与大模型的深度融合</strong>已成为语音领域的技术主旋律，而 <strong>Audio Tokenizer 的演进</strong>，则是这一趋势背后的关键基石。</p>
 <h3 id="Audio-Tokenizer的演进趋势"><a href="#Audio-Tokenizer的演进趋势" class="headerlink" title="Audio Tokenizer的演进趋势"></a>Audio Tokenizer的演进趋势</h3><ul>
@@ -605,8 +607,7 @@
 <li><a target="_blank" rel="noopener" href="https://ravinkumar.com/GenAiGuidebook/audio/audio_tokenization.html">Audio Tokenization: An Overview</a></li>
 <li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2406.10735v1">How Should We Extract Discrete Audio Tokens from Self-Supervised Models?</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/lucidrains/vector-quantize-pytorch">Vector Quantization in PyTorch</a></li>
-<li><a target="_blank" rel="noopener" href="https://ravinkumar.com/GenAiGuidebook/audio/audio_tokenization.html">Audio Tokenization: An Overview</a></li>
-<li><a target="_blank" rel="noopener" href="https://drscotthawley.github.io/blog/posts/2023-06-12-RVQ.html">Residual Vector Quantization: Scott H. Hawley 的博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://drscotthawley.github.io/blog/posts/2023-06-12-RVQ.html">Residual Vector Quantization: An exploration of the heart of neural audio codecs</a></li>
 </ul>
 <hr>
 
@@ -626,6 +627,8 @@
         <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" class="print-no-link">#多模态</a>
       
         <a href="/tags/Tokenizer/" class="print-no-link">#Tokenizer</a>
+      
+        <a href="/tags/audio-codec/" class="print-no-link">#audio codec</a>
       
     </div>
   
