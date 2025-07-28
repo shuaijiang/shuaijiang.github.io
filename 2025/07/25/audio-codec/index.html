@@ -53,7 +53,7 @@
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/audiocodec_higgs_audio_tokenizer_semantic.png">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/audiocodec_higgs_audio_tokenizer_acoustic.png">
 <meta property="article:published_time" content="2025-07-25T03:58:30.000Z">
-<meta property="article:modified_time" content="2025-07-28T04:44:57.268Z">
+<meta property="article:modified_time" content="2025-07-28T04:51:37.771Z">
 <meta property="article:author" content="shuaijiang">
 <meta property="article:tag" content="大模型">
 <meta property="article:tag" content="多模态">
@@ -525,7 +525,9 @@
 <p><img src="/image/audiocodec_soundstream.png" srcset="/img/loading.gif" lazyload alt="SoundStream模块框架"></p>
 <h4 id="RVQ算法"><a href="#RVQ算法" class="headerlink" title="RVQ算法"></a>RVQ算法</h4><p>在 Neural Audio Codec 中，最关键的一步是如何将连续信号离散化为 token 表示。SoundStream 使用了 Residual Vector Quantization（RVQ） 技术，其主要思想是分多级量化器，每级负责编码残差信息，从而逐步逼近原始向量。更多详细解读<br><img src="/image/audiocodec_soundstream_rvq.png" srcset="/img/loading.gif" lazyload alt="RVQ"></p>
 <h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><p>SoundStream 在语音重建质量上优于传统压缩方法（如 Opus），尤其在低比特率下依然保持不错的主观听感。其强大的表示能力也使其适用于后续的语音合成、生成、编辑等任务。<br><img src="/image/audiocodec_soundstream_result.png" srcset="/img/loading.gif" lazyload alt="SoundStream效果"></p>
-<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><h2 id="SoundStream-是-Neural-Audio-Codec-方向的奠基之作，不仅首次系统性地提出神经音频压缩框架，也确立了-RVQ-作为音频离散化的核心技术路径。虽然机制并不复杂，但在实际中非常高效，影响了后续整个音频tokenization领域的发展。"><a href="#SoundStream-是-Neural-Audio-Codec-方向的奠基之作，不仅首次系统性地提出神经音频压缩框架，也确立了-RVQ-作为音频离散化的核心技术路径。虽然机制并不复杂，但在实际中非常高效，影响了后续整个音频tokenization领域的发展。" class="headerlink" title="SoundStream 是 Neural Audio Codec 方向的奠基之作，不仅首次系统性地提出神经音频压缩框架，也确立了 RVQ 作为音频离散化的核心技术路径。虽然机制并不复杂，但在实际中非常高效，影响了后续整个音频tokenization领域的发展。"></a>SoundStream 是 Neural Audio Codec 方向的奠基之作，不仅首次系统性地提出神经音频压缩框架，也确立了 RVQ 作为音频离散化的核心技术路径。虽然机制并不复杂，但在实际中非常高效，影响了后续整个音频tokenization领域的发展。</h2><h3 id="EnCodec-2022-10"><a href="#EnCodec-2022-10" class="headerlink" title="EnCodec(2022.10)   "></a>EnCodec(2022.10) <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.13438"><img src="https://img.shields.io/badge/arXiv-2210.13441-b31b1b.svg?logo=arXiv" srcset="/img/loading.gif" lazyload alt="arXiv"></a> <a target="_blank" rel="noopener" href="https://github.com/facebookresearch/encodec"><img src="https://img.shields.io/badge/Github-Code-facebookresearch/encodec.svg?logo=github" srcset="/img/loading.gif" lazyload alt="code"></a> <a target="_blank" rel="noopener" href="https://github.com/facebookresearch/encodec"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging_Face-EnCodec-blue.svg" srcset="/img/loading.gif" lazyload alt="model"></a></h3><p>EnCodec 是 Meta AI 于 2022 年提出的 Neural Audio Codec 模型，作为对 SoundStream 框架的延续和改进，它同样采用了 Residual Vector Quantization（RVQ） 技术，并在音频质量、适用范围和开源支持方面做了全面升级:</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>SoundStream 是 Neural Audio Codec 方向的奠基之作，不仅首次系统性地提出神经音频压缩框架，也确立了 RVQ 作为音频离散化的核心技术路径。虽然机制并不复杂，但在实际中非常高效，影响了后续整个音频tokenization领域的发展。</p>
+<hr>
+<h3 id="EnCodec-2022-10"><a href="#EnCodec-2022-10" class="headerlink" title="EnCodec(2022.10)   "></a>EnCodec(2022.10) <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.13438"><img src="https://img.shields.io/badge/arXiv-2210.13441-b31b1b.svg?logo=arXiv" srcset="/img/loading.gif" lazyload alt="arXiv"></a> <a target="_blank" rel="noopener" href="https://github.com/facebookresearch/encodec"><img src="https://img.shields.io/badge/Github-Code-facebookresearch/encodec.svg?logo=github" srcset="/img/loading.gif" lazyload alt="code"></a> <a target="_blank" rel="noopener" href="https://github.com/facebookresearch/encodec"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging_Face-EnCodec-blue.svg" srcset="/img/loading.gif" lazyload alt="model"></a></h3><p>EnCodec 是 Meta AI 于 2022 年提出的 Neural Audio Codec 模型，作为对 SoundStream 框架的延续和改进，它同样采用了 Residual Vector Quantization（RVQ） 技术，并在音频质量、适用范围和开源支持方面做了全面升级:</p>
 <ul>
 <li><strong>多采样率支持</strong>：EnCodec 同时支持 24kHz 和 48kHz 音频信号，覆盖语音和高保真音频等不同应用场景；</li>
 <li><strong>多比特率可调</strong>：提供从 1.5 到 24 kbps 的多个比特率选项，适用于不同带宽和重建质量的需求；</li>
@@ -584,9 +586,9 @@
 <hr>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://ravinkumar.com/GenAiGuidebook/audio/audio_tokenization.html">Audio Tokenization: An Overview</a></li>
-<li>How Should We Extract Discrete Audio Tokens from Self-Supervised Models?</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2406.10735v1">How Should We Extract Discrete Audio Tokens from Self-Supervised Models?</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/lucidrains/vector-quantize-pytorch">Vector Quantization in PyTorch</a></li>
-<li><a target="_blank" rel="noopener" href="https://ravinkumar.com/GenAiGuidebook/audio/audio_tokenization.html">Ravin Kumar 的 GenAI Guidebook</a></li>
+<li><a target="_blank" rel="noopener" href="https://ravinkumar.com/GenAiGuidebook/audio/audio_tokenization.html">Audio Tokenization: An Overview</a></li>
 <li><a target="_blank" rel="noopener" href="https://drscotthawley.github.io/blog/posts/2023-06-12-RVQ.html">Residual Vector Quantization: Scott H. Hawley 的博客</a></li>
 </ul>
 <hr>
