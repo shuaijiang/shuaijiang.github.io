@@ -49,6 +49,7 @@
 <meta property="og:image" content="https://img.shields.io/badge/Github-Code-Stability--AI/stable--codec.svg?logo=github">
 <meta property="og:image" content="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging_Face-stable--codec--speech--16k-blue.svg">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/audiocodec_stable_codec.png">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/audiocodec_fsq.png">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/audiocodec_stable_codec_mushra.png">
 <meta property="og:image" content="https://img.shields.io/badge/Blog-Github-blue.svg?logo=github">
 <meta property="og:image" content="https://img.shields.io/badge/Github-Code-boson--ai/higgs--audio.svg?logo=github">
@@ -57,7 +58,7 @@
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/audiocodec_higgs_audio_tokenizer_semantic.png">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/audiocodec_higgs_audio_tokenizer_acoustic.png">
 <meta property="article:published_time" content="2025-07-25T03:58:30.000Z">
-<meta property="article:modified_time" content="2025-07-28T07:46:05.167Z">
+<meta property="article:modified_time" content="2025-07-28T08:42:02.728Z">
 <meta property="article:author" content="shuaijiang">
 <meta property="article:tag" content="大模型">
 <meta property="article:tag" content="多模态">
@@ -259,7 +260,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.7k 字
+          3.9k 字
         
       </span>
     
@@ -270,7 +271,7 @@
         
         
         
-          31 分钟
+          33 分钟
         
       </span>
     
@@ -577,6 +578,54 @@
 <li><strong>极低码率支持</strong>：支持 400bps、700bps 等超低比特率设置，在极限压缩下仍保持较高音质。</li>
 </ul>
 <p><img src="/image/audiocodec_stable_codec.png" srcset="/img/loading.gif" lazyload alt="Stable Codec 模型框架"></p>
+<h4 id="FSQ-V-S-VQ"><a href="#FSQ-V-S-VQ" class="headerlink" title="FSQ V.S. VQ"></a>FSQ V.S. VQ</h4><p>这里提到了FSQ，为了有更直观的认识，这里列出二者的差异。</p>
+<p>下图举例对比FSQ和VQ的差异：</p>
+<p><img src="/image/audiocodec_fsq.png" srcset="/img/loading.gif" lazyload alt="FSQ V.S. VQ(https://github.com/lucidrains/vector-quantize-pytorch/blob/master/images/fsq.png)"></p>
+<p>下表从不同维度详细对比FSQ和VQ的差异：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>FSQ</th>
+<th>VQ</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>量化方式</td>
+<td>round(f(z))</td>
+<td>argmin_c || z-c ||</td>
+</tr>
+<tr>
+<td>量化单位</td>
+<td>每个维度单独量化</td>
+<td>整个向量最近邻</td>
+</tr>
+<tr>
+<td>编码方式</td>
+<td>标量量化（整数）</td>
+<td>码本索引</td>
+</tr>
+<tr>
+<td>并行性</td>
+<td>高（可并行）</td>
+<td>低（需查找）</td>
+</tr>
+<tr>
+<td>表达粒度</td>
+<td>粗，从坐标轴限制（维度独立）</td>
+<td>细，全局表示能力较强（跨维度）</td>
+</tr>
+<tr>
+<td>实现复杂度</td>
+<td>低</td>
+<td>高</td>
+</tr>
+</tbody></table>
+<p>整体而言：</p>
+<ul>
+<li>FSQ 是把高维输出按坐标轴切割成格子，每维分别处理；</li>
+<li>VQ 是把输出投到一个高维超立方体的码本格点上，整体处理。</li>
+</ul>
 <h4 id="效果-3"><a href="#效果-3" class="headerlink" title="效果"></a>效果</h4><p>在MUSHRA 主观评测中，Stable Codec 的表现优于其他同类模型如 Mimi 和 SemanticCodec，其音质在主观评分中接近真实语音（Ground Truth）。<br><img src="/image/audiocodec_stable_codec_mushra.png" srcset="/img/loading.gif" lazyload alt="Stable Codec MUSHRA效果对比"></p>
 <h4 id="小结-4"><a href="#小结-4" class="headerlink" title="小结"></a>小结</h4><p>Stable Codec 凭借其<strong>超低码率、高音质、Transformer 架构与 FSQ 创新量化方式</strong>，是语音大模型中的<strong>潜力型</strong> Audio Tokenizer 方案。其设计思路代表了 Neural Audio Codec 向更轻量、更高效、更大模型友好方向的发展趋势。</p>
 <hr>
