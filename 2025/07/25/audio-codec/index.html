@@ -51,6 +51,11 @@
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/audiocodec_stable_codec.png">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/audiocodec_fsq.png">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/audiocodec_stable_codec_mushra.png">
+<meta property="og:image" content="https://img.shields.io/badge/Blog-MOSS--TTSD-blue.svg?logo=googlechrome">
+<meta property="og:image" content="https://img.shields.io/badge/Github-Code-OpenMOSS/MOSS--TTSD.svg?logo=github">
+<meta property="og:image" content="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging_Face-XY__Tokenizer__TTSD__V0-blue.svg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/audiocodec_xy_tokenizer.png">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/audiocodec_xy_tokenizer_result.png">
 <meta property="og:image" content="https://img.shields.io/badge/Blog-Github-blue.svg?logo=github">
 <meta property="og:image" content="https://img.shields.io/badge/Github-Code-boson--ai/higgs--audio.svg?logo=github">
 <meta property="og:image" content="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging_Face-higgs--audio--v2--tokenizer-blue.svg">
@@ -58,7 +63,7 @@
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/audiocodec_higgs_audio_tokenizer_semantic.png">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/audiocodec_higgs_audio_tokenizer_acoustic.png">
 <meta property="article:published_time" content="2025-07-25T03:58:30.000Z">
-<meta property="article:modified_time" content="2025-07-28T08:42:02.728Z">
+<meta property="article:modified_time" content="2025-07-31T03:21:13.316Z">
 <meta property="article:author" content="shuaijiang">
 <meta property="article:tag" content="大模型">
 <meta property="article:tag" content="多模态">
@@ -260,7 +265,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.9k 字
+          4.3k 字
         
       </span>
     
@@ -271,7 +276,7 @@
         
         
         
-          33 分钟
+          36 分钟
         
       </span>
     
@@ -629,6 +634,15 @@
 <h4 id="效果-3"><a href="#效果-3" class="headerlink" title="效果"></a>效果</h4><p>在MUSHRA 主观评测中，Stable Codec 的表现优于其他同类模型如 Mimi 和 SemanticCodec，其音质在主观评分中接近真实语音（Ground Truth）。<br><img src="/image/audiocodec_stable_codec_mushra.png" srcset="/img/loading.gif" lazyload alt="Stable Codec MUSHRA效果对比"></p>
 <h4 id="小结-4"><a href="#小结-4" class="headerlink" title="小结"></a>小结</h4><p>Stable Codec 凭借其<strong>超低码率、高音质、Transformer 架构与 FSQ 创新量化方式</strong>，是语音大模型中的<strong>潜力型</strong> Audio Tokenizer 方案。其设计思路代表了 Neural Audio Codec 向更轻量、更高效、更大模型友好方向的发展趋势。</p>
 <hr>
+<h3 id="XY-Tokenizer-2025-07"><a href="#XY-Tokenizer-2025-07" class="headerlink" title="XY-Tokenizer (2025.07)   "></a>XY-Tokenizer (2025.07) <a target="_blank" rel="noopener" href="https://www.open-moss.com/cn/moss-ttsd/"><img src="https://img.shields.io/badge/Blog-MOSS--TTSD-blue.svg?logo=googlechrome" srcset="/img/loading.gif" lazyload alt="blog"></a> <a target="_blank" rel="noopener" href="https://github.com/OpenMOSS/MOSS-TTSD"><img src="https://img.shields.io/badge/Github-Code-OpenMOSS/MOSS--TTSD.svg?logo=github" srcset="/img/loading.gif" lazyload alt="code"></a> <a target="_blank" rel="noopener" href="https://huggingface.co/fnlp/XY_Tokenizer_TTSD_V0"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging_Face-XY__Tokenizer__TTSD__V0-blue.svg" srcset="/img/loading.gif" lazyload alt="model"></a></h3><p>XY-Tokenizer是复旦大学邱锡鹏团队推出的MOSS-TTSD项目中提出的离散Tokenizer。<br>实现了统一建模语音的语义和声学信息，支持低比特率（1 Kbps）与低帧率（12.5Hz），适用于高效语音生成任务。</p>
+<h4 id="模型框架-1"><a href="#模型框架-1" class="headerlink" title="模型框架"></a>模型框架</h4><p>模型使用了双路 Whisper Encoder 进行语音编码，8层 RVQ 量化。<br>训练分为两个阶段，采用多任务学习策略：<br>阶段一：语义对齐 + 声学保持训练。ASR任务和重建任务，让编码器在编码语义信息的同时保留粗粒度的声学信息。<br>阶段二：生成式声学细化。固定住编码器和量化层部分，只训练解码器部分。通过重建损失和 GAN 损失，利用生成式模型的能力补充细粒度声学信息。<br><img src="/image/audiocodec_xy_tokenizer.png" srcset="/img/loading.gif" lazyload alt="XY-Tokenizer"></p>
+<h4 id="效果-4"><a href="#效果-4" class="headerlink" title="效果"></a>效果</h4><ul>
+<li>使用 10 万小时转录语音数据进行基础训练，确保语义编码质量；</li>
+<li>引入 50 万小时无标注语音数据 进行扩展训练，有效增强模型对复杂对话语音及多场景语音的建模能力；</li>
+<li>支持最长 960 秒语音输入，在超长语音建模方面表现出色。<br><img src="/image/audiocodec_xy_tokenizer_result.png" srcset="/img/loading.gif" lazyload alt="XY-Tokenizer效果"></li>
+</ul>
+<h4 id="小结-5"><a href="#小结-5" class="headerlink" title="小结"></a>小结</h4><p>XY-Tokenizer 在低比特率（1 Kbps）和低帧率（12.5 Hz）下，同时实现了高质量的语义表示和声学重建能力。其两阶段训练策略和海量多样化数据的支持，使其在真实对话音频生成与理解任务中具有较高潜力。</p>
+<hr>
 <h3 id="higgs-audio-v2-tokenizer-2025-07"><a href="#higgs-audio-v2-tokenizer-2025-07" class="headerlink" title="higgs-audio-v2-tokenizer (2025.07)   "></a>higgs-audio-v2-tokenizer (2025.07) <a target="_blank" rel="noopener" href="https://github.com/boson-ai/higgs-audio/blob/main/tech_blogs/TOKENIZER_BLOG.md"><img src="https://img.shields.io/badge/Blog-Github-blue.svg?logo=github" srcset="/img/loading.gif" lazyload alt="blog"></a> <a target="_blank" rel="noopener" href="https://github.com/boson-ai/higgs-audio"><img src="https://img.shields.io/badge/Github-Code-boson--ai/higgs--audio.svg?logo=github" srcset="/img/loading.gif" lazyload alt="code"></a> <a target="_blank" rel="noopener" href="https://huggingface.co/bosonai/higgs-audio-v2-tokenizer"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging_Face-higgs--audio--v2--tokenizer-blue.svg" srcset="/img/loading.gif" lazyload alt="model"></a></h3><p>higgs-audio-v2-tokenizer是李沐老师创业公司BosonAI于2025年7月发布的开源Audio Codec，具备极低帧率、适合多模态大模型建模。</p>
 <h4 id="模型架构-4"><a href="#模型架构-4" class="headerlink" title="模型架构"></a>模型架构</h4><ul>
 <li><strong>语义-声学分离融合建模</strong>：分别对 语义信息（Semantic） 和 声学信息（Acoustic） 进行独立建模，然后在量化前进行融合，使得 token 表达同时具备语义可控性与音频细节；</li>
@@ -636,11 +650,11 @@
 <li><strong>极低帧率（25fps）</strong>：极大减少了 token 数量，更适合接入 LLM 进行多模态建模和语音生成任务。</li>
 </ul>
 <p><img src="/image/audiocodec_higgs_audio_tokenizer.png" srcset="/img/loading.gif" lazyload alt="higgs-audio-v2-tokenizer 模型框架"></p>
-<h4 id="效果-4"><a href="#效果-4" class="headerlink" title="效果"></a>效果</h4><p>语义效果评估采用了（Seed-TTS eval）作为评测集，在更低比特率（BitRate）设定下，模型在语义一致性方面可与 Mimi 相媲美，表现出良好的生成对齐能力。 </p>
+<h4 id="效果-5"><a href="#效果-5" class="headerlink" title="效果"></a>效果</h4><p>语义效果评估采用了（Seed-TTS eval）作为评测集，在更低比特率（BitRate）设定下，模型在语义一致性方面可与 Mimi 相媲美，表现出良好的生成对齐能力。 </p>
 <p><img src="/image/audiocodec_higgs_audio_tokenizer_semantic.png" srcset="/img/loading.gif" lazyload alt="higgs-audio-v2-tokenizer 语义效果"></p>
 <p>在声学效果评估方面，采用了 STFT metric 作为评估指标。评测集由 4 个子集组成： <a target="_blank" rel="noopener" href="https://ccrma.stanford.edu/~gautham/Site/daps.html">DAPS</a>（Speech）、<a target="_blank" rel="noopener" href="https://sigsep.github.io/datasets/musdb.html">MUSDB</a>（Music）、<a target="_blank" rel="noopener" href="https://research.google.com/audioset/index.html">AudioSet</a>（Sound Event）以及 Audiophile（高保真音乐）。在多种类型音频上，模型在细节保留与主观感知质量上均达到高水平。</p>
 <p><img src="/image/audiocodec_higgs_audio_tokenizer_acoustic.png" srcset="/img/loading.gif" lazyload alt="higgs-audio-v2-tokenizer 声学效果"></p>
-<h4 id="小结-5"><a href="#小结-5" class="headerlink" title="小结"></a>小结</h4><p>higgs-audio-v2-tokenizer 是一款专为语音大模型设计的高效 Audio Tokenizer，其创新的语义-声学分离融合机制和极低帧率设计，显著降低了建模成本，同时保持了出色的语音还原质量。它不仅为 Higgs Audio 提供Tokenizer支持，也为语音大模型的Tokenizer提供了有价值的借鉴。</p>
+<h4 id="小结-6"><a href="#小结-6" class="headerlink" title="小结"></a>小结</h4><p>higgs-audio-v2-tokenizer 是一款专为语音大模型设计的高效 Audio Tokenizer，其创新的语义-声学分离融合机制和极低帧率设计，显著降低了建模成本，同时保持了出色的语音还原质量。它不仅为 Higgs Audio 提供Tokenizer支持，也为语音大模型的Tokenizer提供了有价值的借鉴。</p>
 <hr>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="Audio-Tokenizer成为大模型的关键技术"><a href="#Audio-Tokenizer成为大模型的关键技术" class="headerlink" title="Audio Tokenizer成为大模型的关键技术"></a>Audio Tokenizer成为大模型的关键技术</h3><p>随着大模型能力的不断延展，多模态甚至全模态的大模型正在深刻变革语音技术的传统范式。语音任务正在从以模块化、定制化为主的架构，逐步转向由统一大模型驱动的端到端解决方案。</p>
 <p>单点的语音能力也在向大模型方向演进，以语音识别为例，OpenAI 的 Whisper 模型在通用场景下的表现已显著优于传统的定制小模型，凭借大数据预训练和强鲁棒性，在多语言、多口音、嘈杂环境下依然具备出色性能。这类“预训练+指令微调”的语音大模型方案，正逐渐成为语音识别的新主流， 具体可以参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/662906303">OpenAI Whisper 新一代语音技术(更新至v3-turbo)</a></p>
