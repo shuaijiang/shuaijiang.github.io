@@ -328,7 +328,7 @@
 <li><strong>信息密度不均衡</strong></li>
 </ul>
 <p>这些特性使得音频难以直接建模，需要转化为系统或模型所能接受的表示形式，同时降低冗余信息并保留有用信息。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">思考问题1：声音是一种波，计算机中用什么方式存储？注：语音是连续信号，一般经数字化表示，电话8KHz采样率（即每秒8000个采样点，人声频率范围一般小于1KHz，8KHz满足香农采样定理要求），普通音质16KHz，高音质24KHz、48KHz甚至更高。<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">思考问题1：声音是一种波，计算机中用什么方式存储？注：语音是连续信号，一般经数字化表示，电话8KHz采样率（即每秒8000个采样点，人声频率范围一般小于1KHz，8KHz满足香农采样定理要求），普通音质16KHz，高音质24KHz、48KHz甚至更高。</span><br></pre></td></tr></table></figure>
 
 <p>在过去的几十年中，音频的表示形式经历了从人工特征工程到深度学习特征表示再到Neural Audio Codec的演进：</p>
 <ul>
@@ -337,7 +337,7 @@
 <li><strong>Neural Audio Codec</strong>：最近成为主流方向。这类方法将音频压缩为离散 token 序列，不仅方便大模型以自回归方式建模，还支持语音的高质量重建，使得音频的理解与生成任务可以统一建模。</li>
 </ul>
 <p><img src="/image/audiocodec_discrete.png" srcset="/img/loading.gif" lazyload alt="音频离散token化(https://ravinkumar.com/GenAiGuidebook/audio/audio_tokenization.html)"></p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">思考问题<span class="hljs-number">2</span>：大模型建模如何融合文本和语音？一般人说话过程中平均每秒说几个字？哪种音频表示方法更适合大模型？注：每秒语音有<span class="hljs-number">16000</span>个采样点（以常见<span class="hljs-number">16</span>KHz语音为例），传统特征每秒<span class="hljs-number">40</span>~<span class="hljs-number">100</span>帧连续特征，Hubert等网络表示特征每秒<span class="hljs-number">50</span>帧连续特征，Neural <span class="hljs-built_in">Audio</span> Codec每秒<span class="hljs-number">26</span>~<span class="hljs-number">1000</span> 离散Token。<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">思考问题2：大模型建模如何融合文本和语音？一般人说话过程中平均每秒说几个字？哪种音频表示方法更适合大模型？注：每秒语音有16000个采样点（以常见16KHz语音为例），传统特征每秒40~100帧连续特征，Hubert等网络表示特征每秒50帧连续特征，Neural Audio Codec每秒26~1000 离散Token。</span><br></pre></td></tr></table></figure>
 
 <hr>
 <h2 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h2><p>对目前出现的 Audio Tokenizer 进行整理，并详细列出码本数、码率等特性，便于对比分析。</p>
