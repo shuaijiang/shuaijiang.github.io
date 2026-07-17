@@ -1,0 +1,839 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="shuaijiang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="介绍 更新（20241008）：large-v3-turbo 来了，和之前 whisper 类似的模型架构，更少的 decoder 层（32 层减少到 4 层），更多的训练轮数（额外两个 epoch），在识别性能几乎不怎么降低的情况下（比 large-v3 略有小幅下降），实现了更快的识别速度（large-v2 的近 8 倍，接近 tiny 的速度）。   更新（20231107）：Whisper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenAI Whisper 新一代语音技术（更新至v3-turbo）">
+<meta property="og:url" content="http://zhaoshuaijiang.com/2023/10/20/asr-whisper/index.html">
+<meta property="og:site_name" content="shuaijiang&#39;s blog">
+<meta property="og:description" content="介绍 更新（20241008）：large-v3-turbo 来了，和之前 whisper 类似的模型架构，更少的 decoder 层（32 层减少到 4 层），更多的训练轮数（额外两个 epoch），在识别性能几乎不怎么降低的情况下（比 large-v3 略有小幅下降），实现了更快的识别速度（large-v2 的近 8 倍，接近 tiny 的速度）。   更新（20231107）：Whisper">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/asr-whisper/01-whisper-models.jpg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/asr-whisper/02-fleurs-wer.jpg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/asr-whisper/03-large-v3-vs-v2.jpg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/asr-whisper/04-turbo-compare.jpg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/asr-whisper/05-encoder-decoder.jpg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/asr-whisper/06-multitask-flow.jpg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/asr-whisper/07-data-distribution.jpg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/asr-whisper/08-belle-v2-config.jpg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/asr-whisper/09-belle-v2-cer.jpg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/asr-whisper/10-belle-v3-cer.jpg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/asr-whisper/11-belle-v3-punct-cer.jpg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/asr-whisper/12-belle-turbo-cer.jpg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/asr-whisper/13-distil-compare.jpg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/asr-whisper/14-belle-distil-config.jpg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/asr-whisper/15-belle-distil-cer.jpg">
+<meta property="article:published_time" content="2023-10-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-17T06:59:40.741Z">
+<meta property="article:author" content="shuaijiang">
+<meta property="article:tag" content="语音识别">
+<meta property="article:tag" content="ASR">
+<meta property="article:tag" content="Whisper">
+<meta property="article:tag" content="OpenAI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://zhaoshuaijiang.com/image/asr-whisper/01-whisper-models.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>OpenAI Whisper 新一代语音技术（更新至v3-turbo） - shuaijiang&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhaoshuaijiang.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>shuaijiang&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="OpenAI Whisper 新一代语音技术（更新至v3-turbo）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-20 00:00" pubdate>
+          2023年10月20日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+<aside class="sidebar d-none d-xl-block" style="margin-right:-1rem;z-index:-1"><ins class="adsbygoogle" style="display:flex;justify-content:center;min-width:160px;max-width:300px;width:100%;height:600px;position:sticky;top:2rem" data-ad-client="ca-pub-3762972897277715" data-ad-slot="3762972897277715"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></aside>
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">OpenAI Whisper 新一代语音技术（更新至v3-turbo）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><blockquote>
+<p><strong>更新（20241008）</strong>：large-v3-turbo 来了，和之前 whisper 类似的模型架构，更少的 decoder 层（32 层减少到 4 层），更多的训练轮数（额外两个 epoch），在识别性能几乎不怎么降低的情况下（比 large-v3 略有小幅下降），实现了更快的识别速度（large-v2 的近 8 倍，接近 tiny 的速度）。</p>
+</blockquote>
+<blockquote>
+<p><strong>更新（20231107）</strong>：Whisper-large-v3 也在首次 OpenAI 开发者大会之后，11 月 7 号 release 出来了，效果更加强劲。</p>
+</blockquote>
+<p>Whisper 是 OpenAI 于 2022 年 12 月发布的语音处理系统。虽然论文名字是 <em>Robust Speech Recognition via Large-Scale Weak Supervision</em>，但不只是具有语音识别能力，还具备语音活性检测（VAD）、声纹识别、语音翻译（其他语种语音到英语的翻译）等能力。</p>
+<p><strong>Whisper 相关资源：</strong></p>
+<ul>
+<li>Blog：<a target="_blank" rel="noopener" href="https://openai.com/research/whisper">Introducing Whisper</a></li>
+<li>Paper：<a target="_blank" rel="noopener" href="https://cdn.openai.com/papers/whisper.pdf">Robust Speech Recognition via Large-Scale Weak Supervision</a></li>
+<li>Model：<a target="_blank" rel="noopener" href="https://huggingface.co/openai/whisper-large-v2">whisper-large-v2 (Hugging Face)</a></li>
+<li>Belle-whisper：<a target="_blank" rel="noopener" href="https://huggingface.co/BELLE-2/Belle-whisper-large-v2-zh">Belle-whisper-large-v2-zh (Hugging Face)</a> — 增强中文识别能力的开源模型</li>
+<li>Belle-distilwhisper：<a target="_blank" rel="noopener" href="https://huggingface.co/BELLE-2/Belle-distilwhisper-large-v2-zh">Belle-distilwhisper-large-v2-zh (Hugging Face)</a> — 蒸馏模型基础上增加中文识别能力</li>
+</ul>
+<p>Whisper 是端到端的语音系统，相比于之前的端到端语音识别，其特点主要是：</p>
+<ul>
+<li><strong>多语种</strong>：英语为主，支持 99 种语言，包括中文。</li>
+<li><strong>多任务</strong>：语音识别为主，支持 VAD、语种识别、说话人日志、语音翻译、对齐等。</li>
+<li><strong>数据量</strong>：68 万小时语音数据用于训练，从公开数据集或者网络上获取的多种语言语音数据，远超之前语音识别几百、几千、最多 1 万小时的数据量。</li>
+<li><strong>鲁棒性</strong>：主要还是源于海量的训练数据，并在语音数据上进行了常见的增强操作，例如变速、加噪、谱增强等。</li>
+<li><strong>多模型</strong>：提供了从 tiny 到 large，从小到大的五种规格模型，适合不同场景。</li>
+</ul>
+<p><img src="/image/asr-whisper/01-whisper-models.jpg" srcset="/img/loading.gif" lazyload alt="whisper 具备多个模型规格"></p>
+<h2 id="whisper-large-v2"><a href="#whisper-large-v2" class="headerlink" title="whisper-large-v2"></a>whisper-large-v2</h2><p>下图是在 Fleurs 数据集上的词错误率 WER（越低越好），可以看到 whisper-large-v2 在中文上的表现中规中矩。</p>
+<p><img src="/image/asr-whisper/02-fleurs-wer.jpg" srcset="/img/loading.gif" lazyload alt="Fleurs 数据集上各语言的 WER（%）"></p>
+<h2 id="Whisper-large-v3"><a href="#Whisper-large-v3" class="headerlink" title="Whisper-large-v3"></a>Whisper-large-v3</h2><p>whisper-large-v3 采用了更多的数据，达到了惊人的 500 万小时（一年 = 8765.81277 小时），其中 100 万小时是弱标签，400 万小时是 v2 生成的。</p>
+<p>whisper-large-v3 相比 whisper-large-v2 在各个语言上有 10%-20% 的效果提升。</p>
+<p><img src="/image/asr-whisper/03-large-v3-vs-v2.jpg" srcset="/img/loading.gif" lazyload alt="large-v3 vs large-v2"></p>
+<h2 id="Whisper-large-v3-turbo"><a href="#Whisper-large-v3-turbo" class="headerlink" title="Whisper-large-v3-turbo"></a>Whisper-large-v3-turbo</h2><p>与 whisper-large-v3 类似的模型架构，采用了更少的 decoder 层（32 层减少到 4 层），更多的训练轮数（额外两个 epoch），在识别性能几乎不怎么降低的情况下（比 large-v3 小幅下降），实现了更快的识别速度（large 的近 8 倍，接近 tiny 的速度）。</p>
+<p><img src="/image/asr-whisper/04-turbo-compare.jpg" srcset="/img/loading.gif" lazyload alt="large-v3 vs large-v2 vs large-v3-turbo"></p>
+<h2 id="识别效果对比"><a href="#识别效果对比" class="headerlink" title="识别效果对比"></a>识别效果对比</h2><p>本文作者在中文 benchmark 上对比了 whisper-large-v2 和 whisper-large-v3 以及 whisper-large-v3-turbo 的效果（CER（%），字错误率，越小越好）：</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>aishell_1_test</th>
+<th>aishell_2_test</th>
+<th>wenetspeech net</th>
+<th>wenetspeech meeting</th>
+<th>hkust dev</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>whisper-large-v2</td>
+<td>8.818</td>
+<td>6.183</td>
+<td>12.343</td>
+<td>26.413</td>
+<td>31.917</td>
+</tr>
+<tr>
+<td>whisper-large-v3</td>
+<td>8.085</td>
+<td>5.475</td>
+<td>11.72</td>
+<td>20.15</td>
+<td>28.597</td>
+</tr>
+<tr>
+<td>whisper-large-v3-turbo</td>
+<td>8.639</td>
+<td>6.014</td>
+<td>13.507</td>
+<td>20.313</td>
+<td>37.324</td>
+</tr>
+</tbody></table>
+<p>可以看到，whisper-large-v3 在中文上相比 whisper-large-v2 有小幅提升，特别是在难度高、场景复杂的 wenetspeech meeting 上有 23% 的相对提升。whisper-large-v3-turbo 在速度提升约 8 倍的情况下，相比 whisper-large-v3 识别效果只是小幅下降，相比 whisper-large-v2 识别效果整体小幅提升。</p>
+<hr>
+<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><p>模型采用了经典的基于 Transformer 的 Encoder-Decoder 的结构。模型输入的特征是 80 维 Fbank 特征，输出的 label 是文本 ID，在文本 ID 之前是语种 ID、任务类型、时间戳三个特殊标记。</p>
+<p><img src="/image/asr-whisper/05-encoder-decoder.jpg" srcset="/img/loading.gif" lazyload alt="核心框架：Encoder-Decoder Transformer"></p>
+<p>具体工作流程，可以参考下图。图中最下面 “Multitask training format” 展示了 label 的组成逻辑：SOT、Language Tag/No Speech、Transcribe/Translate、text tokens w/o timestamps。</p>
+<p><img src="/image/asr-whisper/06-multitask-flow.jpg" srcset="/img/loading.gif" lazyload alt="系统框图：多任务、多语种流程"></p>
+<hr>
+<h1 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h1><h2 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h2><p>数据主要来源于网络，构建 audio 与 text 成对数据。</p>
+<p>68 万小时组成比例可以看下图。占比最大的是英文语音识别数据，占比 65%。另外，18% 的数据是 X 到英文的语音翻译数据。17% 是除英文外的其他语言的语音识别数据，这里面汉语占比最高。</p>
+<p><img src="/image/asr-whisper/07-data-distribution.jpg" srcset="/img/loading.gif" lazyload alt="Whisper 数据分布"></p>
+<h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><h3 id="数据过滤"><a href="#数据过滤" class="headerlink" title="数据过滤"></a>数据过滤</h3><ul>
+<li>通过启发式方法，去掉其中 ASR 产生的数据。例如，纯大写、纯小写、没有标点等，去掉这类数据。</li>
+<li>语种是否匹配，语音和文本是否属于同一语种。基于语音语种检测模型来实现。</li>
+<li>数据去重，转写文本级别的去重。</li>
+</ul>
+<h3 id="数据格式化"><a href="#数据格式化" class="headerlink" title="数据格式化"></a>数据格式化</h3><ul>
+<li><strong>30 秒长度</strong>：最长 30 秒长度。所以在使用时，最好不要超过 30 秒，以获得最好的效果。</li>
+<li><strong>语音、非语音均保留</strong>：非语音数据可以用来训练 VAD 任务。</li>
+<li><strong>重采样至 16KHz</strong>：语音数据涉及到采样率问题，实际应用中 8KHz、16KHz 最为常见。Whisper 将所有数据均重采样到 16KHz，不再对不同采样率分别建模，一个模型即可完成，简化复杂度，模型性能也会有一定提升。</li>
+</ul>
+<hr>
+<h1 id="进阶话题"><a href="#进阶话题" class="headerlink" title="进阶话题"></a>进阶话题</h1><h2 id="模型微调"><a href="#模型微调" class="headerlink" title="模型微调"></a>模型微调</h2><p>Hugging Face 有一篇关于 whisper 微调的 blog，可以参考：<a target="_blank" rel="noopener" href="https://huggingface.co/blog/fine-tune-whisper">Fine-Tune Whisper For Multilingual ASR with 🤗 Transformers</a></p>
+<p>本文作者也基于 <a target="_blank" rel="noopener" href="https://github.com/shuaijiang/Whisper-Finetune">Whisper-Finetune</a> 增加了全参数量微调的能力：</p>
+<ul>
+<li>基于 LORA 的模型微调：<code>finetune.py</code></li>
+<li>基于全参数量的模型微调：<code>finetune_all.py</code></li>
+</ul>
+<p>在中文数据上微调之后，一般都会有一定的提升，特别是对应业务数据，提升会更大些。微调之后，通用能力可能有一定的损失。</p>
+<h2 id="Belle-whisper-large-v2-zh"><a href="#Belle-whisper-large-v2-zh" class="headerlink" title="Belle-whisper-large-v2-zh"></a>Belle-whisper-large-v2-zh</h2><p>本文作者基于中文开源数据（AISHELL1、AISHELL2、WENETSPEECH、HKUST），对 whisper-large-v2 进行了微调，得到中文识别提升的 Belle-whisper-large-v2-zh，在中文 benchmark 上有 <strong>30%-70%</strong> 的相对提升。</p>
+<p>模型已经开源到 Hugging Face，欢迎下载：<a target="_blank" rel="noopener" href="https://huggingface.co/BELLE-2/Belle-whisper-large-v2-zh">BELLE-2/Belle-whisper-large-v2-zh</a></p>
+<p><img src="/image/asr-whisper/08-belle-v2-config.jpg" srcset="/img/loading.gif" lazyload alt="Belle-whisper-large-v2-zh 模型配置"></p>
+<p><img src="/image/asr-whisper/09-belle-v2-cer.jpg" srcset="/img/loading.gif" lazyload alt="Belle-whisper-large-v2-zh CER(%)"></p>
+<h2 id="Belle-whisper-large-v3-zh"><a href="#Belle-whisper-large-v3-zh" class="headerlink" title="Belle-whisper-large-v3-zh"></a>Belle-whisper-large-v3-zh</h2><p>此外，本文作者基于中文开源数据（AISHELL1、AISHELL2、WENETSPEECH、HKUST），对 whisper-large-v3 进行了微调，得到中文识别提升的 Belle-whisper-large-v3-zh，在中文 benchmark 上有 <strong>24%-65%</strong> 的相对提升。</p>
+<p>模型已经开源到 Hugging Face，欢迎下载：<a target="_blank" rel="noopener" href="https://huggingface.co/BELLE-2/Belle-whisper-large-v3-zh">BELLE-2/Belle-whisper-large-v3-zh</a></p>
+<p><img src="/image/asr-whisper/10-belle-v3-cer.jpg" srcset="/img/loading.gif" lazyload alt="Belle-whisper-large-v3-zh CER(%)"></p>
+<h2 id="Belle-whisper-large-v3-zh-punct"><a href="#Belle-whisper-large-v3-zh-punct" class="headerlink" title="Belle-whisper-large-v3-zh-punct"></a>Belle-whisper-large-v3-zh-punct</h2><p>此外，本文作者利用 CT-Transformer 标点模型对中文开源数据（AISHELL1、AISHELL2、WENETSPEECH、HKUST）加标点，基于 Belle-whisper-large-v3-zh 进行了 LoRA 微调，得到标点能力提升的 Belle-whisper-large-v3-zh-punct，在复杂场景下（wenetspeech meeting）上有进一步提升。</p>
+<p>模型已经开源到 Hugging Face，欢迎下载：<a target="_blank" rel="noopener" href="https://huggingface.co/BELLE-2/Belle-whisper-large-v3-zh-punct">BELLE-2/Belle-whisper-large-v3-zh-punct</a></p>
+<p><img src="/image/asr-whisper/11-belle-v3-punct-cer.jpg" srcset="/img/loading.gif" lazyload alt="Belle-whisper-large-v3-zh-punct CER(%)"></p>
+<h2 id="Belle-whisper-large-v3-turbo-zh"><a href="#Belle-whisper-large-v3-turbo-zh" class="headerlink" title="Belle-whisper-large-v3-turbo-zh"></a>Belle-whisper-large-v3-turbo-zh</h2><p>whisper-large-v3-turbo 只是在识别精度轻微下降的同时，大幅提升了识别速度（7~8 倍提升），有很强的应用价值。本文作者基于中文开源数据（AISHELL1、AISHELL2、WENETSPEECH、HKUST），对 whisper-large-v3-turbo 进行了微调，得到中文识别提升的 Belle-whisper-large-v3-turbo-zh，在中文 benchmark 上有 <strong>24%-64%</strong> 的相对提升。</p>
+<p>模型已经开源到 Hugging Face，欢迎下载：<a target="_blank" rel="noopener" href="https://huggingface.co/BELLE-2/Belle-whisper-large-v3-turbo-zh">BELLE-2/Belle-whisper-large-v3-turbo-zh</a></p>
+<p><img src="/image/asr-whisper/12-belle-turbo-cer.jpg" srcset="/img/loading.gif" lazyload alt="Belle-whisper-large-v3-turbo-zh 效果对比"></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>基于 whisper-large-v2 增强中文语音识别能力，实现了 <strong>30%~70%</strong> 的相对提升，提升非常明显。</li>
+<li>基于 whisper-large-v3 增强中文语音识别能力，实现了 <strong>24%~65%</strong> 的相对提升，提升非常明显。</li>
+<li>基于 whisper-large-v3-turbo 增强中文语音识别能力，实现了 <strong>24%~64%</strong> 的相对提升，提升非常明显，识别速度的大幅提升（7~8 倍）将大幅降低应用成本。</li>
+<li>Belle-whisper-large-v2-zh 和 Belle-whisper-large-v3-zh 整体精度差别不大，但是 Belle-whisper-large-v3 在复杂场景的识别精度有明显提升（wenetspeech meeting 上的 CER 相对提升 60%）。</li>
+<li>Belle-whisper-large-v3-zh-punct 具备标点符号能力，同时在复杂场景下（wenetspeech meeting）达到 SOTA。</li>
+</ul>
+<h2 id="模型蒸馏"><a href="#模型蒸馏" class="headerlink" title="模型蒸馏"></a>模型蒸馏</h2><p>Hugging Face 推出了蒸馏版的 whisper — <a target="_blank" rel="noopener" href="https://github.com/huggingface/distil-whisper">distil-whisper</a>，模型大小是原来的 51%，速度是原来的 5-6 倍。</p>
+<blockquote>
+<p>需要注意的是，蒸馏工作主要是针对英文任务做的，所以不支持中文，需要使用中文数据做微调才可以。</p>
+</blockquote>
+<p><img src="/image/asr-whisper/13-distil-compare.jpg" srcset="/img/loading.gif" lazyload alt="蒸馏模型与原始模型对比"></p>
+<p>本文作者基于中文开源数据（AISHELL1、AISHELL2、WENETSPEECH、HKUST），对 distil-whisper 进行了中文识别能力上的增强，得到具备中文识别能力的 Belle-distilwhisper-large-v2-zh，在中文 benchmark 上有 <strong>-3%~35%</strong> 的相对提升。</p>
+<p>模型已经开源到 Hugging Face，欢迎下载：<a target="_blank" rel="noopener" href="https://huggingface.co/BELLE-2/Belle-distilwhisper-large-v2-zh">BELLE-2/Belle-distilwhisper-large-v2-zh</a></p>
+<p><img src="/image/asr-whisper/14-belle-distil-config.jpg" srcset="/img/loading.gif" lazyload alt="Belle-distilwhisper-large-v2-zh 模型配置"></p>
+<p><img src="/image/asr-whisper/15-belle-distil-cer.jpg" srcset="/img/loading.gif" lazyload alt="Belle-distilwhisper-large-v2-zh CER(%)"></p>
+<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>原始 distil-whisper-large-v2 由于只在英文数据上对 whisper-large-v2 做蒸馏，不具备中文语音识别能力。</li>
+<li>基于 distil-whisper-large-v2 做中文语音识别能力的构建，可以实现超过 whisper-large-v2 的效果，同时速度有 5~6 倍的提升。</li>
+</ul>
+<h2 id="任务扩展"><a href="#任务扩展" class="headerlink" title="任务扩展"></a>任务扩展</h2><p>笔者尝试将 whisper 原来的两个任务（transcribe、translate）扩展到三个任务（transcribe、translate、emotion），增加一个语音情绪识别的任务。经过简单尝试，发现 whisper 不仅可以扩展任务，而且新任务的效果还非常好。后面有机会，单独把相关做法总结下。</p>
+<h2 id="能力激发"><a href="#能力激发" class="headerlink" title="能力激发"></a>能力激发</h2><p>我们知道 whisper 具备 X-to-English 的语音翻译能力，就是其他语言的语音可以直接转成英文文本。但是我在实际实验中发现（也可以当做一次失误），把英文语音定义为 Chinese 的 transcribe 任务，whisper 竟然可以转写出中文来。这也说明，X-to-Y 的语音翻译能力还是有可能的，也值得去继续探索——一个模型搞定所有的语音翻译，技术上很牛叉，使用价值也很大。</p>
+<hr>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>Whisper 的推出对语音相关研究具有标志性的意义，将原来分散的任务统一起来，并且提升了任务的效果。</li>
+<li>Whisper 将语音任务大一统，同时具备很强的鲁棒性，不用像之前那样需要考虑很多类似场景匹配、噪音、口音等问题。直接使用这样的一个模型、或者只需要简单微调即可具有很好的效果。</li>
+<li>Whisper 将语音研究向前推进了一步，研究者们可以在此基础上研究更复杂、更具有挑战性的课题。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AI/" class="category-chain-item">AI</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" class="print-no-link">#语音识别</a>
+      
+        <a href="/tags/ASR/" class="print-no-link">#ASR</a>
+      
+        <a href="/tags/Whisper/" class="print-no-link">#Whisper</a>
+      
+        <a href="/tags/OpenAI/" class="print-no-link">#OpenAI</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>OpenAI Whisper 新一代语音技术（更新至v3-turbo）</div>
+      <div>http://zhaoshuaijiang.com/2023/10/20/asr-whisper/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>shuaijiang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年10月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+<div style="width:100%;display:flex;justify-content:center;margin-bottom:1.5rem"><ins class="adsbygoogle" style="display:flex;justify-content:center;max-width:845px;width:100%;height:90px" data-ad-client="ca-pub-3762972897277715" data-ad-slot="3762972897277715"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></div>
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/12/23/speech-llm/" title="语音大模型概述（持续更新中2026.02）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">语音大模型概述（持续更新中2026.02）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/09/llm-papers/" title="大模型整理（large language models survey）">
+                        <span class="hidden-mobile">大模型整理（large language models survey）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量
+        <span id="busuanzi_value_site_pv"></span>
+        次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数
+        <span id="busuanzi_value_site_uv"></span>
+        人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3762972897277715" crossorigin="anonymous"></script>
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
