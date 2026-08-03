@@ -92,11 +92,13 @@
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_eurekaaudio_dataflux.jpg">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_r1aqa_mmau.jpg">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_keomnir_mmau.jpg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_duplex_survey_timeline.jpg">
+<meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_duplex_survey_l0l3.jpg">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_personaplex.jpg">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_personaplex_naturalness.jpg">
 <meta property="og:image" content="http://zhaoshuaijiang.com/image/speechllm_personaplex_duplex.jpg">
 <meta property="article:published_time" content="2024-12-23T06:03:05.000Z">
-<meta property="article:modified_time" content="2026-07-17T07:18:43.364Z">
+<meta property="article:modified_time" content="2026-08-03T08:33:29.177Z">
 <meta property="article:author" content="shuaijiang">
 <meta property="article:tag" content="llm">
 <meta property="article:tag" content="speech">
@@ -296,7 +298,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.5k 字
+          6.7k 字
         
       </span>
     
@@ -307,7 +309,7 @@
         
         
         
-          54 分钟
+          56 分钟
         
       </span>
     
@@ -943,7 +945,16 @@
 </ul>
 <h3 id="MMAU性能-1"><a href="#MMAU性能-1" class="headerlink" title="MMAU性能"></a>MMAU性能</h3><p><img src="/image/speechllm_keomnir_mmau.jpg" srcset="/img/loading.gif" lazyload alt="MMAU 性能对比"></p>
 <hr>
-<h1 id="进阶话题二：全双工"><a href="#进阶话题二：全双工" class="headerlink" title="进阶话题二：全双工"></a>进阶话题二：全双工</h1><h2 id="PersonaPlex（2026-02）"><a href="#PersonaPlex（2026-02）" class="headerlink" title="PersonaPlex（2026.02）"></a>PersonaPlex（2026.02）</h2><p>PersonaPlex是Nvidia参考Moshi研发的全双工语音大模型，支持零样本语音克隆与细粒度角色控制的全双工对话语音模型。</p>
+<h1 id="进阶话题二：全双工"><a href="#进阶话题二：全双工" class="headerlink" title="进阶话题二：全双工"></a>进阶话题二：全双工</h1><h2 id="全双工对话系统综述（2026-06）"><a href="#全双工对话系统综述（2026-06）" class="headerlink" title="全双工对话系统综述（2026.06）"></a>全双工对话系统综述（2026.06）</h2><p>[<a target="_blank" rel="noopener" href="https://github.com/DuplexLM/DuplexSurvey">Github</a>] [<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.19453v1">论文</a>]</p>
+<p>论文提出了三个互补的分析框架：</p>
+<ul>
+<li><strong>L0–L3 Architectural Hierarchy</strong>：四级架构层次（外部模块、隐藏状态预测器、令牌级同步、共享潜在表征），明确双工决策的物理位置；</li>
+<li><strong>T×I×R Interaction Ontology</strong>：基于时间关系（Temporal）、用户意图（Intent）和系统响应（Response）的三维本体论，识别出六种”酸性测试”（acid-test）交互单元；</li>
+<li><strong>Decision State Machine</strong>：包含五种状态（IDLE、LISTEN、SPEAK、WAIT、DUAL）和十一种转移的决策状态机，将系统行为与本体论单元精确耦合。</li>
+</ul>
+<h3 id="主要系统的时间线"><a href="#主要系统的时间线" class="headerlink" title="主要系统的时间线"></a>主要系统的时间线</h3><p><img src="/image/speechllm_duplex_survey_timeline.jpg" srcset="/img/loading.gif" lazyload alt="2021-2026主要的全双工系统"></p>
+<h3 id="L0-L3的定义"><a href="#L0-L3的定义" class="headerlink" title="L0-L3的定义"></a>L0-L3的定义</h3><p>根据双工决策实现的位置来定义：<br><img src="/image/speechllm_duplex_survey_l0l3.jpg" srcset="/img/loading.gif" lazyload alt="L0-L3的定义"></p>
+<h2 id="PersonaPlex（2026-02）"><a href="#PersonaPlex（2026-02）" class="headerlink" title="PersonaPlex（2026.02）"></a>PersonaPlex（2026.02）</h2><p>PersonaPlex是Nvidia参考Moshi研发的全双工语音大模型，支持零样本语音克隆与细粒度角色控制的全双工对话语音模型。</p>
 <h3 id="主要贡献-2"><a href="#主要贡献-2" class="headerlink" title="主要贡献"></a>主要贡献</h3><p>模型架构方面，支持三个输入流：user audio, agent text, and agent audio自回归建模。<br><img src="/image/speechllm_personaplex.jpg" srcset="/img/loading.gif" lazyload alt="PersonaPlex"></p>
 <h3 id="对话自然度与角色控制"><a href="#对话自然度与角色控制" class="headerlink" title="对话自然度与角色控制"></a>对话自然度与角色控制</h3><p><img src="/image/speechllm_personaplex_naturalness.jpg" srcset="/img/loading.gif" lazyload alt="对话自然度与角色控制"></p>
 <h3 id="双工效果"><a href="#双工效果" class="headerlink" title="双工效果"></a>双工效果</h3><p><img src="/image/speechllm_personaplex_duplex.jpg" srcset="/img/loading.gif" lazyload alt="双工效果"></p>
