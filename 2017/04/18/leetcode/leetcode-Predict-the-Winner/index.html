@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          209 字
+          225 字
         
       </span>
     
@@ -275,17 +275,25 @@
           <article class="post-content mx-auto">
             <h1 id="seo-header">leetcode Predict the Winner</h1>
             
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2026年7月17日 下午
+                  
+                
+              </p>
+            
             
               <div class="markdown-body">
                 
                 <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>Given an array of scores that are non-negative integers. Player 1 picks one of the numbers from either end of the array followed by the player 2 and then player 1 and so on. Each time a player picks a number, that number will not be available for the next player. This continues until all the scores have been chosen. The player with the maximum score wins.</p>
 <p>Given an array of scores, predict whether player 1 is the winner. You can assume each player plays to maximize his score.<br>Example:</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Input</span>:<span class="hljs-meta"> [1, 5, 2]</span><br><span class="hljs-attribute">Output</span>: False<br><span class="hljs-attribute">Explanation</span>: Initially, player <span class="hljs-number">1</span> can choose between <span class="hljs-number">1</span> and <span class="hljs-number">2</span>. <br><span class="hljs-attribute">If</span> he chooses <span class="hljs-number">2</span> (or <span class="hljs-number">1</span>), then player <span class="hljs-number">2</span> can choose from <span class="hljs-number">1</span> (or <span class="hljs-number">2</span>) and <span class="hljs-number">5</span>. If player <span class="hljs-number">2</span> chooses <span class="hljs-number">5</span>, then player <span class="hljs-number">1</span> will be left with <span class="hljs-number">1</span> (or <span class="hljs-number">2</span>). <br><span class="hljs-attribute">So</span>, final score of player <span class="hljs-number">1</span> is <span class="hljs-number">1</span> + <span class="hljs-number">2</span> = <span class="hljs-number">3</span>, and player <span class="hljs-number">2</span> is <span class="hljs-number">5</span>. <br><span class="hljs-attribute">Hence</span>, player <span class="hljs-number">1</span> will never be the winner and you need to return False.<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: [1, 5, 2]</span><br><span class="line">Output: False</span><br><span class="line">Explanation: Initially, player 1 can choose between 1 and 2. </span><br><span class="line">If he chooses 2 (or 1), then player 2 can choose from 1 (or 2) and 5. If player 2 chooses 5, then player 1 will be left with 1 (or 2). </span><br><span class="line">So, final score of player 1 is 1 + 2 &#x3D; 3, and player 2 is 5. </span><br><span class="line">Hence, player 1 will never be the winner and you need to return False.</span><br></pre></td></tr></table></figure>
 <p>The original problem is <a target="_blank" rel="noopener" href="https://leetcode.com/problems/predict-the-winner/" title="Problem">here</a>.</p>
 <span id="more"></span>
 
 <h1 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a>My Solution</h1><p>I solve this problem in C++, as below:</p>
-<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs excel">class Solution &#123;<br>publ<span class="hljs-symbol">ic:</span><br>    bool PredictTheWinner(vector&lt;<span class="hljs-built_in">int</span>&gt;&amp; nums) &#123;<br>        s<span class="hljs-symbol">td:</span><span class="hljs-symbol">:ve</span>ctor&lt;s<span class="hljs-symbol">td:</span><span class="hljs-symbol">:ve</span>ctor&lt;<span class="hljs-built_in">int</span>&gt; &gt; dp(nums.size(), s<span class="hljs-symbol">td:</span><span class="hljs-symbol">:ve</span>ctor&lt;<span class="hljs-built_in">int</span>&gt;(nums.size()));  <br><br>        vector&lt;<span class="hljs-built_in">int</span>&gt; <span class="hljs-built_in">sum</span>;<br>        sum.push_back(nums[<span class="hljs-number">0</span>]);<br>        for(<span class="hljs-built_in">int</span> i = <span class="hljs-number">1</span>; i &lt; nums.size(); i++) &#123;<br>            sum.push_back(nums[i] + <span class="hljs-built_in">sum</span>[i-<span class="hljs-number">1</span>]);<br>        &#125;<br>        for (<span class="hljs-built_in">int</span> wide = <span class="hljs-number">0</span>; wide &lt; nums.size(); ++wide) &#123;  <br>            for(<span class="hljs-built_in">int</span> <span class="hljs-built_in">left</span> = <span class="hljs-number">0</span>; <span class="hljs-built_in">left</span> + wide &lt; nums.size(); ++<span class="hljs-built_in">left</span>) &#123;<br>                <span class="hljs-built_in">int</span> <span class="hljs-built_in">right</span> = <span class="hljs-built_in">left</span> + wide;<br>                <span class="hljs-built_in">if</span> (<span class="hljs-built_in">left</span> == <span class="hljs-built_in">right</span>) &#123;<br>                    dp[<span class="hljs-built_in">left</span>][<span class="hljs-built_in">right</span>] = nums[<span class="hljs-built_in">left</span>];<br>                &#125; else <span class="hljs-built_in">if</span> (<span class="hljs-built_in">left</span> == <span class="hljs-built_in">right</span>-<span class="hljs-number">1</span>) &#123;<br>                    dp[<span class="hljs-built_in">left</span>][<span class="hljs-built_in">right</span>] = mymax(nums[<span class="hljs-built_in">left</span>], nums[<span class="hljs-built_in">right</span>]);<br>                &#125; else <span class="hljs-built_in">if</span> (<span class="hljs-built_in">left</span> &lt; <span class="hljs-built_in">right</span>-<span class="hljs-number">1</span>) &#123;<br>                    <span class="hljs-built_in">int</span> leftMax = nums[<span class="hljs-built_in">left</span>] + <span class="hljs-built_in">sum</span>[<span class="hljs-built_in">right</span>] - <span class="hljs-built_in">sum</span>[<span class="hljs-built_in">left</span>] - dp[<span class="hljs-built_in">left</span>+<span class="hljs-number">1</span>][<span class="hljs-built_in">right</span>];<br>                    <span class="hljs-built_in">int</span> rightMax = nums[<span class="hljs-built_in">right</span>] +  <span class="hljs-built_in">sum</span>[<span class="hljs-built_in">right</span>-<span class="hljs-number">1</span>] - <span class="hljs-built_in">sum</span>[<span class="hljs-built_in">left</span>-<span class="hljs-number">1</span>] - dp[<span class="hljs-built_in">left</span>][<span class="hljs-built_in">right</span>-<span class="hljs-number">1</span>];<br>                    dp[<span class="hljs-built_in">left</span>][<span class="hljs-built_in">right</span>] = mymax(leftMax, rightMax); <br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-built_in">int</span> res = dp[<span class="hljs-number">0</span>][nums.size()-<span class="hljs-number">1</span>];<br>        return <span class="hljs-number">2</span>*res &gt;= <span class="hljs-built_in">sum</span>[nums.size()-<span class="hljs-number">1</span>];<br>    &#125;<br>    <span class="hljs-built_in">int</span> mymax(<span class="hljs-built_in">int</span> i, <span class="hljs-built_in">int</span> j) &#123;<br>        return i &gt; j ? i <span class="hljs-symbol">:</span> j;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool PredictTheWinner(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        std::vector&lt;std::vector&lt;int&gt; &gt; dp(nums.size(), std::vector&lt;int&gt;(nums.size()));  </span><br><span class="line"></span><br><span class="line">        vector&lt;int&gt; sum;</span><br><span class="line">        sum.push_back(nums[0]);</span><br><span class="line">        for(int i &#x3D; 1; i &lt; nums.size(); i++) &#123;</span><br><span class="line">            sum.push_back(nums[i] + sum[i-1]);</span><br><span class="line">        &#125;</span><br><span class="line">        for (int wide &#x3D; 0; wide &lt; nums.size(); ++wide) &#123;  </span><br><span class="line">            for(int left &#x3D; 0; left + wide &lt; nums.size(); ++left) &#123;</span><br><span class="line">                int right &#x3D; left + wide;</span><br><span class="line">                if (left &#x3D;&#x3D; right) &#123;</span><br><span class="line">                    dp[left][right] &#x3D; nums[left];</span><br><span class="line">                &#125; else if (left &#x3D;&#x3D; right-1) &#123;</span><br><span class="line">                    dp[left][right] &#x3D; mymax(nums[left], nums[right]);</span><br><span class="line">                &#125; else if (left &lt; right-1) &#123;</span><br><span class="line">                    int leftMax &#x3D; nums[left] + sum[right] - sum[left] - dp[left+1][right];</span><br><span class="line">                    int rightMax &#x3D; nums[right] +  sum[right-1] - sum[left-1] - dp[left][right-1];</span><br><span class="line">                    dp[left][right] &#x3D; mymax(leftMax, rightMax); </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int res &#x3D; dp[0][nums.size()-1];</span><br><span class="line">        return 2*res &gt;&#x3D; sum[nums.size()-1];</span><br><span class="line">    &#125;</span><br><span class="line">    int mymax(int i, int j) &#123;</span><br><span class="line">        return i &gt; j ? i : j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>To solve the problem, use daynamic programming, dp[left][right] means the max value one can get from vector nums which begin with left index end with right index.</p>
 
                 
@@ -378,6 +386,41 @@
             </div>
 
             
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'shuaijiang/shuaijiang.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
           </article>
         </div>
       </div>
@@ -425,6 +468,27 @@
 
   
 
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
 
 
 
@@ -500,6 +564,34 @@
 </div>
 
   
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
   
 </div>
 
@@ -642,6 +734,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

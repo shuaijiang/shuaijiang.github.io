@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          163 字
+          186 字
         
       </span>
     
@@ -275,11 +275,19 @@
           <article class="post-content mx-auto">
             <h1 id="seo-header">LeetCode Verify Preorder Serialization of a Binary Tree</h1>
             
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2026年7月17日 下午
+                  
+                
+              </p>
+            
             
               <div class="markdown-body">
                 
                 <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>One way to serialize a binary tree is to use pre-order traversal. When we encounter a non-null node, we record the node’s value. If it is a null node, we record using a sentinel value such as #.</p>
-<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs livescript">     _9_<br>    /   <span class="hljs-string">\</span><br>   <span class="hljs-number">3</span>     <span class="hljs-number">2</span><br>  / <span class="hljs-string">\</span>   / <span class="hljs-string">\</span><br> <span class="hljs-number">4</span>   <span class="hljs-number">1</span>  <span class="hljs-comment">#  6</span><br>/ <span class="hljs-string">\</span> / <span class="hljs-string">\</span>   / <span class="hljs-string">\</span><br><span class="hljs-comment"># # # #   # #</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">     _9_</span><br><span class="line">    &#x2F;   \</span><br><span class="line">   3     2</span><br><span class="line">  &#x2F; \   &#x2F; \</span><br><span class="line"> 4   1  #  6</span><br><span class="line">&#x2F; \ &#x2F; \   &#x2F; \</span><br><span class="line"># # # #   # #</span><br></pre></td></tr></table></figure>
 
 <p>For example, the above binary tree can be serialized to the string “9,3,4,#,#,1,#,#,2,#,6,#,#”, where # represents a null node.</p>
 <p>Given a string of comma separated values, verify whether it is a correct preorder traversal serialization of a binary tree. Find an algorithm without reconstructing the tree.</p>
@@ -301,7 +309,7 @@
 <span id="more"></span>
 
 <h1 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a>My Solution</h1><p>I solve this problem in C++, as below:</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isValidSerialization</span><span class="hljs-params">(string preorder)</span> </span>&#123;<br>        stack&lt;<span class="hljs-keyword">char</span>&gt; nodes;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, dotCount = <span class="hljs-number">0</span>; i &lt; preorder.<span class="hljs-built_in">length</span>(); i++) &#123;<br>            <span class="hljs-keyword">if</span>(dotCount % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>) &#123;<br>                <span class="hljs-keyword">if</span> (preorder[i] != <span class="hljs-string">&#x27;,&#x27;</span>) &#123;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    dotCount ++;<br>                &#125;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                dotCount ++;<br>            &#125;<br>            nodes.<span class="hljs-built_in">push</span>(preorder[i]);<br>        &#125;<br>        <span class="hljs-keyword">int</span> symbolCount = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(!nodes.<span class="hljs-built_in">empty</span>() &amp;&amp; (nodes.<span class="hljs-built_in">size</span>() + symbolCount) &gt;= <span class="hljs-number">3</span>) &#123;<br>            <span class="hljs-keyword">if</span> (nodes.<span class="hljs-built_in">top</span>() == <span class="hljs-string">&#x27;#&#x27;</span>) &#123;<br>                symbolCount ++;<br>                nodes.<span class="hljs-built_in">pop</span>();<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">if</span> (symbolCount &gt;= <span class="hljs-number">2</span>) &#123;<br>                    nodes.<span class="hljs-built_in">pop</span>();<br>                    nodes.<span class="hljs-built_in">push</span>(<span class="hljs-string">&#x27;#&#x27;</span>);<br>                    symbolCount -= <span class="hljs-number">2</span>;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span> ( nodes.<span class="hljs-built_in">size</span>() == <span class="hljs-number">1</span> &amp;&amp; nodes.<span class="hljs-built_in">top</span>() == <span class="hljs-string">&#x27;#&#x27;</span> &amp;&amp; symbolCount == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isValidSerialization(string preorder) &#123;</span><br><span class="line">        stack&lt;char&gt; nodes;</span><br><span class="line">        for(int i &#x3D; 0, dotCount &#x3D; 0; i &lt; preorder.length(); i++) &#123;</span><br><span class="line">            if(dotCount % 2 &#x3D;&#x3D; 1) &#123;</span><br><span class="line">                if (preorder[i] !&#x3D; &#39;,&#39;) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dotCount ++;</span><br><span class="line">                &#125;</span><br><span class="line">                continue;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                dotCount ++;</span><br><span class="line">            &#125;</span><br><span class="line">            nodes.push(preorder[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        int symbolCount &#x3D; 0;</span><br><span class="line">        while(!nodes.empty() &amp;&amp; (nodes.size() + symbolCount) &gt;&#x3D; 3) &#123;</span><br><span class="line">            if (nodes.top() &#x3D;&#x3D; &#39;#&#39;) &#123;</span><br><span class="line">                symbolCount ++;</span><br><span class="line">                nodes.pop();</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                if (symbolCount &gt;&#x3D; 2) &#123;</span><br><span class="line">                    nodes.pop();</span><br><span class="line">                    nodes.push(&#39;#&#39;);</span><br><span class="line">                    symbolCount -&#x3D; 2;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    return false;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if ( nodes.size() &#x3D;&#x3D; 1 &amp;&amp; nodes.top() &#x3D;&#x3D; &#39;#&#39; &amp;&amp; symbolCount &#x3D;&#x3D; 0) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>To solve the problem,  use a stack to save the node and verify every child.</p>
 
                 
@@ -394,6 +402,41 @@
             </div>
 
             
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'shuaijiang/shuaijiang.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
           </article>
         </div>
       </div>
@@ -441,6 +484,27 @@
 
   
 
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
 
 
 
@@ -516,6 +580,34 @@
 </div>
 
   
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
   
 </div>
 
@@ -658,6 +750,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

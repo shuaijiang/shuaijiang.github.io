@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          696 字
+          700 字
         
       </span>
     
@@ -275,6 +275,14 @@
           <article class="post-content mx-auto">
             <h1 id="seo-header">C++中类的大小（Sizeof of Class in C++）</h1>
             
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2026年7月17日 下午
+                  
+                
+              </p>
+            
             
               <div class="markdown-body">
                 
@@ -283,18 +291,18 @@
 <span id="more"></span>
 
 <h1 id="空类"><a href="#空类" class="headerlink" title="空类"></a>空类</h1><p>空类，就是除了构造函数和析构函数之外，没有其他的成员函数或者成员变量。当然，如果我们没有显式地写出构造函数和析构函数，编译器会替我们完成。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><br>class A&#123;<br>public:<br>	<span class="hljs-function"><span class="hljs-title">A</span></span>()&#123;&#125;<br>	~<span class="hljs-function"><span class="hljs-title">A</span></span>()&#123;&#125;<br>&#125;; <br><br>int <span class="hljs-function"><span class="hljs-title">main</span></span>()&#123;<br>	A a;<br>	cout&lt;&lt;<span class="hljs-string">sizeof(a)&lt;&lt;endl;</span><br><span class="hljs-string">	return 0;</span><br><span class="hljs-string">&#125;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class A&#123;</span><br><span class="line">public:</span><br><span class="line">	<span class="function"><span class="title">A</span></span>()&#123;&#125;</span><br><span class="line">	~<span class="function"><span class="title">A</span></span>()&#123;&#125;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line">int <span class="function"><span class="title">main</span></span>()&#123;</span><br><span class="line">	A a;</span><br><span class="line">	cout&lt;&lt;<span class="string">sizeof(a)&lt;&lt;endl;</span></span><br><span class="line"><span class="string">	return 0;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
 
 <p>运行代码，结果输出为1。对于空类，还是会分配一个字节的位置来标识该类的对象。</p>
 <h1 id="含有不同数据类型的类"><a href="#含有不同数据类型的类" class="headerlink" title="含有不同数据类型的类"></a>含有不同数据类型的类</h1><p>含有不同数据类型的时候，要注意数据的对齐规则。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span>&#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">A</span>()&#123;&#125;<br>	~<span class="hljs-built_in">A</span>()&#123;&#125;<br>	<span class="hljs-keyword">int</span> num;<br>	<span class="hljs-keyword">char</span> ch;<br>	<span class="hljs-keyword">double</span> n;<br>&#125;; <br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	A a;<br>	cout&lt;&lt;<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(a)&lt;&lt;endl;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">public:</span><br><span class="line">	A()&#123;&#125;</span><br><span class="line">	~A()&#123;&#125;</span><br><span class="line">	int num;</span><br><span class="line">	char ch;</span><br><span class="line">	double n;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	A a;</span><br><span class="line">	cout&lt;&lt;sizeof(a)&lt;&lt;endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>运行代码，结果输出为16（32位条件下也是16）。这个涉及到数据对齐，对齐规则是：占空间小的数据类型向占空间大的数据类型看齐，对齐的数目是2的幂次。比如，成员变量ch，由于只占了一个字节，所以要补成4个字节，所以，总共占用的空间是4+（1+3）+8=16。</p>
 <h1 id="含有虚函数的类"><a href="#含有虚函数的类" class="headerlink" title="含有虚函数的类"></a>含有虚函数的类</h1><p>虚函数是个C++多态的重要组成，因为虚函数的存在，编译器会默认生成一个虚函数表和一个指向该表的指针。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span>&#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">A</span>()&#123;&#125;<br>	~<span class="hljs-built_in">A</span>()&#123;&#125;<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span></span>&#123;<br>		<span class="hljs-comment">//nothing</span><br>	&#125;<br>	<span class="hljs-keyword">int</span> num;<br>	<span class="hljs-keyword">char</span> ch;<br>	<span class="hljs-keyword">double</span> n;<br>&#125;; <br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	A a;<br>	cout&lt;&lt;<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(a)&lt;&lt;endl;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">public:</span><br><span class="line">	A()&#123;&#125;</span><br><span class="line">	~A()&#123;&#125;</span><br><span class="line">	virtual void f()&#123;</span><br><span class="line">		&#x2F;&#x2F;nothing</span><br><span class="line">	&#125;</span><br><span class="line">	int num;</span><br><span class="line">	char ch;</span><br><span class="line">	double n;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	A a;</span><br><span class="line">	cout&lt;&lt;sizeof(a)&lt;&lt;endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行代码，结果输出为24（32位条件下是20）。因为虚函数的存在，编译器会默认生成一个指向虚函数表的指针，在64位机器上，指针的大小为8个字节。所以，整个对象的大小是 8+4+（1+3）+8=24。可以看到这里编译器很智能地把int 和char类型的还是对齐成4，这样节省了空间。</p>
 <h1 id="含有static类型变量的类"><a href="#含有static类型变量的类" class="headerlink" title="含有static类型变量的类"></a>含有static类型变量的类</h1><p>在类中添加static类型的变量会发生什么呢？</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span>&#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">A</span>()&#123;&#125;<br>	~<span class="hljs-built_in">A</span>()&#123;&#125;<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span></span>&#123;<br>		<span class="hljs-comment">//nothing</span><br>	&#125;<br>	<span class="hljs-keyword">int</span> num;<br>	<span class="hljs-keyword">char</span> ch;<br>	<span class="hljs-keyword">double</span> n;<br>	<span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> s_int;<br>&#125;; <br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	A a;<br>	cout&lt;&lt;<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(a)&lt;&lt;endl;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">public:</span><br><span class="line">	A()&#123;&#125;</span><br><span class="line">	~A()&#123;&#125;</span><br><span class="line">	virtual void f()&#123;</span><br><span class="line">		&#x2F;&#x2F;nothing</span><br><span class="line">	&#125;</span><br><span class="line">	int num;</span><br><span class="line">	char ch;</span><br><span class="line">	double n;</span><br><span class="line">	static int s_int;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	A a;</span><br><span class="line">	cout&lt;&lt;sizeof(a)&lt;&lt;endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行代码，结果输出为24，和上一个类的大小相同。这是因为static类型是在静态存储区，并不属于该类的一个成员。</p>
 
                 
@@ -387,6 +395,41 @@
             </div>
 
             
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'shuaijiang/shuaijiang.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
           </article>
         </div>
       </div>
@@ -434,6 +477,27 @@
 
   
 
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
 
 
 
@@ -509,6 +573,34 @@
 </div>
 
   
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
   
 </div>
 
@@ -651,6 +743,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

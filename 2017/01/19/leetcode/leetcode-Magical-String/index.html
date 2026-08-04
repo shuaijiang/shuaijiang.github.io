@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          137 字
+          151 字
         
       </span>
     
@@ -275,6 +275,14 @@
           <article class="post-content mx-auto">
             <h1 id="seo-header">LeetCode Magical String</h1>
             
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2026年7月17日 下午
+                  
+                
+              </p>
+            
             
               <div class="markdown-body">
                 
@@ -289,12 +297,12 @@
 <p>Given an integer N as input, return the number of ‘1’s in the first N number in the magical string S.</p>
 <p>Note: N will not exceed 100,000.</p>
 <p>Example 1:</p>
-<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vbnet"><span class="hljs-symbol">Input:</span> <span class="hljs-number">6</span><br><span class="hljs-symbol">Output:</span> <span class="hljs-number">3</span><br><span class="hljs-symbol">Explanation:</span> The first <span class="hljs-number">6</span> elements <span class="hljs-keyword">of</span> magical <span class="hljs-type">string</span> S <span class="hljs-built_in">is</span> <span class="hljs-string">&quot;12211&quot;</span> <span class="hljs-built_in">and</span> it contains three <span class="hljs-number">1</span><span class="hljs-comment">&#x27;s, so return 3.</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: 6</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: The first 6 elements of magical string S is &quot;12211&quot; and it contains three 1&#39;s, so return 3.</span><br></pre></td></tr></table></figure>
 <p>The original problem is <a target="_blank" rel="noopener" href="https://leetcode.com/problems/magical-string/" title="Problem">here</a>.</p>
 <span id="more"></span>
 
 <h1 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a>My Solution</h1><p>I solve this problem in C++, as below:</p>
-<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>	<span class="hljs-keyword">public</span>:<br>	    <span class="hljs-built_in">int</span> magicalString(<span class="hljs-built_in">int</span> n) &#123;<br>	        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">0</span>)<br>	            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	        <span class="hljs-keyword">if</span>(n &lt;= <span class="hljs-number">3</span>)&#123;<br>	            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	        &#125;<br>	        vector&lt;<span class="hljs-built_in">int</span>&gt; <span class="hljs-built_in">str</span>;<br>	        <span class="hljs-built_in">str</span>.push_back(<span class="hljs-number">1</span>);<br>	        <span class="hljs-built_in">str</span>.push_back(<span class="hljs-number">2</span>);<br>	        <span class="hljs-built_in">str</span>.push_back(<span class="hljs-number">2</span>);<br>	        <span class="hljs-built_in">int</span> res=<span class="hljs-number">1</span>;<br>	        <span class="hljs-built_in">int</span> char12 = <span class="hljs-number">1</span>;<br>	        <span class="hljs-built_in">int</span> <span class="hljs-keyword">count</span>, j=<span class="hljs-number">2</span>;<br>	        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i=<span class="hljs-number">3</span>; i&lt;n;i++) &#123;<br>	            <span class="hljs-keyword">count</span> = <span class="hljs-built_in">str</span>[j];<br>	            <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> k=<span class="hljs-number">0</span>; k&lt;<span class="hljs-keyword">count</span>; k++)&#123;<br>	                <span class="hljs-keyword">if</span> (char12 == <span class="hljs-number">1</span>) &#123;<br>	                    <span class="hljs-built_in">str</span>.push_back(<span class="hljs-number">1</span>);<br>	                    res++;<br>	                &#125; <span class="hljs-keyword">else</span> &#123;<br>	                    <span class="hljs-built_in">str</span>.push_back(<span class="hljs-number">2</span>);<br>	                &#125;<br>	                <span class="hljs-keyword">if</span>(<span class="hljs-built_in">str</span>.size() == n)<br>	                    <span class="hljs-keyword">return</span> res;<br>	            &#125;<br>	            char12 = <span class="hljs-number">1</span> - char12;<br>	            j++;<br>	        &#125;<br>	        <span class="hljs-keyword">return</span> res;<br>	    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">	public:</span><br><span class="line">	    int magicalString(int n) &#123;</span><br><span class="line">	        if(n &#x3D;&#x3D; 0)</span><br><span class="line">	            return 0;</span><br><span class="line">	        if(n &lt;&#x3D; 3)&#123;</span><br><span class="line">	            return 1;</span><br><span class="line">	        &#125;</span><br><span class="line">	        vector&lt;int&gt; str;</span><br><span class="line">	        str.push_back(1);</span><br><span class="line">	        str.push_back(2);</span><br><span class="line">	        str.push_back(2);</span><br><span class="line">	        int res&#x3D;1;</span><br><span class="line">	        int char12 &#x3D; 1;</span><br><span class="line">	        int count, j&#x3D;2;</span><br><span class="line">	        for(int i&#x3D;3; i&lt;n;i++) &#123;</span><br><span class="line">	            count &#x3D; str[j];</span><br><span class="line">	            for(int k&#x3D;0; k&lt;count; k++)&#123;</span><br><span class="line">	                if (char12 &#x3D;&#x3D; 1) &#123;</span><br><span class="line">	                    str.push_back(1);</span><br><span class="line">	                    res++;</span><br><span class="line">	                &#125; else &#123;</span><br><span class="line">	                    str.push_back(2);</span><br><span class="line">	                &#125;</span><br><span class="line">	                if(str.size() &#x3D;&#x3D; n)</span><br><span class="line">	                    return res;</span><br><span class="line">	            &#125;</span><br><span class="line">	            char12 &#x3D; 1 - char12;</span><br><span class="line">	            j++;</span><br><span class="line">	        &#125;</span><br><span class="line">	        return res;</span><br><span class="line">	    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>To solve the problem, save the history number and according to the history number to generate new number. </p>
 
                 
@@ -387,6 +395,41 @@
             </div>
 
             
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'shuaijiang/shuaijiang.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
           </article>
         </div>
       </div>
@@ -434,6 +477,27 @@
 
   
 
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
 
 
 
@@ -509,6 +573,34 @@
 </div>
 
   
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
   
 </div>
 
@@ -651,6 +743,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

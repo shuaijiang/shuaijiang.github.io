@@ -19,12 +19,12 @@
   <meta name="author" content="shuaijiang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="DescriptionFind the sum of all left leaves in a given binary tree. Example: 1234567    3   &#x2F; \  9  20      &#x2F;  \   15   7There are two left leaves in the binary tree, with values 9 and 15 respectively.">
+    <meta name="description" content="DescriptionFind the sum of all left leaves in a given binary tree. Example: 1234567    3   &#x2F; \  9  20      &#x2F;  \   15   7There are two left leaves in the binary tree, with values 9 and 15 res">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode Sum of Left Leaves">
 <meta property="og:url" content="http://zhaoshuaijiang.com/2017/01/23/leetcode/leetcode-Sum-of-Left-Leaves/index.html">
 <meta property="og:site_name" content="shuaijiang&#39;s blog">
-<meta property="og:description" content="DescriptionFind the sum of all left leaves in a given binary tree. Example: 1234567    3   &#x2F; \  9  20      &#x2F;  \   15   7There are two left leaves in the binary tree, with values 9 and 15 respectively.">
+<meta property="og:description" content="DescriptionFind the sum of all left leaves in a given binary tree. Example: 1234567    3   &#x2F; \  9  20      &#x2F;  \   15   7There are two left leaves in the binary tree, with values 9 and 15 res">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-01-23T03:30:19.000Z">
 <meta property="article:modified_time" content="2026-07-17T06:16:31.929Z">
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          108 字
+          124 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          1 分钟
+          2 分钟
         
       </span>
     
@@ -275,17 +275,25 @@
           <article class="post-content mx-auto">
             <h1 id="seo-header">leetcode Sum of Left Leaves</h1>
             
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2026年7月17日 下午
+                  
+                
+              </p>
+            
             
               <div class="markdown-body">
                 
                 <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>Find the sum of all left leaves in a given binary tree.</p>
 <p>Example:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql">    <span class="hljs-number">3</span><br>   <span class="hljs-operator">/</span> \<br>  <span class="hljs-number">9</span>  <span class="hljs-number">20</span><br>      <span class="hljs-operator">/</span>  \<br>   <span class="hljs-number">15</span>   <span class="hljs-number">7</span><br><br>There <span class="hljs-keyword">are</span> two <span class="hljs-keyword">left</span> leaves <span class="hljs-keyword">in</span> the <span class="hljs-type">binary</span> tree, <span class="hljs-keyword">with</span> <span class="hljs-keyword">values</span> <span class="hljs-number">9</span> <span class="hljs-keyword">and</span> <span class="hljs-number">15</span> respectively. <span class="hljs-keyword">Return</span> <span class="hljs-number">24.</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    3</span><br><span class="line">   &#x2F; \</span><br><span class="line">  9  20</span><br><span class="line">      &#x2F;  \</span><br><span class="line">   15   7</span><br><span class="line"></span><br><span class="line">There are two left leaves in the binary tree, with values 9 and 15 respectively. Return 24.</span><br></pre></td></tr></table></figure>
 <p>The original problem is <a target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-left-leaves/" title="Problem">here</a>.</p>
 <span id="more"></span>
 
 <h1 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a>My Solution</h1><p>I solve this problem in C++, as below:</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">/**<br> * Definition for a binary tree node.<br> * struct TreeNode &#123;<br> *     int val;<br> *     TreeNode *left;<br> *     TreeNode *right;<br> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;<br> * &#125;;<br> */<br>class Solution &#123;<br>public:<br>    int res = <span class="hljs-number">0</span>;<br>    int sumOfLeftLeaves(TreeNode* root) &#123;<br>        if (root == NULL) <br>            return <span class="hljs-number">0</span>;<br>        if (isLeaf(root))<br>            return <span class="hljs-number">0</span>;<br>        sum(root);<br>        return res;<br><br>    &#125;<br>    void sum(TreeNode* <span class="hljs-keyword">node</span><span class="hljs-title">) &#123;</span><br><span class="hljs-title">        if</span> (<span class="hljs-keyword">node</span> <span class="hljs-title">== NULL</span>) <br>            return;<br>        if (isLeaf(<span class="hljs-keyword">node</span><span class="hljs-title">-&gt;left</span>))<br>             res += <span class="hljs-keyword">node</span><span class="hljs-title">-&gt;left-</span>&gt;val;<br>        else&#123;<br>            sum(<span class="hljs-keyword">node</span><span class="hljs-title">-&gt;left</span>);<br>        &#125;<br>        sum(<span class="hljs-keyword">node</span><span class="hljs-title">-&gt;right</span>);<br>    &#125;<br>    <br>    bool isLeaf(TreeNode* <span class="hljs-keyword">node</span><span class="hljs-title">) &#123;</span><br><span class="hljs-title">        if</span> (<span class="hljs-keyword">node</span> <span class="hljs-title">== NULL</span>)<br>            return <span class="hljs-literal">false</span>;<br>        if(<span class="hljs-keyword">node</span><span class="hljs-title">-&gt;left</span> == NULL &amp;&amp; <span class="hljs-keyword">node</span><span class="hljs-title">-&gt;right</span> == NULL)<br>            return <span class="hljs-literal">true</span>;<br>        return <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * struct TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left;</span><br><span class="line"> *     TreeNode *right;</span><br><span class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> *&#x2F;</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int res &#x3D; 0;</span><br><span class="line">    int sumOfLeftLeaves(TreeNode* root) &#123;</span><br><span class="line">        if (root &#x3D;&#x3D; NULL) </span><br><span class="line">            return 0;</span><br><span class="line">        if (isLeaf(root))</span><br><span class="line">            return 0;</span><br><span class="line">        sum(root);</span><br><span class="line">        return res;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    void sum(TreeNode* node) &#123;</span><br><span class="line">        if (node &#x3D;&#x3D; NULL) </span><br><span class="line">            return;</span><br><span class="line">        if (isLeaf(node-&gt;left))</span><br><span class="line">             res +&#x3D; node-&gt;left-&gt;val;</span><br><span class="line">        else&#123;</span><br><span class="line">            sum(node-&gt;left);</span><br><span class="line">        &#125;</span><br><span class="line">        sum(node-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    bool isLeaf(TreeNode* node) &#123;</span><br><span class="line">        if (node &#x3D;&#x3D; NULL)</span><br><span class="line">            return false;</span><br><span class="line">        if(node-&gt;left &#x3D;&#x3D; NULL &amp;&amp; node-&gt;right &#x3D;&#x3D; NULL)</span><br><span class="line">            return true;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>To solve the problem,  traverse the tree recursively, if the node is left leaf add the value to the result.</p>
 
                 
@@ -378,6 +386,41 @@
             </div>
 
             
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'shuaijiang/shuaijiang.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
           </article>
         </div>
       </div>
@@ -425,6 +468,27 @@
 
   
 
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
 
 
 
@@ -500,6 +564,34 @@
 </div>
 
   
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
   
 </div>
 
@@ -642,6 +734,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
